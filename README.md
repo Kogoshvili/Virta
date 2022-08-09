@@ -1,4 +1,4 @@
-### Virta: E-commerce Platform (WIP)
+# Virta: E-commerce Platform (WIP)
 
 ## Stack
 Angular & ASP.NET Core 5.0  
