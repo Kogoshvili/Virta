@@ -2,7 +2,9 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "analytics": "0439482d-32e2-4a27-b711-43ba89735da0",
-    "defaultCollection": "@ngrx/schematics"
+    "schematicCollections": [
+      "@ngrx/schematics"
+    ]
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -35,9 +37,9 @@
               "src/assets"
             ],
             "styles": [
-                "src/styles.scss",
-                "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-                "node_modules/@splidejs/splide/dist/css/splide.min.css"
+              "src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "node_modules/@splidejs/splide/dist/css/splide.min.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -126,6 +128,5 @@
         }
       }
     }
-  },
-  "defaultProject": "Virta"
+  }
 }
