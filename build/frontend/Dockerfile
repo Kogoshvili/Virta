@@ -4,9 +4,9 @@ FROM node:${NODE_VERSION}
 
 WORKDIR /app
 
-COPY ./Frontend/package.json package.json
-COPY ./Frontend/package-lock.json package-lock.json
+COPY ./Frontend/ ./
 
-RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
+RUN npm install
+RUN npm run build
 
-CMD ng serve --host 0.0.0.0 --port 4200 --open --disable-host-check
+CMD npm run start-prod

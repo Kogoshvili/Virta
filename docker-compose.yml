@@ -3,23 +3,20 @@ services:
   postgres:
     image: postgres:alpine
     restart: on-failure:5
-    environment:
-      - POSTGRES_PASSWORD=toor
+    env_file: ./.env
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT}:${POSTGRES_PORT_HOST}
 
   mongo:
     image: mongo:latest
     restart: on-failure:5
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=toor
+    env_file: ./.env
     volumes:
       - mongo-data:/data/db
     ports:
-      - 27017:27017
+      - ${MONGO_PORT}:${MONGO_PORT_HOST}
 
   frontend:
     build:
@@ -31,7 +28,7 @@ services:
     volumes:
       - ./Frontend:/app
     ports:
-      - 4200:4200
+      - ${ANGULAR_PORT}:${ANGULAR_PORT_HOST}
 
   backend:
     build:
@@ -40,11 +37,9 @@ services:
     restart: on-failure:5
     volumes:
       - ./Backend/bin/Debug/net5.0:/app
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:5000
+    env_file: ./.env
     ports:
-      - 5000:5000
+      - ${ASPNETCORE_PORT}:${ASPNETCORE_PORT_HOST}
 
   nginx:
     build:
