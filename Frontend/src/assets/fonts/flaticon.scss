@@ -1,0 +1,85 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?80dde508dcd86a42236a192d1ce5c026") format("truetype"),
+url("./flaticon.woff?80dde508dcd86a42236a192d1ce5c026") format("woff"),
+url("./flaticon.woff2?80dde508dcd86a42236a192d1ce5c026") format("woff2"),
+url("./flaticon.eot?80dde508dcd86a42236a192d1ce5c026#iefix") format("embedded-opentype"),
+url("./flaticon.svg?80dde508dcd86a42236a192d1ce5c026#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "vegetable": "\f101",
+    "grocery": "\f102",
+    "harvest": "\f103",
+    "farm": "\f104",
+    "crab": "\f105",
+    "salad": "\f106",
+    "dried-fruits": "\f107",
+    "fast-food": "\f108",
+    "drinks": "\f109",
+    "coffee-cup": "\f10a",
+    "steak": "\f10b",
+    "menu": "\f10c",
+    "menu-1": "\f10d",
+    "list-text": "\f10e",
+    "menu-2": "\f10f",
+);
+
+.flaticon-vegetable:before {
+    content: map-get($flaticon-map, "vegetable");
+}
+.flaticon-grocery:before {
+    content: map-get($flaticon-map, "grocery");
+}
+.flaticon-harvest:before {
+    content: map-get($flaticon-map, "harvest");
+}
+.flaticon-farm:before {
+    content: map-get($flaticon-map, "farm");
+}
+.flaticon-crab:before {
+    content: map-get($flaticon-map, "crab");
+}
+.flaticon-salad:before {
+    content: map-get($flaticon-map, "salad");
+}
+.flaticon-dried-fruits:before {
+    content: map-get($flaticon-map, "dried-fruits");
+}
+.flaticon-fast-food:before {
+    content: map-get($flaticon-map, "fast-food");
+}
+.flaticon-drinks:before {
+    content: map-get($flaticon-map, "drinks");
+}
+.flaticon-coffee-cup:before {
+    content: map-get($flaticon-map, "coffee-cup");
+}
+.flaticon-steak:before {
+    content: map-get($flaticon-map, "steak");
+}
+.flaticon-menu:before {
+    content: map-get($flaticon-map, "menu");
+}
+.flaticon-menu-1:before {
+    content: map-get($flaticon-map, "menu-1");
+}
+.flaticon-list-text:before {
+    content: map-get($flaticon-map, "list-text");
+}
+.flaticon-menu-2:before {
+    content: map-get($flaticon-map, "menu-2");
+}
