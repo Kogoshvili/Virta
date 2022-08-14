@@ -1,0 +1,15 @@
+<div [ngClass]="['splide', class]" id="{{ id }}">
+    <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev">
+            <i class="far fa-angle-left"></i>
+        </button>
+        <button class="splide__arrow splide__arrow--next">
+            <i class="far fa-angle-right"></i>
+        </button>
+    </div>
+    <div class="splide__track">
+          <ul class="splide__list">
+                <ng-content></ng-content>
+          </ul>
+    </div>
+</div>

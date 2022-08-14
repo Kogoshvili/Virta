@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&amp;display=swap");
 
+@import '~@splidejs/splide/dist/css/splide.min.css';
+@import '~ngx-toastr/toastr';
+
 @import './styles/variables';
 @import './styles/typography';
 @import './styles/media';
@@ -8,6 +11,5 @@
 @import './styles/table';
 @import './styles/dropdown';
 @import './styles/megamenu';
+@import './styles/overredies';
 
-// NPM
-@import '~ngx-toastr/toastr';

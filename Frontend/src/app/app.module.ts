@@ -30,6 +30,7 @@ import { ProductFilterComponent } from './components/product-filter/product-filt
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { SideCartComponent } from './components/side-cart/side-cart.component';
 import { SideCategoryComponent } from './components/side-category/side-category.component';
+import { SliderComponent } from './components/slider/slider.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
@@ -62,7 +63,8 @@ export function tokenGetter(): string | null {
         LoadingScreenComponent,
         AccountPageComponent,
         SideCategoryComponent,
-        SideCartComponent
+        SideCartComponent,
+        SliderComponent
     ],
     imports: [
         BrowserModule,

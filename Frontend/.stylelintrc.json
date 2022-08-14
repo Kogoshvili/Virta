@@ -70,6 +70,8 @@
         "declaration-empty-line-before": "never",
         "color-hex-case": "upper",
         "color-hex-length": "long",
-        "selector-pseudo-class-no-unknown": [ true, { "ignorePseudoClasses": ["/deep/"] }]
+        "selector-pseudo-class-no-unknown": [ true, { "ignorePseudoClasses": ["/deep/"] }],
+        "rule-empty-line-before": ["always", { "ignore": ["after-comment", "first-nested"] }],
+        "selector-pseudo-element-no-unknown": ["ng-deep"]
     }
 }
