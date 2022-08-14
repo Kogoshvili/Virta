@@ -6,8 +6,10 @@ import {
 import { GeneralState } from './general';
 import {
     setLoadingScreen,
-    toggleLoadingScreen,
-    setProductCardLocation
+    setProductCardLocation,
+    toggleIsSideCart,
+    toggleIsSideCategory,
+    toggleLoadingScreen
 } from './general.actions';
 
 export const initialState: GeneralState = {
@@ -15,14 +17,18 @@ export const initialState: GeneralState = {
     location: {
         offsetLeft: 0,
         offsetTop: 0
-    }
+    },
+    isSideCategory: false,
+    isSideCart: false
 };
 
 export const reducer = createReducer(
     initialState,
     on(setProductCardLocation, (state, action) => ({ ...state, location: action.location })),
     on(setLoadingScreen, (state, action) => ({ ...state, loadingScreen: action.loadingScreen })),
-    on(toggleLoadingScreen, (state) => ({ ...state, loadingScreen: !state.loadingScreen }))
+    on(toggleLoadingScreen, (state) => ({ ...state, loadingScreen: !state.loadingScreen })),
+    on(toggleIsSideCategory, (state) => ({ ...state, isSideCategory: !state.isSideCategory })),
+    on(toggleIsSideCart, (state) => ({ ...state, isSideCart: !state.isSideCart }))
 );
 
 export function generalReducer(state: any, action: any) {

@@ -18,3 +18,5 @@ export const setLoadingScreen = createAction(
 );
 
 export const toggleLoadingScreen = createAction('[General] toggleLoadingScreen');
+export const toggleIsSideCategory = createAction('[General] toggleIsSideCategory');
+export const toggleIsSideCart = createAction('[General] toggleIsSideCart');

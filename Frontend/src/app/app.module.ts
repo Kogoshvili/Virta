@@ -12,6 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -27,6 +28,8 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
+import { SideCartComponent } from './components/side-cart/side-cart.component';
+import { SideCategoryComponent } from './components/side-category/side-category.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
@@ -57,7 +60,9 @@ export function tokenGetter(): string | null {
         ClickOutsideDirective,
         ProductFilterComponent,
         LoadingScreenComponent,
-        AccountPageComponent
+        AccountPageComponent,
+        SideCategoryComponent,
+        SideCartComponent
     ],
     imports: [
         BrowserModule,
@@ -81,7 +86,8 @@ export function tokenGetter(): string | null {
         }),
         StoreModule.forRoot(Reducers, {}),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-        EffectsModule.forRoot([])
+        EffectsModule.forRoot([]),
+        NgbModule
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -3,5 +3,7 @@ export interface GeneralState {
     location: {
         offsetLeft: number;
         offsetTop: number;
-    }
+    },
+    isSideCategory: boolean;
+    isSideCart: boolean;
 }

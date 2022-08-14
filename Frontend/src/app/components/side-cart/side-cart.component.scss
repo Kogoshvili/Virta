@@ -1,0 +1,307 @@
+@import 'variables';
+
+.cart-part {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 5;
+    transition: all linear .2s;
+}
+
+.cart-container {
+    position: absolute;
+    top: 0px;
+    right: -450px;
+    width: 400px;
+    height: 100vh;
+    background: $white;
+    box-shadow: -15px 0px 25px 0px rgba(0, 0, 0, .15);
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
+}
+
+.cart-part.active {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, .5);
+
+    .cart-container {
+        right: 0px;
+    }
+}
+
+.cart-header {
+    padding: 18px 25px;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid $border;
+}
+
+.cart-total {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+        font-size: 20px;
+        margin-right: 8px;
+        color: $primary;
+    }
+    span {
+        font-weight: 500;
+        color: $primary;
+        text-transform: capitalize;
+    }
+}
+
+.cart-close {
+    position: absolute;
+    top: 50%;
+    left: -18px;
+    transform: translateY(-50%);
+
+    i {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        line-height: 35px;
+        border-radius: 50%;
+        text-align: center;
+        display: inline-block;
+        color: $text;
+        background: $white;
+        text-shadow: var(--primary-tshadow);
+        transition: all linear .3s;
+        -webkit-transition: all linear .3s;
+        -moz-transition: all linear .3s;
+        -ms-transition: all linear .3s;
+        -o-transition: all linear .3s;
+
+        &:hover {
+            color: $white;
+            background: $primary;
+        }
+    }
+}
+
+.cart-list {
+    height: 100%;
+    padding: 0px 15px;
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+.cart-item {
+    padding: 15px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border-bottom: 1px solid $border;
+
+    &:hover {
+        .cart-media {
+            button {
+                transform: scale(1);
+            }
+        }
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.cart-media {
+    position: relative;
+    margin-right: 25px;
+
+    a {
+        img {
+            width: 100px;
+            border-radius: 8px;
+        }
+    }
+
+    button {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, .2);
+        transform: scale(0);
+        transition: all linear .3s;
+        -webkit-transition: all linear .3s;
+        -moz-transition: all linear .3s;
+        -ms-transition: all linear .3s;
+        -o-transition: all linear .3s;
+
+        i {
+            width: 32px;
+            height: 32px;
+            font-size: 18px;
+            line-height: 32px;
+            text-align: center;
+            border-radius: 5px;
+            display: inline-block;
+            color: $red;
+            background: rgba(255, 255, 255, .9);
+            transition: all linear .3s;
+            -webkit-transition: all linear .3s;
+            -moz-transition: all linear .3s;
+            -ms-transition: all linear .3s;
+            -o-transition: all linear .3s;
+
+            &:hover {
+                color: $white;
+                background: $red;
+            }
+        }
+    }
+}
+
+.cart-info-group {
+    width: 100%;
+}
+
+.cart-info {
+    margin-bottom: 13px;
+
+    h6 {
+        font-weight: 400;
+        text-transform: capitalize;
+
+        a {
+            color: $heading;
+        }
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+.cart-action-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+
+    .product-action {
+        display: flex;
+
+        button {
+            i {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+                line-height: 30px;
+                border-radius: 5px;
+            }
+        }
+
+        input {
+            width: 45px;
+            height: 30px;
+            font-size: 14px;
+            border-radius: 5px;
+            color: $primary;
+            background: $chalk;
+        }
+    }
+
+    h6 {
+        font-weight: 500;
+        color: $primary;
+    }
+}
+
+.cart-footer {
+    padding: 20px 15px 0px;
+    text-align: center;
+    box-shadow: 0px -3px 7px 0px rgba(0, 0, 0, .08);
+}
+
+.cart-checkout-btn {
+    padding: 10px 0px;
+    border-radius: 8px;
+    background: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
+
+    &:hover {
+        background: $heading;
+    }
+}
+
+.checkout-label {
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    letter-spacing: .3px;
+    text-align: center;
+    text-transform: capitalize;
+    color: $white;
+}
+
+.checkout-price {
+    padding: 0px 25px;
+    letter-spacing: .3px;
+    color: $white;
+    border-left: 1px solid $border;
+}
+
+.coupon-form {
+    padding: 3px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $border;
+    box-shadow: 0px 7px 13px 0px rgba(0, 0, 0, .1);
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
+
+    &:focus-within {
+        border-color: $primary;
+    }
+
+    input {
+        width: 100%;
+        height: 38px;
+        padding: 0px 15px;
+    }
+
+    button {
+        span {
+            width: 100px;
+            height: 38px;
+            font-size: 14px;
+            line-height: 38px;
+            border-radius: 8px;
+            display: block;
+            text-align: center;
+            text-transform: uppercase;
+            color: $white;
+            background: $primary;
+
+            &:hover {
+                background: $heading;
+            }
+        }
+    }
+}
