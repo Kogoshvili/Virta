@@ -5,108 +5,15 @@
             <button class="category-close" (click)="toggleSideCategory()"><i class="far fa-times"></i></button>
         </div>
         <ul class="category-list">
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-vegetable"></i>fresh vegetables</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-grocery"></i>groceries & staples</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-harvest"></i>fruits & Juice</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-farm"></i>dairy & eggs</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-crab"></i>sea foods & fishes</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-salad"></i>diet foods</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-dried-fruits"></i>dry foods</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-fast-food"></i>fast foods</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-drinks"></i>drinks</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-coffee-cup"></i>coffee & tea</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="cate-link dropdown-link" href="#"><i class="flaticon-steak"></i>meats</a>
-                <ul class="dropdown-list">
-                    <li><a href="#">carrot</a></li>
-                    <li><a href="#">broccoli</a></li>
-                    <li><a href="#">cauliflower</a></li>
-                    <li><a href="#">cucumber</a></li>
+            <li *ngFor="let c of categories">
+                <a class="cate-link dropdown-link" href="#" (click)="expandCategory(c.name)"><i class="{{ c.icon }}"></i>{{ c.name }}</a>
+                <ul class="dropdown-list" [class.active]="c.active">
+                    <li *ngFor="let s of c.children"><a href="#">{{ s.name }}</a></li>
                 </ul>
             </li>
         </ul>
         <div class="category-footer">
-            <p>All Rights Reserved by <a href="#">Organic</a></p>
+            <p>All Rights Reserved by <a href="#">Virta</a></p>
         </div>
     </div>
 </aside>

@@ -39,7 +39,7 @@
                     <button class="header-widget header-user"  title="My Account"><img src="assets/img/user.jpg" alt="user" /></button>
                     <a class="header-logo" href="/"><img src="assets/img/logo.png" alt="logo" /></a>
                     <button class="header-widget header-src" title="Search Bar"><i class="far fa-search"></i></button>
-                    <button class="header-widget header-cate" title="Category List" (click)="toggleSideCategory()"><i class="flaticon-menu-1"></i></button>
+                    <button dropdown-link="header-widget header-cate" title="Category List" (click)="toggleSideCategory()"><i class="flaticon-menu-1"></i></button>
                 </div>
                 <form class="header-form" #searchForm="ngForm" (ngSubmit)="search()">
                     <input

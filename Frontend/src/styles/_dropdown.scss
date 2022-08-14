@@ -4,6 +4,10 @@
     border-left: 3px solid $primary;
     background: $white;
 
+    &.active {
+        display: block
+    }
+
     li {
         position: relative;
 
