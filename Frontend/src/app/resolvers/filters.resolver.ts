@@ -11,8 +11,8 @@ import {
     of
 } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Filters } from '../_models/filters';
-import { CategoryService } from '../_services/category.service';
+import { Filters } from '../models/filters';
+import { CategoryService } from '../services/category.service';
 
 @Injectable({
     providedIn: 'root'

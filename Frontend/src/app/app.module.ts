@@ -46,13 +46,13 @@ import { TopSectionComponent } from './components/top-section/top-section.compon
 import { TrendingSectionComponent } from './components/trending-section/trending-section.component';
 import { VisualSectionComponent } from './components/visual-section/visual-section.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { Reducers } from './store/app.store';
-import { ClickOutsideDirective } from './_directives/click-outside.directive';
 
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');

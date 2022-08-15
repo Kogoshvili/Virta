@@ -4,7 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/_models/product';
+import { Product } from 'src/app/models/product';
 
 @Component({
     selector: 'app-products-list',

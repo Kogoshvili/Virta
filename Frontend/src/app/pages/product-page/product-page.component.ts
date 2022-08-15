@@ -11,11 +11,11 @@ import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import Splide from '@splidejs/splide';
+import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 import { AppStore } from 'src/app/store/app.store';
 import { setLoadingScreen } from 'src/app/store/general/general.actions';
-import { Product } from 'src/app/_models/product';
-import { CartService } from 'src/app/_services/cart.service';
-import { WishlistService } from 'src/app/_services/wishlist.service';
 
 @Component({
     selector: 'app-product-page',

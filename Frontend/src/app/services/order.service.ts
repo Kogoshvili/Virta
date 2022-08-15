@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Observable,
-    of } from 'rxjs';
-import { catchError,
-    map } from 'rxjs/operators';
+import {
+    Observable,
+    of
+} from 'rxjs';
+import {
+    catchError,
+    map
+} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ProductInCart } from '../_models/product';
+import { ProductInCart } from '../models/product';
 import { AuthService } from './auth.service';
 
 @Injectable({

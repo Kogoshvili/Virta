@@ -8,8 +8,8 @@ import {
     Observable
 } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Product } from '../_models/product';
-import { ProductService } from '../_services/product.service';
+import { Product } from '../models/product';
+import { ProductService } from '../services/product.service';
 
 @Injectable({
     providedIn: 'root'

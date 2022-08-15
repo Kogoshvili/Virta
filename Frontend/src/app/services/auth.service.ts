@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 import {
     AuthToken,
     User
-} from '../_models/user';
+} from '../models/user';
 
 @Injectable({
     providedIn: 'root'

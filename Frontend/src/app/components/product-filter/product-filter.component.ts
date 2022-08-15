@@ -6,7 +6,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import {
     Filters
-} from 'src/app/_models/filters';
+} from 'src/app/models/filters';
 
 @Component({
     selector: 'app-product-filter',

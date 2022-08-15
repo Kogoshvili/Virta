@@ -11,7 +11,7 @@ import {
     map
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ProductInWishlist } from '../_models/product';
+import { ProductInWishlist } from '../models/product';
 import { AuthService } from './auth.service';
 
 @Injectable({

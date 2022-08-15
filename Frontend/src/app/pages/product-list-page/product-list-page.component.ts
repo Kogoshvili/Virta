@@ -4,10 +4,10 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Filters } from 'src/app/models/filters';
+import { Product } from 'src/app/models/product';
 import { AppStore } from 'src/app/store/app.store';
 import { setLoadingScreen } from 'src/app/store/general/general.actions';
-import { Filters } from 'src/app/_models/filters';
-import { Product } from 'src/app/_models/product';
 
 @Component({
     selector: 'app-product-list-page',

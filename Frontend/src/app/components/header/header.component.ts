@@ -4,10 +4,10 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Category } from 'src/app/models/filters';
+import { CategoryService } from 'src/app/services/category.service';
 import { toggleIsSideCart, toggleIsSideCategory } from 'src/app/store/general/general.actions';
 import { selectIsSideCart, selectIsSideCategory } from 'src/app/store/general/general.selectors';
-import { Category } from 'src/app/_models/filters';
-import { CategoryService } from 'src/app/_services/category.service';
 import { AppStore } from '../../store/app.store';
 
 @Component({

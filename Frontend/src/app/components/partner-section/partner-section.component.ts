@@ -12,7 +12,8 @@ export class PartnerSectionComponent implements OnInit {
         gap: '24px',
         autoplay: true,
         perPage: 6,
-        pagination: false
+        pagination: false,
+        perMove: 1
     };
     partners = [
         { url: '#', image: 'assets/img/brand/01.png' },

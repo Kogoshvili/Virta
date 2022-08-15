@@ -5,8 +5,8 @@ import {
 import { Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/_models/user';
-import { AuthService } from 'src/app/_services/auth.service';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-entry',

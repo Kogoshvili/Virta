@@ -8,9 +8,9 @@ import {
     faShoppingCart
 } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
+import { ProductInCart } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { AppStore } from 'src/app/store/app.store';
-import { ProductInCart } from 'src/app/_models/product';
-import { CartService } from 'src/app/_services/cart.service';
 
 @Component({
     selector: 'app-cart',

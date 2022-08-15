@@ -8,10 +8,10 @@ import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.compo
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
-import { FiltersResolver } from './_resolvers/filters.resolver';
-import { HomePageResolver } from './_resolvers/home-page.resolver';
-import { ProductListResolver } from './_resolvers/product-list.resolver';
-import { ProductResolver } from './_resolvers/product.resolver';
+import { FiltersResolver } from './resolvers/filters.resolver';
+import { HomePageResolver } from './resolvers/home-page.resolver';
+import { ProductListResolver } from './resolvers/product-list.resolver';
+import { ProductResolver } from './resolvers/product.resolver';
 
 const routes: Routes = [
     {

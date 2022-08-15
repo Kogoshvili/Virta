@@ -9,11 +9,11 @@ import {
     map
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ApiHelper } from '../_helper/api.service';
+import { ApiHelper } from '../helper/api.service';
 import {
     Product,
     ProductImage
-} from '../_models/product';
+} from '../models/product';
 
 @Injectable({
     providedIn: 'root'
@@ -24,7 +24,7 @@ export class ProductService {
         id: 0,
         primary: true,
         url: 'https://picsum.photos/450/600'
-    }
+    };
 
     constructor(
         private http: HttpClient

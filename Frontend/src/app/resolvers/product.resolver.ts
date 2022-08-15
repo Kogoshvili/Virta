@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {
-    Resolve,
-    ActivatedRouteSnapshot
+    ActivatedRouteSnapshot, Resolve
 } from '@angular/router';
-import { Observable,
-    of } from 'rxjs';
-import { Product } from '../_models/product';
-import { ProductService } from '../_services/product.service';
-import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import {
+    Observable,
+    of
+} from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Product } from '../models/product';
+import { ProductService } from '../services/product.service';
 
 @Injectable({
     providedIn: 'root'
