@@ -1,4 +1,4 @@
-<div [ngClass]="['splide', class]" id="{{ id }}">
+<div class="splide" id="{{ id }}">
     <div class="splide__arrows">
         <button class="splide__arrow splide__arrow--prev">
             <i class="far fa-angle-left"></i>
@@ -7,7 +7,7 @@
             <i class="far fa-angle-right"></i>
         </button>
     </div>
-    <div class="splide__track">
+    <div [ngClass]="['splide__track', class]">
           <ul class="splide__list">
                 <ng-content></ng-content>
           </ul>

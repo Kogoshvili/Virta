@@ -1,0 +1,42 @@
+<section class="section top-part">
+    <div class="container">
+       <div class="row">
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading"><h2>Top Rating</h2></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col" *ngFor="let i of [1, 2, 3, 4]">
+                        <app-feature-card></app-feature-card>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading"><h2>Top Sale</h2></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col" *ngFor="let i of [1, 2, 3, 4]">
+                        <app-feature-card></app-feature-card>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading"><h2>Top Discount</h2></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col" *ngFor="let i of [1, 2, 3, 4]">
+                        <app-feature-card></app-feature-card>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+</section>

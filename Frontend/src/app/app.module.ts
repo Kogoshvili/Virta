@@ -20,17 +20,31 @@ import { ToastrModule } from 'ngx-toastr';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BannerSectionComponent } from './components/banner-section/banner-section.component';
+import { BlogCardComponent } from './components/blog-card/blog-card.component';
+import { BlogSectionComponent } from './components/blog-section/blog-section.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CountdownSectionComponent } from './components/countdown-section/countdown-section.component';
 import { EntryComponent } from './components/entry/entry.component';
+import { FeatureCardComponent } from './components/feature-card/feature-card.component';
+import { FeatureSectionComponent } from './components/feature-section/feature-section.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
+import { NewitemSectionComponent } from './components/newitem-section/newitem-section.component';
+import { NewsSectionComponent } from './components/news-section/news-section.component';
+import { PartnerSectionComponent } from './components/partner-section/partner-section.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
+import { PromoSectionComponent } from './components/promo-section/promo-section.component';
 import { SideCartComponent } from './components/side-cart/side-cart.component';
 import { SideCategoryComponent } from './components/side-category/side-category.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { SuggestSectionComponent } from './components/suggest-section/suggest-section.component';
+import { TopSectionComponent } from './components/top-section/top-section.component';
+import { TrendingSectionComponent } from './components/trending-section/trending-section.component';
+import { VisualSectionComponent } from './components/visual-section/visual-section.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
@@ -64,7 +78,21 @@ export function tokenGetter(): string | null {
         AccountPageComponent,
         SideCategoryComponent,
         SideCartComponent,
-        SliderComponent
+        SliderComponent,
+        SuggestSectionComponent,
+        BannerSectionComponent,
+        TrendingSectionComponent,
+        PromoSectionComponent,
+        FeatureSectionComponent,
+        CountdownSectionComponent,
+        NewitemSectionComponent,
+        TopSectionComponent,
+        FeatureCardComponent,
+        PartnerSectionComponent,
+        VisualSectionComponent,
+        BlogSectionComponent,
+        BlogCardComponent,
+        NewsSectionComponent
     ],
     imports: [
         BrowserModule,

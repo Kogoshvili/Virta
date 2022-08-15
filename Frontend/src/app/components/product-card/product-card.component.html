@@ -1,4 +1,4 @@
-<div class="card" (click)="onClick()" [routerLink]="['/product/' + product.id]">
+<!-- <div class="card" (click)="onClick()" [routerLink]="['/product/' + product.id]">
     <div class="promo">
         <p>{{ product.title }}</p>
     </div>
@@ -7,5 +7,27 @@
     </div>
     <div class="price">
         <p>{{ product.price }}$</p>
+    </div>
+</div> -->
+<div class="product-card">
+    <div class="product-media">
+        <div class="product-label"><label class="label-text new">new</label></div>
+        <button class="product-wish wish"><i class="far fa-heart"></i></button><a class="product-image" href="product-details.html"><img src="assets/img/product/05.png" alt="product" /></a>
+        <div class="product-widget">
+            <a title="Product Video" href="https://www.youtube.com/watch?v=ckHzmP1evNU" class="venobox far fa-play" data-autoplay="true" data-vbtype="video"></a>
+            <a title="Product View" href="#" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
+            <a title="Product Compare" href="compare.html" class="far fa-exchange"></a>
+        </div>
+    </div>
+    <div class="product-content">
+        <h6 class="product-name"><a href="product-details.html">fresh organic apple</a></h6>
+        <div class="product-rating">
+            <i class="active fas fa-star"></i><i class="active fas fa-star"></i><i class="active fas fa-star"></i><i class="active fas fa-star"></i><i class="far fa-star"></i>
+            <a href="product-details.html">(4)</a>
+        </div>
+        <div class="product-price">
+            <div><del>$50</del><span>$40<small>/kg</small></span></div>
+            <a class="product-add" title="Add to Cart" href="product-details.html"><i class="far fa-shopping-cart"></i></a>
+        </div>
     </div>
 </div>

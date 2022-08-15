@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { SplideOptions } from '@splidejs/splide';
 import { AppStore } from 'src/app/store/app.store';
 import { setLoadingScreen } from 'src/app/store/general/general.actions';
 import { Product } from 'src/app/_models/product';
@@ -17,11 +16,6 @@ import { Product } from 'src/app/_models/product';
 })
 export class HomePageComponent implements OnInit {
     products: Product[] = [];
-    sliderOptions: SplideOptions = {
-        type: 'loop',
-        gap: '30px',
-        autoplay: true
-    };
 
     constructor(
         private route: ActivatedRoute,
