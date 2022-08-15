@@ -12,7 +12,8 @@ export class NewitemSectionComponent implements OnInit {
         gap: '24px',
         autoplay: true,
         perPage: 5,
-        pagination: false
+        pagination: false,
+        perMove: 1
     };
 
     constructor() { }

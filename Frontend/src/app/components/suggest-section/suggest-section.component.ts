@@ -12,7 +12,8 @@ export class SuggestSectionComponent implements OnInit {
         type: 'loop',
         gap: '20px',
         pagination: false,
-        autoplay: true
+        autoplay: true,
+        perMove: 1
     };
 
     constructor() { }

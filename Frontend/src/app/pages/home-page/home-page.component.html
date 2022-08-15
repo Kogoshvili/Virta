@@ -1,10 +1,18 @@
 <app-banner-section class="section"></app-banner-section>
 <app-suggest-section class="section"></app-suggest-section>
 <app-trending-section class="section"></app-trending-section>
-<app-promo-section class="section"></app-promo-section>
+<app-promo-section class="section" [items]="[
+    { url: '#', image: 'assets/img/banner/2.jpg' },
+    { url: '#', image: 'assets/img/banner/2.jpg' },
+    { url: '#', image: 'assets/img/banner/2.jpg' }
+]"></app-promo-section>
 <app-feature-section class="section"></app-feature-section>
 <app-countdown-section class="section"></app-countdown-section>
 <app-newitem-section class="section"></app-newitem-section>
+<app-promo-section class="section" [items]="[
+    { url: '#', image: 'assets/img/banner/2.jpg' },
+    { url: '#', image: 'assets/img/banner/2.jpg' }
+]"></app-promo-section>
 <app-top-section class="section"></app-top-section>
 <app-partner-section class="section"></app-partner-section>
 <app-visual-section class="section"></app-visual-section>
