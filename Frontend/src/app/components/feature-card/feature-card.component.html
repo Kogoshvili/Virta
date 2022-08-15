@@ -1,40 +1,47 @@
 <!-- <div class="feature-card">
     <div class="feature-media">
-        <a class="feature-image" href="product-details.html"><img src="assets/img/product/03.png" alt="product" /></a>
+        <a class="feature-image" href="#"><img src="assets/img/product/03.png" alt="product" /></a>
     </div>
     <div class="feature-content">
-        <h6 class="feature-name"><a href="product-details.html">fresh organic apple</a></h6>
+        <h6 class="feature-name"><a href="#">fresh organic apple</a></h6>
         <div class="feature-rating">
             <i class="active fas fa-star"></i><i class="active fas fa-star"></i><i class="active fas fa-star"></i><i class="active fas fa-star"></i><i class="far fa-star"></i>
-            <a href="product-details.html">(4 Reviews)</a>
+            <a href="#">(4 Reviews)</a>
         </div>
         <h6 class="feature-price">
             <del>$50</del><span>$40<small>/kg</small></span>
         </h6>
-        <a class="product-add" href="product-details.html" title="Add to Cart"><i class="far fa-shopping-cart"></i></a>
+        <a class="product-add" href="#" title="Add to Cart"><i class="far fa-shopping-cart"></i></a>
     </div>
 </div> -->
 
 <div class="feature-card">
     <div class="feature-media">
-        <div class="feature-label"><label class="label-text feat">feature</label></div>
-        <button class="feature-wish wish"><i class="far fa-heart"></i></button><a class="feature-image" href="product-details.html"><img src="assets/img/product/08.png" alt="product" /></a>
+        <div class="feature-label"><label class="label-text feat">{{ product.label }}</label></div>
+        <button class="feature-wish wish"><i class="far fa-heart"></i></button>
+        <a class="feature-image" href="#"><img src="{{ product.image }}" alt="product" /></a>
         <div class="feature-widget">
-            <a title="Product Video" href="https://www.youtube.com/watch?v=ckHzmP1evNU" class="venobox far fa-play" data-autoplay="true" data-vbtype="video"></a>
+            <a title="Product Video" href="{{ product.video }}" class="venobox far fa-play" data-autoplay="true" data-vbtype="video"></a>
             <a title="Product View" href="#" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
-            <a title="Product Compare" href="compare.html" class="far fa-exchange"></a>
+            <a title="Product Compare" href="#" class="far fa-exchange"></a>
         </div>
     </div>
     <div class="feature-content">
-        <h6 class="feature-name"><a href="product-details.html">fresh organic apple</a></h6>
+        <h6 class="feature-name"><a href="#">{{ product.title }}</a></h6>
         <div class="feature-rating">
-            <i class="active fas fa-star"></i><i class="active fas fa-star"></i><i class="active fas fa-star"></i><i class="active fas fa-star"></i><i class="far fa-star"></i>
-            <a href="product-details.html">(4 Reviews)</a>
+            <i class="active fas fa-star"></i>
+            <i class="active fas fa-star"></i>
+            <i class="active fas fa-star"></i>
+            <i class="active fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <a href="#">({{ product.reviews }} Reviews)</a>
         </div>
         <h6 class="feature-price">
-            <del>$50</del><span>$40<small>/kg</small></span>
+            <del>{{ product.oldPrice }}</del><span>{{ product.price }}<small>/{{ product.unit }}</small></span>
         </h6>
-        <p class="feature-desc">There are many variations of passages available but the majority have suffered alteration in some form...</p>
-        <a class="product-add" href="product-details.html" title="Add to Cart"><i class="far fa-shopping-cart"></i></a>
+        <p class="feature-desc"></p>
+        <a class="product-add" href="#" title="Add to Cart">
+            <i class="far fa-shopping-cart"></i>
+        </a>
     </div>
 </div>

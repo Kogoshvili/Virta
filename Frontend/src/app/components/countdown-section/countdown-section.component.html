@@ -3,9 +3,9 @@
         <div class="row align-items-center">
             <div class="col-lg-6 mx-auto">
                 <div class="countdown-content">
-                    <h3>40% discount offer over all our items</h3>
-                    <p>There are many variations of passages of orem psum available but the majority <br> have suffered alteration in some form by injected humour.</p>
-                    <div class="countdown-time" data-countdown="2024/12/30">
+                    <h3>{{ promotion.title }}</h3>
+                    <p [innerHTML]="promotion.description"></p>
+                    <div class="countdown-time">
                         <span class="days">867<small>days</small></span>
                         <span class="hour">18<small>hours</small></span>
                         <span class="minutes">03<small>minutes</small></span>
@@ -18,7 +18,7 @@
             <div class="col-lg-5">
                 <div class="countdown-img">
                     <img src="assets/img/countdown.png" alt="countdown" />
-                    <div class="countdown-off"><span>40%</span><span>off</span></div>
+                    <div class="countdown-off" [innerHTML]="promotion.badge"></div>
                 </div>
             </div>
         </div>

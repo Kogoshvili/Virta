@@ -15,6 +15,7 @@ export class NewitemSectionComponent implements OnInit {
         pagination: false,
         perMove: 1
     };
+    products = [0, 1, 2, 3, 4, 5, 6, 7];
 
     constructor() { }
 

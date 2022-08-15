@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SplideOptions } from '@splidejs/splide';
 
 @Component({
@@ -12,6 +12,14 @@ export class BannerSectionComponent implements OnInit {
         gap: '30px',
         autoplay: true
     };
+    @Input() slides = [
+        { url: '#', image: 'assets/img/slider/slider-3.jpg' },
+        { url: '#', image: 'assets/img/slider/slider-3.jpg' }
+    ];
+    @Input() sideBanners = [
+        { url: '#', image: 'assets/img/banner/6.jpg' },
+        { url: '#', image: 'assets/img/banner/6.jpg' }
+    ];
 
     constructor() { }
 

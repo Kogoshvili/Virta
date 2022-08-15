@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./feature-section.component.scss']
 })
 export class FeatureSectionComponent implements OnInit {
-
+    features = [0, 1, 2, 3, 4, 5];
     constructor() { }
 
     ngOnInit(): void {

@@ -65,7 +65,8 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	span {
+
+    ::ng-deep span {
 		display: block;
 		text-transform: uppercase;
 		font-size: 30px;

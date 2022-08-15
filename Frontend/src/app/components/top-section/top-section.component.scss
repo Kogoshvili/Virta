@@ -1,0 +1,13 @@
+.top-part {
+    ::ng-deep {
+        .feature-image {
+            img {
+                width: 100% !important;
+            }
+        }
+
+        .feature-widget {
+            display: none;
+        }
+    }
+}

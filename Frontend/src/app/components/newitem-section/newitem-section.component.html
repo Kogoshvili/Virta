@@ -2,22 +2,20 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="section-heading"><h2> new arrivals</h2></div>
+                <div class="section-heading"><h2>New Arrivals</h2></div>
             </div>
         </div>
         <div class="row">
             <app-slider [class]="'col'" [id]="'newitem-part-slider'" [options]="sliderOptions">
-                <li class="splide__slide"><app-product-card></app-product-card></li>
-                <li class="splide__slide"><app-product-card></app-product-card></li>
-                <li class="splide__slide"><app-product-card></app-product-card></li>
-                <li class="splide__slide"><app-product-card></app-product-card></li>
-                <li class="splide__slide"><app-product-card></app-product-card></li>
+                <li *ngFor="let p of products" class="splide__slide">
+                    <app-product-card></app-product-card>
+                </li>
             </app-slider>
         </div>
         <div class="row">
             <div class="col">
                 <div class="section-btn-25">
-                    <a href="shop-grid.html" class="btn btn-outline"><i class="far fa-long-arrow-right"></i><span>view more</span></a>
+                    <a href="#" class="btn btn-outline"><i class="far fa-long-arrow-right"></i><span>View More</span></a>
                 </div>
             </div>
         </div>

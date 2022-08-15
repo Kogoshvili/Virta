@@ -14,10 +14,19 @@ export class PartnerSectionComponent implements OnInit {
         perPage: 6,
         pagination: false
     };
+    partners = [
+        { url: '#', image: 'assets/img/brand/01.png' },
+        { url: '#', image: 'assets/img/brand/01.png' },
+        { url: '#', image: 'assets/img/brand/01.png' },
+        { url: '#', image: 'assets/img/brand/01.png' },
+        { url: '#', image: 'assets/img/brand/01.png' },
+        { url: '#', image: 'assets/img/brand/01.png' },
+        { url: '#', image: 'assets/img/brand/01.png' },
+        { url: '#', image: 'assets/img/brand/01.png' }
+    ];
 
     constructor() { }
 
     ngOnInit(): void {
     }
-
 }
