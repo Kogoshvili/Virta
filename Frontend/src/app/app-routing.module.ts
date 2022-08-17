@@ -17,14 +17,12 @@ const routes: Routes = [
     {
         path: '',
         component: HomePageComponent,
-        resolve: { products: HomePageResolver },
-        data: { animation: 'PLP' }
+        resolve: { products: HomePageResolver }
     },
     {
         path: 'product/:id',
         component: ProductPageComponent,
-        resolve: { product: ProductResolver },
-        data: { animation: 'PDP' }
+        resolve: { product: ProductResolver }
     },
     {
         path: 'products',
@@ -33,7 +31,6 @@ const routes: Routes = [
             products: ProductListResolver,
             filters: FiltersResolver
         },
-        data: { animation: 'PLP' },
         runGuardsAndResolvers: 'paramsOrQueryParamsChange'
     },
     {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductDTO, ProductLabels } from 'src/app/models/Product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
     selector: 'app-trending-section',
@@ -6,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./trending-section.component.scss']
 })
 export class TrendingSectionComponent implements OnInit {
-    trending = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    products: ProductDTO[] = [];
 
-    constructor() { }
+    constructor(
+        private productService: ProductService
+    ) { }
 
     ngOnInit(): void {
+        this.productService.getProducts(null, [ProductLabels.Trending], null, 10)
+            .subscribe(p => this.products = p);
     }
-
 }

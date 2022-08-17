@@ -6,8 +6,14 @@
         </div>
         <ul class="category-list">
             <li *ngFor="let c of categories">
-                <a class="cate-link dropdown-link" href="#" (click)="expandCategory(c.name)"><i class="{{ c.icon }}"></i>{{ c.name }}</a>
-                <ul class="dropdown-list" [class.active]="c.active">
+                <a
+                    [ngClass]="['cate-link', c.children.length && 'dropdown-link']"
+                    (click)="expandCategory(c.name)"
+                    href="#"
+                >
+                    <i class="{{ c.icon }}"></i>{{ c.name }}
+                </a>
+                <ul *ngIf="c.children.length" class="dropdown-list" [class.active]="c.isActive">
                     <li *ngFor="let s of c.children"><a href="#">{{ s.name }}</a></li>
                 </ul>
             </li>

@@ -12,5 +12,6 @@ namespace Virta.Entities
         public string Lastname { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Address> Addresses { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

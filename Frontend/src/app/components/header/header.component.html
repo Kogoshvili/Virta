@@ -51,11 +51,11 @@
                         (input)="onSearchChange($event)"
                         autocomplete="off"
                     >
-                    <div class="filtered" *ngIf="filteredCategories.length">
+                    <!-- <div class="filtered" *ngIf="filteredCategories.length">
                         <div *ngFor="let category of filteredCategories" class="filtered-item" (click)="selectOption(category)">
                             <span>{{ category.title }}</span>
                         </div>
-                    </div>
+                    </div> -->
                     <button><i class="far fa-search"></i></button>
                 </form>
                 <div class="header-widget-group right">
@@ -75,120 +75,21 @@
                     <div class="navbar-content">
                         <ul class="navbar-list">
                             <li class="navbar-item dropdown">
-                                <a class="navbar-link dropdown-arrow" href="#">home</a>
-                                <ul class="dropdown-position-list">
-                                    <li><a href="index.html">Home Demo One</a></li>
-                                    <li><a href="index-2.html">Home Demo Two</a></li>
-                                    <li><a href="index-3.html">Home Demo Three</a></li>
-                                    <li><a href="index-4.html">Home Demo Four</a></li>
-                                </ul>
-                            </li>
-                            <li class="navbar-item dropdown">
-                                <a class="navbar-link dropdown-arrow" href="#">shop</a>
-                                <ul class="dropdown-position-list">
-                                    <li><a href="shop-grid.html">shop grid</a></li>
-                                    <li><a href="shop-standard.html">shop standard</a></li>
-                                    <li><a href="product-details.html">product details</a></li>
-                                </ul>
+                                <a class="navbar-link" href="/">Home</a>
                             </li>
                             <li class="navbar-item dropdown-megamenu">
                                 <a class="navbar-link dropdown-arrow" href="#">category</a>
                                 <div class="megamenu">
                                     <div class="container">
                                         <div class="row row-cols-5">
-                                            <div class="col">
+                                            <div class="col" *ngFor="let category of categories">
                                                 <div class="megamenu-wrap">
-                                                    <h5 class="megamenu-title">fresh vegetables</h5>
+                                                    <h5 class="megamenu-title" *ngIf="category.children.length">{{ category.title }}</h5>
+                                                    <a href="#" *ngIf="!category.children.length"><h5 class="megamenu-title">{{ category.title }}</h5></a>
                                                     <ul class="megamenu-list">
-                                                        <li><a href="#">carrot</a></li>
-                                                        <li><a href="#">broccoli</a></li>
-                                                        <li><a href="#">cauliflower</a></li>
-                                                        <li><a href="#">cucumber</a></li>
+                                                        <li><a href="#" *ngFor="let c of category.children">{{ c.title }}</a></li>
                                                     </ul>
                                                 </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="megamenu-wrap">
-                                                    <h5 class="megamenu-title">fruits & juice</h5>
-                                                    <ul class="megamenu-list">
-                                                        <li><a href="#">carrot</a></li>
-                                                        <li><a href="#">broccoli</a></li>
-                                                        <li><a href="#">cauliflower</a></li>
-                                                        <li><a href="#">cucumber</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="megamenu-wrap">
-                                                    <h5 class="megamenu-title">dairy & eggs </h5>
-                                                    <ul class="megamenu-list">
-                                                        <li><a href="#">carrot</a></li>
-                                                        <li><a href="#">broccoli</a></li>
-                                                        <li><a href="#">cauliflower</a></li>
-                                                        <li><a href="#">cucumber</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="megamenu-wrap">
-                                                    <h5 class="megamenu-title">seafoods & fishes</h5>
-                                                    <ul class="megamenu-list">
-                                                        <li><a href="#">carrot</a></li>
-                                                        <li><a href="#">broccoli</a></li>
-                                                        <li><a href="#">cauliflower</a></li>
-                                                        <li><a href="#">cucumber</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <img src="assets/img/banner/8.jpg" class="w-100" alt="">
-                                            </div>
-                                            <div class="col">
-                                                <div class="megamenu-wrap">
-                                                    <h5 class="megamenu-title">fast foods</h5>
-                                                    <ul class="megamenu-list">
-                                                        <li><a href="#">carrot</a></li>
-                                                        <li><a href="#">broccoli</a></li>
-                                                        <li><a href="#">cauliflower</a></li>
-                                                        <li><a href="#">cucumber</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="megamenu-wrap">
-                                                    <h5 class="megamenu-title">soft drinks</h5>
-                                                    <ul class="megamenu-list">
-                                                        <li><a href="#">carrot</a></li>
-                                                        <li><a href="#">broccoli</a></li>
-                                                        <li><a href="#">cauliflower</a></li>
-                                                        <li><a href="#">cucumber</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="megamenu-wrap">
-                                                    <h5 class="megamenu-title">meats</h5>
-                                                    <ul class="megamenu-list">
-                                                        <li><a href="#">carrot</a></li>
-                                                        <li><a href="#">broccoli</a></li>
-                                                        <li><a href="#">cauliflower</a></li>
-                                                        <li><a href="#">cucumber</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="megamenu-wrap">
-                                                    <h5 class="megamenu-title">dry foods</h5>
-                                                    <ul class="megamenu-list">
-                                                        <li><a href="#">carrot</a></li>
-                                                        <li><a href="#">broccoli</a></li>
-                                                        <li><a href="#">cauliflower</a></li>
-                                                        <li><a href="#">cucumber</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <img src="assets/img/banner/9.jpg" class="w-100" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -224,23 +125,23 @@
                                     <li><a href="change.html">change password</a></li>
                                 </ul>
                             </li>
-                            <li class="navbar-item dropdown">
+                            <!-- <li class="navbar-item dropdown">
                                 <a class="navbar-link dropdown-arrow" href="#">blogs</a>
                                 <ul class="dropdown-position-list">
                                     <li><a href="blog-grid.html">blog grid</a></li>
                                     <li><a href="blog-standard.html">blog standard</a></li>
                                     <li><a href="blog-details.html">blog details</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                         <div class="navbar-info-group">
                             <div class="navbar-info">
                                 <i class="fal fa-phone"></i>
-                                <p><small>call us</small><span>(+1) 123 455 9874</span></p>
+                                <p><small>Call Us</small><span>(+995) 123 456 789</span></p>
                             </div>
                             <div class="navbar-info">
                                 <i class="fal fa-envelope-open-text"></i>
-                                <p><small>email us</small><span>info@example.com</span></p>
+                                <p><small>Email Us</small><span>info@example.com</span></p>
                             </div>
                         </div>
                     </div>
@@ -248,27 +149,4 @@
             </div>
         </div>
     </nav>
-    <!-- <div class="header-middle">
-        <div [routerLink]="['']" class="logo" style="background-image: url('assets/logo.svg');">
-        </div>
-        <div class="search">
-
-        </div>
-        <div class="action-bar" [ngClass]="{'shadow': applyShadows}">
-            <app-entry></app-entry>
-            <app-wishlist></app-wishlist>
-            <app-cart></app-cart>
-        </div>
-    </div> -->
-    <!-- <div class="header-bottom">
-        <div class="container">
-            <div
-                class="category"
-                *ngFor="let category of categories"
-                [routerLink]="['/products']"
-                [queryParams]="{ category: category.name }"
-            >{{ category.title }}</div>
-            <div class="category" [routerLink]="['/products']">All</div>
-        </div>
-    </div> -->
 </div>

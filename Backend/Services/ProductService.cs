@@ -6,6 +6,7 @@ using Virta.Models;
 using Virta.Entities;
 using Virta.Services.Interfaces;
 using System;
+using Virta.Api.DTO;
 
 namespace Virta.Services
 {
@@ -27,6 +28,18 @@ namespace Virta.Services
             _productsRepository = productsRepository;
             _categoriesRepo = categoriesRepo;
             _attributesRepository = attributesRepository;
+        }
+
+        public async Task<ProductDTO> GetProduct(Guid id)
+        {
+            var product = await _productsRepository.GetProduct(id);
+            return _mapper.Map<ProductDTO>(product);
+        }
+
+        public async Task<List<ProductDTO>> GetProductsAsync(string[] categories, int[] labels, string title, int amount)
+        {
+            var products = await _productsRepository.GetProductsAsync(categories, labels, title, amount);
+            return _mapper.Map<List<ProductDTO>>(products);
         }
 
         public async Task<bool> Upsert(ProductUpsert product)
@@ -64,7 +77,7 @@ namespace Virta.Services
             var result = new List<Category>();
 
             foreach (var category in categories)
-                result.Add(await _categoriesRepo.GetCategory(category));
+                result.Add(await _categoriesRepo.GetCategoryAsync(category));
 
             return result;
         }

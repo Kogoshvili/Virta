@@ -5,9 +5,9 @@
                 <div class="section-heading"><h2>Trending Items</h2></div>
             </div>
         </div>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-            <div class="col" *ngFor="let i of trending">
-                <app-product-card></app-product-card>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 products-list">
+            <div class="col" *ngFor="let product of products">
+                <app-product-card [product]="product"></app-product-card>
             </div>
         </div>
         <div class="row">

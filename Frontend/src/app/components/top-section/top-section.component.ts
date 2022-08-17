@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductDTO } from 'src/app/models/Product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
     selector: 'app-top-section',
@@ -6,13 +8,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./top-section.component.scss']
 })
 export class TopSectionComponent implements OnInit {
-    topRated = [1, 2, 3, 4];
-    topSales = [1, 2, 3, 4];
-    topDiscounts = [1, 2, 3, 4];
+    topRated: ProductDTO[] = [];
+    topSales: ProductDTO[] = [];
+    topDiscounts: ProductDTO[] = [];
 
-    constructor() { }
+    constructor(
+        private productService: ProductService
+    ) { }
 
     ngOnInit(): void {
+        this.productService.getProducts(null, null, null, 4)
+            .subscribe(p => this.topRated = p);
+        this.productService.getProducts(null, null, null, 4)
+            .subscribe(p => this.topSales = p);
+        this.productService.getProducts(null, null, null, 4)
+            .subscribe(p => this.topDiscounts = p);
     }
 
 }

@@ -6,8 +6,8 @@
             </div>
         </div>
         <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
-            <div class="col" *ngFor="let i of features">
-                <app-feature-card></app-feature-card>
+            <div class="col" *ngFor="let product of products">
+                <app-feature-card [product]="product"></app-feature-card>
             </div>
         </div>
         <div class="row">

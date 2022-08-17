@@ -11,7 +11,7 @@ import {
     map
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ProductInCart } from '../models/product';
+import { ProductInCart } from '../models/Product';
 import { AuthService } from './auth.service';
 
 @Injectable({

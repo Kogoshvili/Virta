@@ -75,6 +75,15 @@ namespace Virta
                     }
                 });
             });
+
+            services.AddSwaggerDocument(settings =>
+            {
+                settings.PostProcess = document =>
+                {
+                    document.Info.Version = "v1";
+                    document.Info.Title = "Virta API";
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,8 +92,8 @@ namespace Virta
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VirtaApi v1"));
+                app.UseOpenApi();
+                app.UseSwaggerUi3();
                 using (var scope = app.ApplicationServices.CreateScope())
                     using (var context = scope.ServiceProvider.GetService<DataContext>())
                         context.Database.Migrate();
@@ -114,8 +123,7 @@ namespace Virta
                 .AllowCredentials()
                 .WithOrigins(
                     "http://localhost:4200",
-                    "https://localhost:4200",
-                    "https://blue-ocean-0896d250f.azurestaticapps.net"
+                    "https://localhost:4200"
                 )
             );
 

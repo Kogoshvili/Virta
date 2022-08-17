@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SplideOptions } from '@splidejs/splide';
+import { ProductDTO, ProductLabels } from 'src/app/models/Product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
     selector: 'app-newitem-section',
@@ -15,11 +17,14 @@ export class NewitemSectionComponent implements OnInit {
         pagination: false,
         perMove: 1
     };
-    products = [0, 1, 2, 3, 4, 5, 6, 7];
+    products: ProductDTO[] = [];
 
-    constructor() { }
+    constructor(
+        private productService: ProductService
+    ) { }
 
     ngOnInit(): void {
+        this.productService.getProducts(null, [ProductLabels.New], null, 10)
+            .subscribe(p => this.products = p);
     }
-
 }

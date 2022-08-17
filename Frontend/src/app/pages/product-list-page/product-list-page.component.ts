@@ -5,7 +5,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Filters } from 'src/app/models/filters';
-import { Product } from 'src/app/models/product';
+import { ProductDTO } from 'src/app/models/Product';
 import { AppStore } from 'src/app/store/app.store';
 import { setLoadingScreen } from 'src/app/store/general/general.actions';
 
@@ -15,7 +15,7 @@ import { setLoadingScreen } from 'src/app/store/general/general.actions';
     styleUrls: ['./product-list-page.component.scss']
 })
 export class ProductListPageComponent implements OnInit {
-    products: Product[] = [];
+    products: ProductDTO[] = [];
     filters: Filters = { categories: [], attributes: [] };
 
     constructor(
@@ -27,7 +27,6 @@ export class ProductListPageComponent implements OnInit {
         this.route.data.subscribe(
             data => {
                 this.products = data.products;
-                this.filters = data.filters;
                 this.store.dispatch(setLoadingScreen({ loadingScreen: false }));
             }
         );

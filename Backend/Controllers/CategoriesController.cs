@@ -29,24 +29,22 @@ namespace Virta.Api.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{amount:int?}")]// TODO: Make swagger optional
-        public async Task<IActionResult> Get(int amount = 10)
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
-            var categories = await _categoriesRepository.GetCategories(amount);
+            var categories = await _categoriesService.GetCategoriesAsync();
 
             if (categories == null)
                 return BadRequest();
 
-            var response = _mapper.Map<IEnumerable<CategoryDTO>>(categories);
-
-            return Ok(response);
+            return Ok(categories);
         }
 
         [HttpPost]
         public async Task<IActionResult> Upsert(CategoryDTO categoryDTO)
         {
             var category = _mapper.Map<CategoryUpsert>(categoryDTO);
-            if (await _categoriesService.Upsert(category))
+            if (await _categoriesService.UpsertAsync(category))
                 return Ok();
 
             return BadRequest();

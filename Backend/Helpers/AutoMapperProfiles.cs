@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Virta.Api.DTO;
 using Virta.Entities;
 using Virta.Models;
-using Virta.MVC.ViewModels;
 
 namespace Virta.Helpers
 {
@@ -11,7 +10,7 @@ namespace Virta.Helpers
     {
         public AutoMapperProfiles()
         {
-            /* User */
+            #region User
             CreateMap<UserToRegister, User>()
                 .ForMember(
                     dest => dest.UserName,
@@ -19,22 +18,35 @@ namespace Virta.Helpers
                         src => src.Email
                     )
                 );
+            #endregion
 
-
-
-            /* Attribute */
+            #region Attribute
             CreateMap<Attribute, AttributeDTO>();
             CreateMap<AttributeDTO, AttributeUpsert>();
             CreateMap<AttributeUpsert, Attribute>();
             CreateMap<AttributeDTO, Attribute>();
+            #endregion
 
-
-
-            /* Category */
-            CreateMap<Category, CategoryDTO>();
+            #region Category
+            CreateMap<Category, CategoryDTO>()
+                .ForMember(
+                    dest => dest.Children,
+                    opt => opt.MapFrom(
+                        src => src.Children
+                    )
+                )
+                .ForMember(
+                    dest => dest.Parent,
+                    opt => opt.MapFrom(
+                        src => src.Parent.Id
+                    )
+                );
             CreateMap<CategoryDTO, CategoryUpsert>();
-            CreateMap<CategoryUpsert, Category>();
-            CreateMap<CategoryDTO, Category>();
+            CreateMap<CategoryUpsert, Category>()
+                .ForMember(
+                    dest => dest.Parent,
+                    opt => opt.Ignore()
+                );
 
             CreateMap<Category, Virta.MVC.ViewModels.CategoryVM>();
             CreateMap<Category, SelectListItem>()
@@ -47,9 +59,9 @@ namespace Virta.Helpers
 
             CreateMap<CategoryDTO, string>()
                 .ConvertUsing(src => src.Name);
+            #endregion
 
-
-            /* Product */
+            #region Product
             CreateMap<ProductDTO, ProductUpsert>();
             CreateMap<ProductUpsert, Product>();
             CreateMap<Product, ProductDTO>()
@@ -57,6 +69,11 @@ namespace Virta.Helpers
                     dest => dest.Attributes,
                     opt => opt.MapFrom(
                         src => src.ProductAttributes
+                    )
+                )                .ForMember(
+                    dest => dest.Reviews,
+                    opt => opt.MapFrom(
+                        src => src.Reviews.Count
                     )
                 );
 
@@ -71,9 +88,9 @@ namespace Virta.Helpers
                     dest => dest.Id,
                     opt => opt.MapFrom(src => src)
                 );
+            #endregion
 
-
-            /* Product Attributes */
+            # region Product Attributes
             CreateMap<ProductAttributeDTO, ProductAttributeUpsert>();
             CreateMap<ProductAttributeUpsert, ProductAttribute>();
             CreateMap<ProductAttribute, ProductAttributeDTO>()
@@ -81,12 +98,15 @@ namespace Virta.Helpers
                     dest => dest.Title,
                     opt => opt.MapFrom(src => src.Attribute.Title)
                 );
+            #endregion
 
-            /* Product Images*/
+            #region Product Images
+            CreateMap<ProductImage, ProductImageDTO>();
             CreateMap<ProductImageDTO, ProductImageUpsert>();
             CreateMap<ProductImageUpsert, ProductImage>();
+            #endregion
 
-            /* Cart */
+            #region Cart
             CreateMap<CartDTO, CartUpsert>();
             CreateMap<CartDTO.CartItemDTO, CartUpsert.CartItemUpsert>();
 
@@ -95,8 +115,9 @@ namespace Virta.Helpers
 
             CreateMap<Cart, CartDTO>();
             CreateMap<Cart.CartItem, CartDTO.CartItemDTO>();
+            #endregion
 
-            /* Wishlist */
+            #region Wishlist
             CreateMap<WishlistDTO, WishlistUpsert>();
             CreateMap<WishlistDTO.WishlistItemDTO, WishlistUpsert.WishlistItemUpsert>();
 
@@ -105,7 +126,7 @@ namespace Virta.Helpers
 
             CreateMap<Wishlist, WishlistDTO>();
             CreateMap<Wishlist.WishlistItem, WishlistDTO.WishlistItemDTO>();
-
+            #endregion
 
             /* From Product Entity */
             // CreateMap<Product, ProductPDP>()
@@ -155,7 +176,7 @@ namespace Virta.Helpers
 
 
 
-            /* From Order Entity */
+            #region From Order Entity
             CreateMap<Order, OrderOutgoing>()
                 .ForMember(
                     dest => dest.UserId,
@@ -177,10 +198,12 @@ namespace Virta.Helpers
                         src => src.Price
                     )
                 );
+            #endregion
 
-            /* TO Product Upsert */
+            #region TO Product Upsert
             CreateMap<OrderIncoming, OrderUpsert>();
             CreateMap<OrderIncoming.OrderProduct, OrderUpsert.OrderProduct>();
+            #endregion
 
 
 
@@ -190,8 +213,7 @@ namespace Virta.Helpers
 
 
 
-
-            /* Self */
+            #region Self
             CreateMap<Product, Product>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
@@ -204,6 +226,7 @@ namespace Virta.Helpers
             CreateMap<Order, Order>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
+            #endregion
         }
     }
 }

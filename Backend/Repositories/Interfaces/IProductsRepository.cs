@@ -8,9 +8,6 @@ namespace Virta.Data.Interfaces
     public interface IProductsRepository : IBaseRepository<Product>
     {
         Task<Product> GetProduct(Guid id);
-        Task<List<Product>> GetProducts(int amount = 10);
-        Task<List<Product>> GetProducts(string[] categories, int amount = 10);
-        Task<List<Product>> GetProducts(string title, int amount = 10);
-        Task<List<Product>> GetProducts(string[] categories, string title, int amount = 10);
+        Task<List<Product>> GetProductsAsync(string[] categories = null, int[] labels = null, string title = null, int? amount = null);
     }
 }

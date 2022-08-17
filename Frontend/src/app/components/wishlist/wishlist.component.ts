@@ -6,7 +6,7 @@ import {
     faHeart,
     faTimes
 } from '@fortawesome/free-solid-svg-icons';
-import { ProductInWishlist } from 'src/app/models/product';
+import { ProductInWishlist } from 'src/app/models/Product';
 import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({

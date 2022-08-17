@@ -8,8 +8,8 @@
                     </div>
                 </div>
                 <div>
-                    <div class="col" *ngFor="let i of topRated">
-                        <app-feature-card></app-feature-card>
+                    <div class="col" *ngFor="let product of topRated">
+                        <app-feature-card [product]="product"></app-feature-card>
                     </div>
                 </div>
             </div>
@@ -20,8 +20,8 @@
                     </div>
                 </div>
                 <div>
-                    <div class="col" *ngFor="let i of topSales">
-                        <app-feature-card></app-feature-card>
+                    <div class="col" *ngFor="let product of topSales">
+                        <app-feature-card [product]="product"></app-feature-card>
                     </div>
                 </div>
             </div>
@@ -32,8 +32,8 @@
                     </div>
                 </div>
                 <div>
-                    <div class="col" *ngFor="let i of topDiscounts">
-                        <app-feature-card></app-feature-card>
+                    <div class="col" *ngFor="let product of topDiscounts">
+                        <app-feature-card [product]="product"></app-feature-card>
                     </div>
                 </div>
             </div>

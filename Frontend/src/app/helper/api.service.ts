@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 interface ApiQueryObject {
     name: string;
-    value: string[] | string | number | null;
+    value: string | string[] | number | number[] | null;
 }
 
 @Injectable({
@@ -22,13 +22,15 @@ export class ApiHelper {
             if (Array.isArray(param.value)) {
                 const length = param.value.length;
 
-                result += param.value.reduce(
-                    (prev, current, index, array) => {
-                        prev += `${param.name}=${current}`;
-                        if (index < length - 1) prev += '&';
-                        return prev;
-                    }, ''
-                );
+                result += param.value.map(v => String(v))
+                    .reduce(
+                        (acc: string, cur: string, i: number) => {
+                            acc += `${param.name}=${cur}`;
+                            if (i < length - 1) acc += '&';
+                            return acc;
+                        },
+                        ''
+                    );
             } else {
                 result += `${param.name}=${param.value}`;
             }

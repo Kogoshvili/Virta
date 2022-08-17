@@ -1,12 +1,12 @@
 import {
-    Component,
-    Input,
-    OnInit
+    Component, OnInit
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import {
-    Filters
-} from 'src/app/models/filters';
+import { CategoryDTO } from 'src/app/models/Category';
+import { CategoryService } from 'src/app/services/category.service';
+
+interface Category extends CategoryDTO {
+    isActive: boolean;
+}
 
 @Component({
     selector: 'app-product-filter',
@@ -14,16 +14,25 @@ import {
     styleUrls: ['./product-filter.component.scss']
 })
 export class ProductFilterComponent implements OnInit {
-    @Input() filters: Filters = { categories: [], attributes: [] };
     activeCategory: string = '';
+    categories: Category[] = [];
 
     constructor(
-        private route: ActivatedRoute
+        private categoryService: CategoryService
     ) { }
 
     ngOnInit(): void {
-        this.route.queryParams.subscribe(
-            params => this.activeCategory = params.category || ''
+        this.categoryService.getCategories().subscribe(
+            categories =>
+                this.categories = categories.map(category => ({ ...category, isActive: false }))
         );
+    }
+
+    expandCategory(name: string): void {
+        this.categories.forEach(category => {
+            if (category.name === name) {
+                category.isActive = !category.isActive;
+            }
+        });
     }
 }

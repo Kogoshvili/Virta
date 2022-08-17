@@ -7,11 +7,9 @@ import {
     ActivatedRoute,
     Router
 } from '@angular/router';
-import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import Splide from '@splidejs/splide';
-import { Product } from 'src/app/models/product';
+import { ProductDTO, ProductLabels } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { AppStore } from 'src/app/store/app.store';
@@ -23,14 +21,18 @@ import { setLoadingScreen } from 'src/app/store/general/general.actions';
     styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent implements OnInit, AfterViewInit {
-    fasHeart = fasHeart;
-    farHeart = farHeart;
-    product!: Product;
+    product!: ProductDTO;
     isInCart = false;
     isInWishlist = false;
-    quantity = 1;
     splied: any = null;
     spliedThumbnail: any = null;
+    tabs: { [key: string]: boolean} = {
+        description: true,
+        specification: false,
+        reviews: false
+    };
+    ProductLabels = ProductLabels;
+    quantity: number = 1;
 
     constructor(
         private route: ActivatedRoute,
@@ -41,24 +43,24 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
     ) { }
 
     ngAfterViewInit(): void {
-        this.splied = new Splide('#splide', {
-            pagination : false,
-            autoHeight: true,
-            type: 'loop',
-            arrows: false,
-            gap: '30px'
-        });
+        this.splied = new Splide(
+            '#product-page-image',
+            {
+                pagination: false,
+                type: 'loop',
+                arrows: false,
+                gap: '30px'
+            }
+        );
 
-        this.spliedThumbnail = new Splide('#splide-thumbnail', {
-            arrows: false,
-            pagination : false,
-            perPage: 3,
-            direction: 'ttb',
-            gap: '20px',
-            height: '600px',
-            autoHeight: true,
-            focus: 'center'
-        }).mount();
+        this.spliedThumbnail = new Splide(
+            '#product-page-image-thumbnails',
+            {
+                arrows: false,
+                pagination : false,
+                perPage: 5
+            }
+        ).mount();
 
         this.splied.sync(this.spliedThumbnail).mount();
     }
@@ -72,46 +74,60 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
         );
 
         this.cartService.cartSub.subscribe(
-            () => {
-                this.isInCart = this.cartService.isItemInCart(this.product.id);
-            }
+            () => this.isInCart = this.cartService.isItemInCart(this.product.id)
         );
 
         this.wishlistService.wishlistSub.subscribe(
-            () => {
-                this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id);
-            }
+            () => this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id)
         );
     }
 
-    CartAction(): void {
-        if (this.isInCart) {
-            this.cartService.removeItem(this.product.id);
-            return;
-        }
+    toggleTabs(tab: string): void {
+        Object.keys(this.tabs).forEach(key => {
+            this.tabs[key] = false;
+        } );
 
-        this.cartService.addItem({
-            id: this.product.id,
-            title: this.product.title,
-            price: this.product.price,
-            images: [ this.product.images.map(i => i.url)[0] ],
-            quantity: this.quantity,
-            url: this.router.url
-        });
+        this.tabs[tab] = true;
+    }
+
+    decreaseQuantity(): void {
+        if (this.quantity === 1) return;
+
+        this.quantity--;
+    }
+
+    increaseQuantity(): void {
+        this.quantity++;
+    }
+
+    CartAction(): void {
+        // if (this.isInCart) {
+        //     this.cartService.removeItem(this.product.id);
+        //     return;
+        // }
+
+        // this.cartService.addItem({
+        //     id: this.product.id,
+        //     title: this.product.title,
+        //     price: this.product.price,
+        //     images: [ this.product.images.map(i => i.url)[0] ],
+        //     quantity: this.quantity,
+        //     url: this.router.url
+        // });
     }
 
     WishlistAction(): void {
-        if (this.isInWishlist) {
-            this.wishlistService.removeItem(this.product.id);
-            return;
-        }
+        // if (this.isInWishlist) {
+        //     this.wishlistService.removeItem(this.product.id);
+        //     return;
+        // }
 
-        this.wishlistService.addItem({
-            id: this.product.id,
-            title: this.product.title,
-            price: this.product.price,
-            images: [ this.product.images.map(i => i.url)[0] ],
-            url: this.router.url
-        });
+        // this.wishlistService.addItem({
+        //     id: this.product.id,
+        //     title: this.product.title,
+        //     price: this.product.price,
+        //     images: [ this.product.images.map(i => i.url)[0] ],
+        //     url: this.router.url
+        // });
     }
 }

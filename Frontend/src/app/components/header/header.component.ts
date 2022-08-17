@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { CategoryDTO } from 'src/app/models/Category';
 import { Category } from 'src/app/models/filters';
 import { CategoryService } from 'src/app/services/category.service';
 import { toggleIsSideCart, toggleIsSideCategory } from 'src/app/store/general/general.actions';
@@ -16,9 +17,7 @@ import { AppStore } from '../../store/app.store';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    filteredCategories: Category[] = [];
-    category!: Category;
-    categories: Category[] = [];
+    categories: CategoryDTO[] = [];
     isLoading = false;
     applyShadows = false;
     searchInput: string = '';

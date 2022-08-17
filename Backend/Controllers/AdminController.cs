@@ -117,7 +117,7 @@ namespace Virta.MVC.Controllers
         public async Task<IActionResult> GetProduct(Guid Id)
         {
             var product = await _productRepo.GetProduct(Id);
-            var categories = await _categoriesRepo.GetCategories();
+            var categories = await _categoriesRepo.GetCategoriesAsync();
 
             ViewBag.Categories = _mapper.Map<IEnumerable<SelectListItem>>(categories);
 
@@ -143,7 +143,7 @@ namespace Virta.MVC.Controllers
 
         private async Task<IEnumerable<ProductPLPVM>> GetProducts()
         {
-            var products = await _productRepo.GetProducts();
+            var products = await _productRepo.GetProductsAsync();
 
             if (products == null)
                 return null;

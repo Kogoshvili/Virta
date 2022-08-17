@@ -38,9 +38,11 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { PromoSectionComponent } from './components/promo-section/promo-section.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
 import { SideCartComponent } from './components/side-cart/side-cart.component';
 import { SideCategoryComponent } from './components/side-category/side-category.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { StarBarComponent } from './components/star-bar/star-bar.component';
 import { SuggestSectionComponent } from './components/suggest-section/suggest-section.component';
 import { TopSectionComponent } from './components/top-section/top-section.component';
 import { TrendingSectionComponent } from './components/trending-section/trending-section.component';
@@ -53,6 +55,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { Reducers } from './store/app.store';
+import { ProductPreviewComponent } from './components/product-preview/product-preview.component';
 
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');
@@ -92,7 +95,10 @@ export function tokenGetter(): string | null {
         VisualSectionComponent,
         BlogSectionComponent,
         BlogCardComponent,
-        NewsSectionComponent
+        NewsSectionComponent,
+        ReviewCardComponent,
+        StarBarComponent,
+        ProductPreviewComponent
     ],
     imports: [
         BrowserModule,

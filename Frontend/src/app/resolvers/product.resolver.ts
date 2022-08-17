@@ -8,7 +8,7 @@ import {
     of
 } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Product } from '../models/product';
+import { Product } from '../models/Product';
 import { ProductService } from '../services/product.service';
 
 @Injectable({

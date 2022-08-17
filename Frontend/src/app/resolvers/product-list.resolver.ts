@@ -3,12 +3,10 @@ import {
     ActivatedRouteSnapshot,
     Resolve
 } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import {
     Observable
 } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Product } from '../models/product';
+import { Product } from '../models/Product';
 import { ProductService } from '../services/product.service';
 
 @Injectable({
@@ -16,20 +14,11 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductListResolver implements Resolve<Product[]> {
     constructor(
-        private productService: ProductService,
-        private toastr: ToastrService
+        private productService: ProductService
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Product[]> {
-        return this.productService.getProducts(route.queryParams?.category, route.queryParams?.title, 20)
-            .pipe(
-                catchError(
-                    error => {
-                        this.toastr.error('Problem retrieving data');
-                        console.error(error);
-                        return [];
-                    }
-                )
-            );
+        // return this.productService.getProducts(route.queryParams?.category, null, route.queryParams?.title, 20)
+        return this.productService.getProducts(null, null, null, 20);
     }
 }

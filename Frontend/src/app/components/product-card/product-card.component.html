@@ -1,4 +1,4 @@
-<!-- <div class="card" (click)="onClick()" [routerLink]="['/product/' + product.id]">
+<!-- <div class="card" >
     <div class="promo">
         <p>{{ product.title }}</p>
     </div>
@@ -11,28 +11,26 @@
 </div> -->
 <div class="product-card">
     <div class="product-media">
-        <div class="product-label"><label class="label-text new">{{ product.label }}</label></div>
+        <div class="product-label"><label [ngClass]="['label-text', ProductLabels[product.label]?.toLowerCase() ]">{{ ProductLabels[product.label] }}</label></div>
         <button class="product-wish wish"><i class="far fa-heart"></i></button>
-        <a class="product-image" href="#"><img src="{{ product.image }}" alt="product" /></a>
+        <div class="product-image" [routerLink]="['/product/' + product.id]"><img src="{{ product.images[0].url }}" alt="product"/></div>
         <div class="product-widget">
             <a title="Product Video" href="{{ product.video }}" class="venobox far fa-play" data-autoplay="true" data-vbtype="video"></a>
-            <a title="Product View" href="#" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
-            <a title="Product Compare" href="#" class="far fa-exchange"></a>
+            <div title="Product View" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></div>
         </div>
     </div>
     <div class="product-content">
-        <h6 class="product-name"><a href="#">{{ product.title }}</a></h6>
-        <div class="product-rating">
-            <i class="active fas fa-star"></i>
-            <i class="active fas fa-star"></i>
-            <i class="active fas fa-star"></i>
-            <i class="active fas fa-star"></i>
-            <i class="far fa-star"></i>
-            <a href="#">({{ product.reviews }})</a>
+        <h6 class="product-name" [routerLink]="['/product/' + product.id]">{{ product.title }}</h6>
+        <div class="product-rating" [routerLink]="['/product/' + product.id]">
+            <app-star-bar [stars]="product.stars"></app-star-bar>
+            ({{ product.reviews }})
         </div>
         <div class="product-price">
-            <div><del>{{ product.oldPrice }}</del><span>{{ product.price }}<small>/{{ product.units }}</small></span></div>
-            <a class="product-add" title="Add to Cart" href="#"><i class="far fa-shopping-cart"></i></a>
+            <div [routerLink]="['/product/' + product.id]">
+                <del *ngIf="product.oldPrice !== null" >${{ product.oldPrice }}</del>
+                <span>${{ product.price }}<small>/{{ product.unit }}</small></span>
+            </div>
+            <div class="product-add" title="Add to Cart"><i class="far fa-shopping-cart"></i></div>
         </div>
     </div>
 </div>

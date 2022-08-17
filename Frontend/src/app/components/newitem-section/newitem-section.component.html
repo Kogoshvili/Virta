@@ -1,4 +1,4 @@
-<section class="newitem-part">
+<section class="newitem-part" *ngIf="products.length">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -7,8 +7,8 @@
         </div>
         <div class="row">
             <app-slider [class]="'col'" [id]="'newitem-part-slider'" [options]="sliderOptions">
-                <li *ngFor="let p of products" class="splide__slide">
-                    <app-product-card></app-product-card>
+                <li *ngFor="let product of products" class="splide__slide">
+                    <app-product-card [product]="product"></app-product-card>
                 </li>
             </app-slider>
         </div>

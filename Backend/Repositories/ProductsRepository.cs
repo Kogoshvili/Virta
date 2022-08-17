@@ -22,27 +22,16 @@ namespace Virta.Data
             return await _context.Products.FindAsync(id);
         }
 
-        public async Task<List<Product>> GetProducts(int amount = 10)
-        {
-            return await GetProducts(null, null, amount);
-        }
-
-        public async Task<List<Product>> GetProducts(string[] categories, int amount = 10)
-        {
-            return await GetProducts(categories, null, amount);
-        }
-
-        public async Task<List<Product>> GetProducts(string title, int amount = 10)
-        {
-            return await GetProducts(new string[] { }, title, amount);
-        }
-
-        public async Task<List<Product>> GetProducts(string[] categories, string title, int amount = 10)
+        public async Task<List<Product>> GetProductsAsync(string[] categories = null, int[] labels = null, string title = null, int? amount = null)
         {
             var result = _context.Products.AsQueryable();
 
             if (categories != null && categories.Length > 0) {
                 result = result.Where(p => p.Categories.Where(c => categories.Contains(c.Name)).Any());
+            }
+
+            if(labels != null && labels.Length > 0) {
+                result = result.Where(p => labels.ToList().Contains((int)p.Label));
             }
 
             if (title != null && title != "") {
@@ -51,7 +40,11 @@ namespace Virta.Data
                 result = result.OrderByDescending(p => p.CreatedAt);
             }
 
-            return await result.Take(amount).ToListAsync();
+            if (amount.HasValue && amount > 0) {
+                result = result.Take(amount.Value);
+            }
+
+            return await result.ToListAsync();
         }
     }
 }

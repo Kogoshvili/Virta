@@ -8,7 +8,7 @@ import {
     faShoppingCart
 } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { ProductInCart } from 'src/app/models/product';
+import { ProductInCart } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart.service';
 import { AppStore } from 'src/app/store/app.store';
 

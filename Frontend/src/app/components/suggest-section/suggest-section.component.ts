@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SplideOptions } from '@splidejs/splide';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
     selector: 'app-suggest-section',
@@ -16,19 +17,21 @@ export class SuggestSectionComponent implements OnInit {
         perMove: 1
     };
 
-    @Input() suggestions = [
-        { url: '#', image: 'assets/img/suggest/02.jpg', label: 'Fresh Vegetables', count: 120 },
-        { url: '#', image: 'assets/img/suggest/02.jpg', label: 'Fruits & Juice', count: 105 },
-        { url: '#', image: 'assets/img/suggest/02.jpg', label: 'Groceries', count: 50 },
-        { url: '#', image: 'assets/img/suggest/02.jpg', label: 'Dairy & Eggs', count: 20 },
-        { url: '#', image: 'assets/img/suggest/02.jpg', label: 'Sea Foods & Fishes', count: 80 },
-        { url: '#', image: 'assets/img/suggest/02.jpg', label: 'Drinks', count: 10 },
-        { url: '#', image: 'assets/img/suggest/02.jpg', label: 'Dry Foods', count: 8 }
-    ];
+    @Input() suggestions: { url: string, image: string, label: string, count: number }[] = [];
 
-    constructor() { }
+    constructor(
+        private categoryService: CategoryService
+    ) { }
 
     ngOnInit(): void {
+        this.categoryService.getCategories().subscribe(
+            categories => this.suggestions = categories.map(category => ({
+                url: category.name,
+                image: category.bannerSmall,
+                label: category.title,
+                count: category.productCount
+            }))
+        );
     }
 
 }

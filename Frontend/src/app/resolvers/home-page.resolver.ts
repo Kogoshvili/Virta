@@ -7,7 +7,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Product } from '../models/product';
+import { Product } from '../models/Product';
 import { ProductService } from '../services/product.service';
 
 @Injectable({
@@ -16,12 +16,12 @@ import { ProductService } from '../services/product.service';
 export class HomePageResolver implements Resolve<Product[]> {
 
     constructor(
-    private toastr: ToastrService,
-    private productService: ProductService
+        private toastr: ToastrService,
+        private productService: ProductService
     ) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product[]> {
-        return this.productService.getProducts(null, null, 10)
+        return this.productService.getProducts(null, null, null, 10)
             .pipe(
                 catchError(error => {
                     this.toastr.error('Problem retrieving data');

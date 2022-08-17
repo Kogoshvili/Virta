@@ -14,7 +14,7 @@ export class CategoryService {
         private http: HttpClient
     ) { }
 
-    getCategories(length: number = 10): Observable<CategoryDTO[]> {
-        return this.http.get<CategoryDTO[]>(this.baseUrl + length);
+    getCategories(): Observable<CategoryDTO[]> {
+        return this.http.get<CategoryDTO[]>(this.baseUrl);
     }
 }

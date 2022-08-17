@@ -1,0 +1,59 @@
+@import 'variables';
+.review-item {
+	padding: 30px 45px;
+	border-radius: 8px;
+	background: $white;
+	&:last-child {
+		margin-bottom: 0px;
+	}
+}
+.review-media {
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+.review-avatar {
+	margin-right: 15px;
+	border-radius: 50%;
+	border: 2px solid $primary;
+	img {
+		width: 65px;
+		border-radius: 50%;
+		border: 2px solid $white;
+	}
+}
+.review-meta {
+	text-transform: capitalize;
+	div {
+		color: $heading;
+		text-transform: capitalize;
+		transition: all linear .3s;
+		-webkit-transition: all linear .3s;
+		-moz-transition: all linear .3s;
+		-ms-transition: all linear .3s;
+		-o-transition: all linear .3s;
+		&:hover {
+			color: $primary;
+		}
+	}
+	span {
+		display: block;
+		font-size: 15px;
+		font-weight: 400;
+		color: $text;
+		b {
+			font-weight: 500;
+			color: $primary;
+		}
+	}
+}
+.review-rating {
+	margin-bottom: 10px;
+	li {
+		font-size: 16px;
+		margin-right: 5px;
+		color: $primary;
+		display: inline-block;
+	}
+}

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import {
     Observable,
     of
@@ -11,9 +12,9 @@ import {
 import { environment } from 'src/environments/environment';
 import { ApiHelper } from '../helper/api.service';
 import {
-    Product,
+    ProductDTO,
     ProductImage
-} from '../models/product';
+} from '../models/Product';
 
 @Injectable({
     providedIn: 'root'
@@ -27,14 +28,19 @@ export class ProductService {
     };
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private toastr: ToastrService
     ) { }
 
-    getProducts(category: string | string[] | null = null, title: string | null = null, amount: number = 10): Observable<Product[]> {
+    getProducts(categories: string | string[] | null = null, labels: number | number[] | null = null, title: string | null = null, amount: number = 10): Observable<ProductDTO[]> {
         const query = ApiHelper.queryBuilder([
             {
-                name: 'category',
-                value: category
+                name: 'categories',
+                value: categories
+            },
+            {
+                name: 'labels',
+                value: labels
             },
             {
                 name: 'title',
@@ -46,10 +52,11 @@ export class ProductService {
             }
         ]);
 
-        return this.http.get<Product[]>(this.baseUrl + query)
+        return this.http.get<ProductDTO[]>(this.baseUrl + query)
             .pipe(
                 catchError(
                     error => {
+                        this.toastr.error('Problem retrieving data');
                         console.error(error);
                         return [];
                     }
@@ -57,8 +64,8 @@ export class ProductService {
             );
     }
 
-    getProduct(id: string): Observable<Product | null> {
-        return this.http.get<Product>(this.baseUrl + id)
+    getProduct(id: string): Observable<ProductDTO | null> {
+        return this.http.get<ProductDTO>(this.baseUrl + id)
             .pipe(
                 map(
                     response => ({

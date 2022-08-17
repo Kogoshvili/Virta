@@ -24,7 +24,7 @@ export class FiltersResolver implements Resolve<Filters> {
     ){}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Filters> {
-        const categories = this.categoryService.getCategories(10)
+        const categories = this.categoryService.getCategories()
             .pipe(
                 catchError(
                     error => {

@@ -166,3 +166,18 @@ tbody {
 		}
 	}
 }
+.table-bordered {
+	margin-bottom: 0px;
+	th {
+		padding: 12px 25px;
+		text-align: left;
+		font-weight: 500;
+	}
+	td {
+		padding: 12px 25px;
+		text-align: left;
+		&:last-child {
+			border-right: 1px solid $border;
+		}
+	}
+}

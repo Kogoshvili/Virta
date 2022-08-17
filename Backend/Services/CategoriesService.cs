@@ -4,6 +4,9 @@ using AutoMapper;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 using Virta.Models;
+using Virta.Api.DTO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Virta.Services
 {
@@ -21,13 +24,34 @@ namespace Virta.Services
             _categoriesRepository = categoriesRepository;
         }
 
-        public async Task<bool> Upsert(CategoryUpsert category)
+        public async Task<List<CategoryDTO>> GetCategoriesAsync()
+        {
+            var categoriesRaw = await _categoriesRepository.GetParentCategoriesAsync();
+            var categories = _mapper.Map<List<CategoryDTO>>(categoriesRaw);
+
+            foreach (var category in categories)
+            {
+                int totalCount = 0;
+
+                foreach (var child in category.Children)
+                {
+                    child.ProductCount = await _categoriesRepository.GetCategoryProductCountAsync(child.Id);
+                    totalCount += child.ProductCount;
+                }
+
+                category.ProductCount = totalCount;
+            }
+
+            return categories;
+        }
+
+        public async Task<bool> UpsertAsync(CategoryUpsert category)
         {
             var categoryToSave = _mapper.Map<Category>(category);
 
             if (categoryToSave.Id != 0)
             {
-                var categoryFromDb = await _categoriesRepository.GetCategory(categoryToSave.Id);
+                var categoryFromDb = await _categoriesRepository.GetCategoryAsync(categoryToSave.Id);
                 _mapper.Map<Category, Category>(categoryToSave, categoryFromDb);
                 _categoriesRepository.Update(categoryFromDb);
             }

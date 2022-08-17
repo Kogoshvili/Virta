@@ -1,11 +1,7 @@
 import {
-    Component,
-    ElementRef, Input, OnInit
+    Component, Input, OnInit
 } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppStore } from 'src/app/store/app.store';
-import { setProductCardLocation } from 'src/app/store/general/general.actions';
-import { selectLocation } from 'src/app/store/general/general.selectors';
+import { ProductDTO, ProductLabels } from 'src/app/models/Product';
 
 @Component({
     selector: 'app-product-card',
@@ -13,38 +9,21 @@ import { selectLocation } from 'src/app/store/general/general.selectors';
     styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-    // @Input() product!: Product;
-    location$ = this.store.select(selectLocation);
-    text: any = [];
-    @Input() product = {
-        title: 'Fresh Organic Apple',
-        image: 'assets/img/product/05.png',
-        label: 'new',
-        video: '',
-        reviews: 4,
-        stars: 4,
-        price: '$1.99',
-        oldPrice: '$2.99',
-        units: 'kg'
-    };
+    @Input() product!: ProductDTO;
+    ProductLabels = ProductLabels;
+    starts = { full: [] as any[], empty: [0, 1, 2, 3, 4] };
 
     constructor(
-        private store: Store<AppStore>,
-        private elementRef: ElementRef
     ) { }
 
     ngOnInit(): void {
+        this.starts = {
+            full: Array(this.product?.stars ?? 0),
+            empty: Array(5 - (this.product?.stars ?? 0))
+        };
     }
 
-    onClick(): void {
-        const rect = this.elementRef.nativeElement.getBoundingClientRect();
-        this.store.dispatch(setProductCardLocation({
-            location:
-                {
-                    offsetLeft: rect.left + window.pageXOffset,
-                    offsetTop: rect.top + window.pageYOffset
-                }
-        }));
-    }
+    onWishlistClick() {}
+    onAddToCartClick() {}
 }
 
