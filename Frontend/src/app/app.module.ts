@@ -36,6 +36,7 @@ import { NewsSectionComponent } from './components/news-section/news-section.com
 import { PartnerSectionComponent } from './components/partner-section/partner-section.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductFilterComponent } from './components/product-filter/product-filter.component';
+import { ProductPreviewComponent } from './components/product-preview/product-preview.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { PromoSectionComponent } from './components/promo-section/promo-section.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
@@ -55,7 +56,6 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { Reducers } from './store/app.store';
-import { ProductPreviewComponent } from './components/product-preview/product-preview.component';
 
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');

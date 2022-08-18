@@ -171,11 +171,6 @@ namespace Virta.Helpers
             // CreateMap<ProductAttributes, Virta.MVC.ViewModels.ProductAttributesVM>();
 
 
-
-
-
-
-
             #region From Order Entity
             CreateMap<Order, OrderOutgoing>()
                 .ForMember(
@@ -204,14 +199,6 @@ namespace Virta.Helpers
             CreateMap<OrderIncoming, OrderUpsert>();
             CreateMap<OrderIncoming.OrderProduct, OrderUpsert.OrderProduct>();
             #endregion
-
-
-
-
-
-
-
-
 
             #region Self
             CreateMap<Product, Product>()

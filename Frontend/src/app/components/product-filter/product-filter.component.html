@@ -29,8 +29,17 @@
                 <ul class="shop-widget-category-list" [class.active]="category.isActive">
                     <li *ngFor="let sub of category.children">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ sub.id }}" id="{{ sub.name }}">
-                            <label class="form-check-label" for="{{ sub.name }}">{{ sub.title }}</label>
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value="{{ sub.id }}"
+                                id="{{ sub.name }}"
+                            >
+                            <label
+                                class="form-check-label"
+                                for="{{ sub.name }}"
+                                (click)="onCategoryClick(sub.name)"
+                            >{{ sub.title }}</label>
                         </div>
                     </li>
                 </ul>
@@ -40,107 +49,35 @@
 
     <div class="shop-widget">
         <h6 class="shop-widget-title">Price Range</h6>
-        <input type="text" id="amount" readonly />
-        <div id="slider-range"></div>
+        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
     </div>
     <div class="shop-widget">
         <h6 class="shop-widget-title">Rating</h6>
         <ul class="shop-widget-list">
-            <li>
+            <li *ngFor="let stars of [5, 4, 3, 2, 1]">
                 <div class="shop-widget-content">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="feat1">
-                        <label class="form-check-label" for="feat1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></label>
+                        <input class="form-check-input" type="checkbox" value="{{ stars }}" id="{{ stars }}">
+                        <label class="form-check-label" for="{{ stars }}">
+                            <app-star-bar [stars]="stars"></app-star-bar>
+                        </label>
                       </div>
                 </div>
-                <span class="shop-widget-number">(50)</span>
+                <span class="shop-widget-number">(??)</span>
             </li>
-            <li>
-                <div class="shop-widget-content">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="feat2">
-                        <label class="form-check-label" for="feat2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></label>
-                      </div>
-                </div>
-                <span class="shop-widget-number">(25)</span>
-            </li>
-            <li>
-                <div class="shop-widget-content">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="feat3">
-                        <label class="form-check-label" for="feat3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></label>
-                      </div>
-                </div>
-                <span class="shop-widget-number">(13)</span>
-            </li>
-            <li>
-                <div class="shop-widget-content">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="feat4">
-                        <label class="form-check-label" for="feat4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></label>
-                      </div>
-                </div>
-                <span class="shop-widget-number">(15)</span>
-            </li>
-            <li>
-                <div class="shop-widget-content">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="feat5">
-                        <label class="form-check-label" for="feat5"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></label>
-                      </div>
-                </div>
-                <span class="shop-widget-number">(02)</span>
-            </li>
-
         </ul>
     </div>
     <div class="shop-widget">
         <h6 class="shop-widget-title">Tags</h6>
         <ul class="shop-widget-list">
-            <li>
+            <li *ngFor="let label of labels">
                 <div class="shop-widget-content">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="tag1">
-                        <label class="form-check-label" for="tag1">New Items</label>
+                        <input class="form-check-input" type="checkbox" value="{{ label.value }}" id="{{ label.value }}">
+                        <label class="form-check-label" for="{{ label.value }}">{{ label.name }}</label>
                       </div>
                 </div>
-                <span class="shop-widget-number">(13)</span>
-            </li>
-            <li>
-                <div class="shop-widget-content">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="tag2">
-                        <label class="form-check-label" for="tag2">Sale Items</label>
-                      </div>
-                </div>
-                <span class="shop-widget-number">(15)</span>
-            </li>
-            <li>
-                <div class="shop-widget-content">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="tag3">
-                        <label class="form-check-label" for="tag3">feature items</label>
-                      </div>
-                </div>
-                <span class="shop-widget-number">(19)</span>
-            </li>
-            <li>
-                <div class="shop-widget-content">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="tag4">
-                        <label class="form-check-label" for="tag4">trending</label>
-                      </div>
-                </div>
-                <span class="shop-widget-number">(20)</span>
-            </li>
-            <li>
-                <div class="shop-widget-content">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="tag5">
-                        <label class="form-check-label" for="tag5">discount items</label>
-                      </div>
-                </div>
-                <span class="shop-widget-number">(25)</span>
+                <span class="shop-widget-number">(??)</span>
             </li>
         </ul>
     </div>

@@ -21,9 +21,6 @@
         }
 
         a {
-            &:hover {
-                color: $primary;
-            }
             width: 100%;
             font-size: 15px;
             line-height: 18px;
@@ -38,6 +35,10 @@
             -moz-transition: all linear .3s;
             -ms-transition: all linear .3s;
             -o-transition: all linear .3s;
+
+            &:hover {
+                color: $primary;
+            }
         }
     }
 }
@@ -87,22 +88,11 @@
             -moz-transition: all linear .3s;
             -ms-transition: all linear .3s;
             -o-transition: all linear .3s;
+
             &:hover {
                 color: $primary;
                 padding-left: 22px;
             }
-        }
-    }
-}
-
-.dropdown-megamenu {
-    position: static;
-
-    &:hover {
-        .megamenu {
-            visibility: visible;
-            opacity: 1;
-            top: 200px;
         }
     }
 }

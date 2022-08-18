@@ -14,6 +14,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { AppStore } from 'src/app/store/app.store';
 import { setLoadingScreen } from 'src/app/store/general/general.actions';
+import VenoBox from 'venobox';
 
 @Component({
     selector: 'app-product-page',
@@ -22,6 +23,7 @@ import { setLoadingScreen } from 'src/app/store/general/general.actions';
 })
 export class ProductPageComponent implements OnInit, AfterViewInit {
     product!: ProductDTO;
+    venobox: typeof VenoBox;
     isInCart = false;
     isInWishlist = false;
     splied: any = null;
@@ -80,6 +82,8 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
         this.wishlistService.wishlistSub.subscribe(
             () => this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id)
         );
+
+        this.venobox = new VenoBox();
     }
 
     toggleTabs(tab: string): void {

@@ -1,6 +1,5 @@
 import {
-    Component,
-    ViewEncapsulation
+    Component, ViewEncapsulation
 } from '@angular/core';
 import {
     ActivationEnd,

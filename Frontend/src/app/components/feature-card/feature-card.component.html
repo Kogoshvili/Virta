@@ -21,7 +21,15 @@
         <button class="feature-wish wish"><i class="far fa-heart"></i></button>
         <div class="feature-image" [routerLink]="['/product/' + product.id]"><img src="{{ product.images[0].url }}" alt="product" /></div>
         <div class="feature-widget">
-            <a title="Product Video" href="{{ product.video }}" class="venobox far fa-play" data-autoplay="true" data-vbtype="video"></a>
+            <a
+                *ngIf="product.video"
+                title="Product Video"
+                href="{{ product.video }}"
+                class="venobox far fa-play"
+                data-maxwidth="1000px"
+                data-autoplay="true"
+                data-vbtype="video"
+            ></a>
             <div title="Product View" class="far fa-eye"></div>
             <!-- <a title="Product Compare" href="#" class="far fa-exchange"></a> -->
         </div>

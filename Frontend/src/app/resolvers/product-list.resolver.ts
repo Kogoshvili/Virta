@@ -18,7 +18,11 @@ export class ProductListResolver implements Resolve<Product[]> {
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Product[]> {
-        // return this.productService.getProducts(route.queryParams?.category, null, route.queryParams?.title, 20)
-        return this.productService.getProducts(null, null, null, 20);
+        return this.productService.getProducts(
+            route.queryParams?.categories,
+            route.queryParams?.labels,
+            route.queryParams?.title,
+            16
+        );
     }
 }

@@ -11,11 +11,19 @@
 </div> -->
 <div class="product-card">
     <div class="product-media">
-        <div class="product-label"><label [ngClass]="['label-text', ProductLabels[product.label]?.toLowerCase() ]">{{ ProductLabels[product.label] }}</label></div>
+        <div class="product-label"><label [ngClass]="['label-text', ProductLabels[product.label].toLowerCase() ]">{{ ProductLabels[product.label] }}</label></div>
         <button class="product-wish wish"><i class="far fa-heart"></i></button>
         <div class="product-image" [routerLink]="['/product/' + product.id]"><img src="{{ product.images[0].url }}" alt="product"/></div>
         <div class="product-widget">
-            <a title="Product Video" href="{{ product.video }}" class="venobox far fa-play" data-autoplay="true" data-vbtype="video"></a>
+            <a
+                *ngIf="product.video"
+                title="Product Video"
+                href="{{ product.video }}"
+                class="venobox far fa-play"
+                data-maxwidth="1000px"
+                data-autoplay="true"
+                data-vbtype="video"
+            ></a>
             <div title="Product View" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></div>
         </div>
     </div>
