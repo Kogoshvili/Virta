@@ -57,8 +57,8 @@
             <li *ngFor="let stars of [5, 4, 3, 2, 1]">
                 <div class="shop-widget-content">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{{ stars }}" id="{{ stars }}">
-                        <label class="form-check-label" for="{{ stars }}">
+                        <input class="form-check-input" type="checkbox" value="{{ stars }}" id="stars{{ stars }}">
+                        <label class="form-check-label" for="stars{{ stars }}">
                             <app-star-bar [stars]="stars"></app-star-bar>
                         </label>
                       </div>
@@ -73,8 +73,8 @@
             <li *ngFor="let label of labels">
                 <div class="shop-widget-content">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{{ label.value }}" id="{{ label.value }}">
-                        <label class="form-check-label" for="{{ label.value }}">{{ label.name }}</label>
+                        <input class="form-check-input" type="checkbox" value="{{ label.value }}" id="label{{ label.value }}">
+                        <label class="form-check-label" for="label{{ label.value }}">{{ label.name }}</label>
                       </div>
                 </div>
                 <span class="shop-widget-number">(??)</span>

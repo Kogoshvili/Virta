@@ -60,7 +60,7 @@
                 </form>
                 <div class="header-widget-group right">
                     <a class="header-widget" href="#" title="My Account"><img src="assets/img/user.jpg" alt="user" /></a>
-                    <a class="header-widget" href="#" title="Compare List"><i class="far fa-exchange"></i><sup>{{ itemsInCompare }}</sup></a>
+                    <!-- <a class="header-widget" href="#" title="Compare List"><i class="far fa-exchange"></i><sup>{{ itemsInCompare }}</sup></a> -->
                     <a class="header-widget" href="#" title="Wishlist"><i class="far fa-heart"></i><sup>{{ itemsInWishlist }}</sup></a>
                     <button class="header-widget header-cart" title="Cartlist" (click)="toggleSideCart()"><i class="far fa-shopping-cart"></i><sup>{{ itemsInCart }}</sup></button>
                 </div>
@@ -78,8 +78,8 @@
                                 <a class="navbar-link" href="/">Home</a>
                             </li>
                             <li class="navbar-item dropdown-megamenu">
-                                <a class="navbar-link dropdown-arrow" href="#">category</a>
-                                <div class="megamenu">
+                                <a class="navbar-link" [routerLink]="'/products'">Products Page</a> <!-- dropdown-arrow -->
+                                <!-- <div class="megamenu">
                                     <div class="container">
                                         <div class="row row-cols-5">
                                             <div class="col" *ngFor="let category of categories">
@@ -93,7 +93,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </li>
                             <li class="navbar-item dropdown">
                                 <a class="navbar-link dropdown-arrow" href="#">pages</a>

@@ -9,12 +9,18 @@
                 <a
                     [ngClass]="['cate-link', c.children.length && 'dropdown-link']"
                     (click)="expandCategory(c.name)"
-                    href="#"
+                    role="button"
                 >
                     <i class="{{ c.icon }}"></i>{{ c.name }}
                 </a>
                 <ul *ngIf="c.children.length" class="dropdown-list" [class.active]="c.isActive">
-                    <li *ngFor="let s of c.children"><a href="#">{{ s.name }}</a></li>
+                    <li *ngFor="let s of c.children">
+                        <a
+                            role="button"
+                            [routerLink]="'/products'"
+                            [queryParams]="{ category: c.name }"
+                            (click)="toggleSideCategory()"
+                        >{{ s.name }}</a></li>
                 </ul>
             </li>
         </ul>

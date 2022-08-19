@@ -1,6 +1,7 @@
 import {
     Component, Input, OnInit
 } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDTO, ProductLabels } from 'src/app/models/Product';
 import VenoBox from 'venobox';
 
@@ -14,8 +15,10 @@ export class ProductCardComponent implements OnInit {
     ProductLabels = ProductLabels;
     starts = { full: [] as any[], empty: [0, 1, 2, 3, 4] };
     venobox: typeof VenoBox;
+    closeResult = '';
 
     constructor(
+        private modalService: NgbModal
     ) { }
 
     ngOnInit(): void {
@@ -25,6 +28,10 @@ export class ProductCardComponent implements OnInit {
         };
 
         this.venobox = new VenoBox();
+    }
+
+    open(content: any) {
+        this.modalService.open(content);
     }
 
     onWishlistClick() {}

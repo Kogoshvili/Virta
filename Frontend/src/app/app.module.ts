@@ -35,8 +35,8 @@ import { NewitemSectionComponent } from './components/newitem-section/newitem-se
 import { NewsSectionComponent } from './components/news-section/news-section.component';
 import { PartnerSectionComponent } from './components/partner-section/partner-section.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductFilterComponent } from './components/product-filter/product-filter.component';
-import { ProductPreviewComponent } from './components/product-preview/product-preview.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { PromoSectionComponent } from './components/promo-section/promo-section.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
@@ -98,7 +98,7 @@ export function tokenGetter(): string | null {
         NewsSectionComponent,
         ReviewCardComponent,
         StarBarComponent,
-        ProductPreviewComponent
+        ProductDetailsComponent
     ],
     imports: [
         BrowserModule,

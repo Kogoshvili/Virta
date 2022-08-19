@@ -24,7 +24,7 @@
                 data-autoplay="true"
                 data-vbtype="video"
             ></a>
-            <div title="Product View" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></div>
+            <div title="Product View" class="far fa-eye" (click)="open(details)"></div>
         </div>
     </div>
     <div class="product-content">
@@ -42,3 +42,7 @@
         </div>
     </div>
 </div>
+<ng-template #details let-modal>
+    <button class="modal-close far fa-times" (click)="modal.dismiss()"></button>
+    <app-product-details class="preview-modal-content" [product]="product" [modal]="modal"></app-product-details>
+</ng-template>

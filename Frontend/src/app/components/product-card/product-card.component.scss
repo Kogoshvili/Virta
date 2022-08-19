@@ -245,3 +245,11 @@
 		background: rgba(255, 255, 255, .6);
 	}
 }
+
+.preview-modal-content {
+    max-width: 1000px;
+
+    ::ng-deep .details-content {
+        padding: 0 0;
+    }
+}

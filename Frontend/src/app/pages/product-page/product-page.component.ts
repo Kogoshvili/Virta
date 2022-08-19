@@ -1,5 +1,4 @@
 import {
-    AfterViewInit,
     Component,
     OnInit
 } from '@angular/core';
@@ -8,7 +7,6 @@ import {
     Router
 } from '@angular/router';
 import { Store } from '@ngrx/store';
-import Splide from '@splidejs/splide';
 import { ProductDTO, ProductLabels } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
@@ -21,13 +19,11 @@ import VenoBox from 'venobox';
     templateUrl: './product-page.component.html',
     styleUrls: ['./product-page.component.scss']
 })
-export class ProductPageComponent implements OnInit, AfterViewInit {
+export class ProductPageComponent implements OnInit {
     product!: ProductDTO;
     venobox: typeof VenoBox;
     isInCart = false;
     isInWishlist = false;
-    splied: any = null;
-    spliedThumbnail: any = null;
     tabs: { [key: string]: boolean} = {
         description: true,
         specification: false,
@@ -43,29 +39,6 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
         private store: Store<AppStore>,
         private router: Router
     ) { }
-
-    ngAfterViewInit(): void {
-        this.splied = new Splide(
-            '#product-page-image',
-            {
-                pagination: false,
-                type: 'loop',
-                arrows: false,
-                gap: '30px'
-            }
-        );
-
-        this.spliedThumbnail = new Splide(
-            '#product-page-image-thumbnails',
-            {
-                arrows: false,
-                pagination : false,
-                perPage: 5
-            }
-        ).mount();
-
-        this.splied.sync(this.spliedThumbnail).mount();
-    }
 
     ngOnInit(): void {
         this.route.data.subscribe(
@@ -92,16 +65,6 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
         } );
 
         this.tabs[tab] = true;
-    }
-
-    decreaseQuantity(): void {
-        if (this.quantity === 1) return;
-
-        this.quantity--;
-    }
-
-    increaseQuantity(): void {
-        this.quantity++;
     }
 
     CartAction(): void {
