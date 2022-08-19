@@ -59,7 +59,7 @@ namespace Virta.Data
             }
 
             if (title != null && title != "") {
-                query = query.Where(p => p.Title.Contains(title)).OrderByDescending(p => p.Title);
+                query = query.Where(p => p.Title.ToLower().Contains(title.ToLower())).OrderByDescending(p => p.Title);
             } else {
                 query = query.OrderByDescending(p => p.CreatedAt);
             }
