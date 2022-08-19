@@ -5,7 +5,7 @@ import {
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CategoryDTO } from 'src/app/models/Category';
-import { Category } from 'src/app/models/filters';
+// import { Category } from 'src/app/models/filters';
 import { CategoryService } from 'src/app/services/category.service';
 import { toggleIsSideCart, toggleIsSideCategory } from 'src/app/store/general/general.actions';
 import { selectIsSideCart, selectIsSideCategory } from 'src/app/store/general/general.selectors';
@@ -72,12 +72,12 @@ export class HeaderComponent implements OnInit {
         // this.filteredCategories = [];
     }
 
-    selectOption(category: Category): void {
-        // this.searchInput = category.title;
-        // this.category = category;
-        // this.filteredCategories = [];
-        // this.search();
-    }
+    // selectOption(category: Category): void {
+    //     // this.searchInput = category.title;
+    //     // this.category = category;
+    //     // this.filteredCategories = [];
+    //     // this.search();
+    // }
 
     search(): void {
         this.router.navigate(['/products'], { queryParams: { title: this.searchInput } });

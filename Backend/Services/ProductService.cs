@@ -105,5 +105,10 @@ namespace Virta.Services
 
             return result;
         }
+
+        public async Task<List<LabelDTO>> GetProductsLabels()
+        {
+            return await _productRepository.GetProductsLabels();
+        }
     }
 }

@@ -3,8 +3,9 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryDTO } from 'src/app/models/Category';
-import { ProductLabels } from 'src/app/models/Product';
+import { LabelDTO } from 'src/app/models/Filters';
 import { CategoryService } from 'src/app/services/category.service';
+import { FiltersService } from 'src/app/services/filters.service';
 
 interface Category extends CategoryDTO {
     isActive: boolean;
@@ -19,27 +20,11 @@ export class ProductFilterComponent implements OnInit {
     selectedCategories: string[] = [];
     selectedLabels: string[] = [];
     categories: Category[] = [];
-    labels = [
-        {
-            name: 'New Items',
-            value: ProductLabels.New
-        },
-        {
-            name: 'Featured Items',
-            value: ProductLabels.Featured
-        },
-        {
-            name: 'Sale Items',
-            value: ProductLabels.Sale
-        },
-        {
-            name: 'Trending Items',
-            value: ProductLabels.Trending
-        }
-    ];
+    labels: LabelDTO[] = [];
 
     constructor(
         private categoryService: CategoryService,
+        private filtersService: FiltersService,
         private route: ActivatedRoute,
         private router: Router
     ) { }
@@ -63,6 +48,10 @@ export class ProductFilterComponent implements OnInit {
 
                     return { ...category, isActive: categoryIsSelected || childIsSelected };
                 })
+        );
+
+        this.filtersService.getLabels().subscribe(
+            labels => this.labels = labels.filter(label => label.value !== 0).map(label => ({ ...label, name: `${label.name} Items` }))
         );
 
         this.route.queryParams.subscribe(params => {
@@ -95,7 +84,8 @@ export class ProductFilterComponent implements OnInit {
                 queryParams: {
                     categories: this.selectedCategories.includes(category)
                         ? this.selectedCategories.filter(c => c !== category)
-                        : [ ...this.selectedCategories, category]
+                        : [ ...this.selectedCategories, category],
+                    page: 1
                 },
                 queryParamsHandling: 'merge'
             }
@@ -110,7 +100,8 @@ export class ProductFilterComponent implements OnInit {
                 queryParams: {
                     labels: this.selectedLabels.includes(labelString)
                         ? this.selectedLabels.filter(c => c !== labelString)
-                        : [ ...this.selectedLabels, label]
+                        : [ ...this.selectedLabels, label],
+                    page: 1
                 },
                 queryParamsHandling: 'merge'
             }

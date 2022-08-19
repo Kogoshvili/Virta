@@ -18,16 +18,19 @@
 		background: $chalk;
 		padding: 8px 35px 8px 20px;
 		border: 1px solid $border;
-		&::after {
+
+        &::after {
 			right: 20px;
 			width: 8px;
 			height: 8px;
 			margin-top: -6px;
 		}
-		.current {
+
+        .current {
 			font-size: 15px;
 		}
-		.list {
+
+        .list {
 			align-items: flex-start;
 			flex-direction: column;
 			padding: 0px;
@@ -39,6 +42,7 @@
 			background-color: rgb(255, 255, 255);
 			box-shadow: rgb(0 0 0 / 16%) 0px 6px 12px;
 		}
+
 		.option {
 			&:hover {
 				background-color: #f6f6f6;
@@ -51,9 +55,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		li {
+
+        li {
 			margin: 0px 5px;
-			a {
+
+            a {
 				width: 40px;
 				height: 40px;
 				font-size: 16px;
@@ -63,14 +69,15 @@
 				color: $text;
 				background: $chalk;
 			}
-			.active {
+
+            .active {
 				color: $white;
 				background: $primary;
 			}
 		}
 	}
-	p {
+
+    p {
 		font-size: 15px;
-		text-transform: capitalize;
 	}
 }

@@ -19,13 +19,15 @@ namespace Virta.Api.Controllers
         private readonly ICategoriesService _categoriesService;
         private readonly IAttributesRepository _attributesRepository;
         private readonly IAttributesService _attributesService;
+        private readonly IProductRepository _productRepository;
 
         public FiltersController(
             IMapper mapper,
             ICategoriesRepository categoriesRepository,
             ICategoriesService categoriesService,
             IAttributesRepository attributesRepository,
-            IAttributesService attributesService
+            IAttributesService attributesService,
+            IProductRepository productRepository
         )
         {
             _mapper = mapper;
@@ -33,6 +35,7 @@ namespace Virta.Api.Controllers
             _categoriesService = categoriesService;
             _attributesRepository = attributesRepository;
             _attributesService = attributesService;
+            _productRepository = productRepository;
         }
 
         [HttpGet("categories")]
@@ -78,6 +81,17 @@ namespace Virta.Api.Controllers
                 return Ok();
 
             return BadRequest();
+        }
+
+        [HttpGet("labels")]
+        public async Task<IActionResult> GetProductsLabels()
+        {
+            var labels = await _productRepository.GetProductsLabels();
+
+            if (labels == null)
+                return BadRequest();
+
+            return Ok(labels);
         }
 
         [HttpGet("categories/seed")]

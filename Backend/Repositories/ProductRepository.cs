@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Virta.Api.DTO;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 
@@ -73,6 +74,16 @@ namespace Virta.Data
             }
 
             return query;
+        }
+
+        public async Task<List<LabelDTO>> GetProductsLabels()
+        {
+            return await _context.Products.GroupBy(p => p.Label)
+                .Select(g => new LabelDTO {
+                    Name = g.Key.ToString(),
+                    Value = (int)g.Key,
+                    Count = g.Count()
+                }).ToListAsync();
         }
     }
 }
