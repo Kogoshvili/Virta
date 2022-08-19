@@ -18,11 +18,11 @@ export class TopSectionComponent implements OnInit {
 
     ngOnInit(): void {
         this.productService.getProducts(null, null, null, 4)
-            .subscribe(p => this.topRated = p);
+            .subscribe(p => this.topRated = p.products);
         this.productService.getProducts(null, null, null, 4)
-            .subscribe(p => this.topSales = p);
+            .subscribe(p => this.topSales = p.products);
         this.productService.getProducts(null, null, null, 4)
-            .subscribe(p => this.topDiscounts = p);
+            .subscribe(p => this.topDiscounts = p.products);
     }
 
 }

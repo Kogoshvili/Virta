@@ -17,6 +17,7 @@ import { setLoadingScreen } from 'src/app/store/general/general.actions';
 export class ProductListPageComponent implements OnInit {
     products: ProductDTO[] = [];
     filters: Filters = { categories: [], attributes: [] };
+    totalCount: number = 0;
 
     constructor(
         private route: ActivatedRoute,
@@ -26,7 +27,8 @@ export class ProductListPageComponent implements OnInit {
     ngOnInit(): void {
         this.route.data.subscribe(
             data => {
-                this.products = data.products;
+                this.products = data.products.products;
+                this.totalCount = data.products.totalCount;
                 this.store.dispatch(setLoadingScreen({ loadingScreen: false }));
             }
         );

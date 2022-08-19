@@ -187,49 +187,6 @@
 .tab-pane.active {
 	display: block;
 }
-.pagination {
-	align-items: center;
-	justify-content: center;
-	padding: 20px 25px;
-	border-radius: 8px;
-	background: $white;
-}
-.page-item {
-	margin: 0px 8px;
-	&:first-child {
-		.page-link {
-			border-radius: 50%;
-		}
-	}
-	&:last-child {
-		.page-link {
-			border-radius: 50%;
-		}
-	}
-	.active {
-		color: $white;
-		background: $primary;
-	}
-}
-.page-link {
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	border-radius: 50%;
-	border: none;
-	padding: 0px;
-	color: $text;
-	background: $border;
-	&:hover {
-		color: $white;
-		background: $primary;
-	}
-	&:focus {
-		box-shadow: none;
-	}
-}
-
 .product-add {
 	font-size: 15px;
 	padding: 7px 5px;

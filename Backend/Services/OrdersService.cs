@@ -13,13 +13,13 @@ namespace Virta.Services
     {
         private readonly IMapper _mapper;
         private readonly IOrdersRepository _ordersRepo;
-        private readonly IProductsRepository _productRepo;
+        private readonly IProductRepository _productRepo;
         private readonly UserManager<User> _userManager;
 
         public OrdersService(
             IMapper mapper,
             IOrdersRepository ordersRepo,
-            IProductsRepository productRepo,
+            IProductRepository productRepo,
             UserManager<User> userManager
         )
         {

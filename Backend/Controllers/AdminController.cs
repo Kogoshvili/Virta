@@ -25,7 +25,7 @@ namespace Virta.MVC.Controllers
         private readonly UserManager<Virta.Entities.User> _userManager;
         private readonly SignInManager<Virta.Entities.User> _signInManager;
         private readonly IMapper _mapper;
-        private readonly IProductsRepository _productRepo;
+        private readonly IProductRepository _productRepo;
         private readonly ICategoriesRepository _categoriesRepo;
         private readonly IProductService _productService;
 
@@ -33,7 +33,7 @@ namespace Virta.MVC.Controllers
             UserManager<Virta.Entities.User> userManager,
             SignInManager<Virta.Entities.User> signInManager,
             IMapper mapper,
-            IProductsRepository productRepo,
+            IProductRepository productRepo,
             ICategoriesRepository categoriesRepo,
             IProductService productService
         )

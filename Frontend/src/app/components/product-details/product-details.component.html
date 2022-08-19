@@ -23,21 +23,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <!-- <ul class="details-preview">
-                    <li><img src="assets/img/product/01.png" alt="product" /></li>
-                    <li><img src="assets/img/product/02.png" alt="product" /></li>
-                    <li><img src="assets/img/product/03.png" alt="product" /></li>
-                    <li><img src="assets/img/product/04.png" alt="product" /></li>
-                    <li><img src="assets/img/product/05.png" alt="product" /></li>
-                </ul>
-                <ul class="details-thumb">
-                    <li><img src="assets/img/product/01.png" alt="product" /></li>
-                    <li><img src="assets/img/product/02.png" alt="product" /></li>
-                    <li><img src="assets/img/product/03.png" alt="product" /></li>
-                    <li><img src="assets/img/product/04.png" alt="product" /></li>
-                    <li><img src="assets/img/product/05.png" alt="product" /></li>
-                </ul> -->
             </div>
         </div>
         <div class="col-lg-7">
@@ -58,7 +43,13 @@
                 <div class="details-list-group">
                     <label class="details-list-title">Categories:</label>
                     <ul class="details-tag-list">
-                        <li *ngFor="let c of product.categories"><a href="#">{{ c.title }}</a></li>
+                        <li *ngFor="let c of product.categories">
+                            <a
+                                role="button"
+                                [routerLink]="'/products'"
+                                [queryParams]="{ categories: [c.name] }"
+                            >{{ c.title }}</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="details-list-group">

@@ -4,6 +4,8 @@
         "Npgsql",
         "Splide",
         "toastr",
+        "Veno",
+        "venobox",
         "Virta"
     ],
     "editor.codeActionsOnSave": {

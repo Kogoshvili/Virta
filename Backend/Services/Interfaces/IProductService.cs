@@ -10,7 +10,7 @@ namespace Virta.Services.Interfaces
     {
         Task<ProductDTO> GetProduct(Guid id);
 
-        Task<List<ProductDTO>> GetProductsAsync(string[] categories, int[] labels, string title, int amount);
+        Task<List<ProductDTO>> GetProductsAsync(string[] categories = null, int[] labels = null, string title = null, int? amount = null, int? page = null);
 
         Task<bool> Upsert(ProductUpsert product);
     }

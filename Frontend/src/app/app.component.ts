@@ -7,6 +7,7 @@ import {
     Router,
     RouterOutlet
 } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { slider } from './animations';
 import { AppStore } from './store/app.store';
@@ -34,8 +35,11 @@ export class AppComponent {
 
     constructor(
         private store: Store<AppStore>,
-        private router: Router
+        private router: Router,
+        private modalService: NgbModal
     ){
+        this.router.events.subscribe(() => this.modalService.dismissAll('route change'));
+
         this.location$.subscribe(
             d => {
                 const top = d.offsetTop - 199;

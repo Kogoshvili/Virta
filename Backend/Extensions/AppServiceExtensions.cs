@@ -34,7 +34,7 @@ namespace Virta.Extensions
                 }
             );
 
-            services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IProductRepository, ProductsRepository>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IAttributesRepository, AttributesRepository>();

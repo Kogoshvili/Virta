@@ -8,7 +8,7 @@ import { CategoryDTO } from '../models/Category';
     providedIn: 'root'
 })
 export class CategoryService {
-    private baseUrl = environment.apiUrl + 'categories/';
+    private baseUrl = environment.apiUrl + 'filters/categories/';
 
     constructor(
         private http: HttpClient

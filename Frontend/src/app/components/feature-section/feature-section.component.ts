@@ -16,6 +16,6 @@ export class FeatureSectionComponent implements OnInit {
 
     ngOnInit(): void {
         this.productService.getProducts(null, [ProductLabels.Trending], null, 6)
-            .subscribe(p => this.products = p);
+            .subscribe(p => this.products = p.products);
     }
 }

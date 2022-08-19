@@ -68,6 +68,11 @@ export enum ProductUnits
     SquareMeter
 }
 
+export interface PLP {
+    products: ProductDTO[];
+    totalCount: number;
+}
+
 // TODO: DELETE THIS
 export interface Product {
     id: string;

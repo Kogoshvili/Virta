@@ -16,7 +16,8 @@ interface Category extends CategoryDTO {
     styleUrls: ['./product-filter.component.scss']
 })
 export class ProductFilterComponent implements OnInit {
-    activeCategories: string[] = [];
+    selectedCategories: string[] = [];
+    selectedLabels: string[] = [];
     categories: Category[] = [];
     labels = [
         {
@@ -46,14 +47,37 @@ export class ProductFilterComponent implements OnInit {
     ngOnInit(): void {
         this.categoryService.getCategories().subscribe(
             categories =>
-                this.categories = categories.map(category =>
-                    ({ ...category, isActive: category.children.some(child => this.activeCategories.includes(child.name)) })
-                )
+                this.categories = categories.map(category => {
+                    const categoryIsSelected = this.selectedCategories.includes(category.name);
+                    const childIsSelected = category.children.some(child => this.selectedCategories.includes(child.name));
+
+                    if (categoryIsSelected) {
+                        const childNames = category.children.map(c => c.name);
+                        this.selectedCategories = this.selectedCategories.filter(c => ![category.name, ...childNames].includes(c));
+                        this.selectedCategories = [...this.selectedCategories, ...childNames];
+                        this.router.navigate(
+                            ['/products'],
+                            { queryParams: { categories: this.selectedCategories }, queryParamsHandling: 'merge' }
+                        );
+                    }
+
+                    return { ...category, isActive: categoryIsSelected || childIsSelected };
+                })
         );
 
-        this.route.queryParams.subscribe(
-            params => this.activeCategories = params.categories ?? []
-        );
+        this.route.queryParams.subscribe(params => {
+            if (Array.isArray(params.categories)) {
+                this.selectedCategories = params.categories;
+            } else {
+                this.selectedCategories = params.categories ? [params.categories] : [];
+            }
+
+            if (Array.isArray(params.labels)) {
+                this.selectedLabels = params.labels;
+            } else {
+                this.selectedLabels = params.labels ? [params.labels] : [];
+            }
+        });
     }
 
     expandCategory(name: string): void {
@@ -69,9 +93,24 @@ export class ProductFilterComponent implements OnInit {
             ['/products'],
             {
                 queryParams: {
-                    categories: this.activeCategories.includes(category)
-                        ? this.activeCategories.filter(c => c !== category)
-                        : [ ...this.activeCategories, category]
+                    categories: this.selectedCategories.includes(category)
+                        ? this.selectedCategories.filter(c => c !== category)
+                        : [ ...this.selectedCategories, category]
+                },
+                queryParamsHandling: 'merge'
+            }
+        );
+    }
+
+    onLabelClick(label: number) {
+        const labelString = label.toString();
+        this.router.navigate(
+            ['/products'],
+            {
+                queryParams: {
+                    labels: this.selectedLabels.includes(labelString)
+                        ? this.selectedLabels.filter(c => c !== labelString)
+                        : [ ...this.selectedLabels, label]
                 },
                 queryParamsHandling: 'merge'
             }

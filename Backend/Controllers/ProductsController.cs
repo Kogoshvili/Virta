@@ -17,17 +17,20 @@ namespace Virta.Api.Controllers
     {
         private readonly ICategoriesRepository _categoriesRepository;
         private readonly IProductService _productService;
+        private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
 
         public ProductsController(
             IMapper mapper,
             ICategoriesRepository categoriesRepository,
-            IProductService productService
+            IProductService productService,
+            IProductRepository productRepository
         )
         {
             _mapper = mapper;
             _categoriesRepository = categoriesRepository;
             _productService = productService;
+            _productRepository = productRepository;
         }
 
         [HttpGet]// TODO: Default filter for visible & active
@@ -35,15 +38,24 @@ namespace Virta.Api.Controllers
             [FromQuery(Name = "categories")] string[] categories,
             [FromQuery(Name = "labels")] int[] labels,
             [FromQuery(Name = "title")] string title,
-            [FromQuery(Name = "amount")] int amount = 10
+            [FromQuery(Name = "amount")] int amount = 20,
+            [FromQuery(Name = "page")] int page = 1
         )
         {
-            var products = await _productService.GetProductsAsync(categories, labels, title, amount);
+            var products = await _productService.GetProductsAsync(categories, labels, title, amount, page);
 
             if (products == null)
                 return BadRequest();
 
-            return Ok(products);
+            var productCount = await _productRepository.GetProductsCountAsync(categories, labels, title);
+
+            return Ok(
+                new PLP
+                {
+                    Products = products,
+                    TotalCount = productCount
+                }
+            );
         }
 
         [HttpGet("{id:guid}")]

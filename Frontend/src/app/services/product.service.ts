@@ -12,6 +12,7 @@ import {
 import { environment } from 'src/environments/environment';
 import { ApiHelper } from '../helper/api.service';
 import {
+    PLP,
     ProductDTO,
     ProductImage
 } from '../models/Product';
@@ -32,7 +33,13 @@ export class ProductService {
         private toastr: ToastrService
     ) { }
 
-    getProducts(categories: string | string[] | null = null, labels: number | number[] | null = null, title: string | null = null, amount: number = 10): Observable<ProductDTO[]> {
+    getProducts(
+        categories: string | string[] | null = null,
+        labels: number | number[] | null = null,
+        title: string | null = null,
+        amount: number = 10,
+        page: number = 1
+    ): Observable<PLP> {
         const query = ApiHelper.queryBuilder([
             {
                 name: 'categories',
@@ -49,16 +56,20 @@ export class ProductService {
             {
                 name: 'amount',
                 value: amount
+            },
+            {
+                name: 'page',
+                value: page
             }
         ]);
 
-        return this.http.get<ProductDTO[]>(this.baseUrl + query)
+        return this.http.get<PLP>(this.baseUrl + query)
             .pipe(
                 catchError(
                     error => {
                         this.toastr.error('Problem retrieving data');
                         console.error(error);
-                        return [];
+                        return of({ products: [], totalCount: 0 });
                     }
                 )
             );

@@ -25,6 +25,6 @@ export class NewitemSectionComponent implements OnInit {
 
     ngOnInit(): void {
         this.productService.getProducts(null, [ProductLabels.New], null, 10)
-            .subscribe(p => this.products = p);
+            .subscribe(p => this.products = p.products);
     }
 }

@@ -6,23 +6,24 @@ import {
 import {
     Observable
 } from 'rxjs';
-import { Product } from '../models/Product';
+import { PLP } from '../models/Product';
 import { ProductService } from '../services/product.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ProductListResolver implements Resolve<Product[]> {
+export class ProductListResolver implements Resolve<PLP> {
     constructor(
         private productService: ProductService
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot): Observable<Product[]> {
+    resolve(route: ActivatedRouteSnapshot): Observable<PLP> {
         return this.productService.getProducts(
             route.queryParams?.categories,
             route.queryParams?.labels,
             route.queryParams?.title,
-            16
+            route.queryParams?.amount ?? 16,
+            route.queryParams?.page
         );
     }
 }
