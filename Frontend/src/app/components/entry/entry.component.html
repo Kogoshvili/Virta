@@ -1,51 +1,144 @@
-<div class="entry" appClickOutside (clickOutside)="isVisible = false">
-    <div class="entry-button" (click)="entryToggle()">
-        <div class="icon">
-            <fa-icon [icon]="faUser" size="lg" [ngStyle]="{ color: isLoggedIn && '#1EBF53' }"></fa-icon>
+<div class="user-form-part">
+    <div class="container">
+        <div class="user-form-logo">
+            <a href="/"><img src="assets/img/logo.png" alt="logo" /></a>
         </div>
-    </div>
-    <div class="entry-overlay" *ngIf="isVisible && !isLoggedIn">
-        <div class="toggle">
-            <button (click)="toggleForm()" class="btn secondary">{{ newUser ? 'Login' : 'Register' }}</button>
-        </div>
-        <div class="body">
-            <div *ngIf="!newUser">
-                <form #loginForm="ngForm" (ngSubmit)="login()">
-                    <div class="input">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="example@example.com" required [(ngModel)]="user.email">
-                    </div>
-                    <div class="input">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
-                    </div>
-                    <div class="input">
-                        <input [disabled]="!loginForm.valid" type="submit" id="login">
-                    </div>
-                </form>
+        <div *ngIf="pageState === 0" class="user-form-card">
+            <div class="user-form-title">
+                <h2>welcome back!</h2>
+                <p>login your account with email & password</p>
             </div>
-            <div *ngIf="newUser">
-                <form #registerForm="ngForm" (ngSubmit)="register()">
-                    <div class="input">
-                        <label for="firstName">First name</label>
-                        <input type="text" name="firstName" id="firstName" placeholder="example@example.com" required [(ngModel)]="user.firstName">
+            <form class="user-form" #loginForm="ngForm" (ngSubmit)="login()">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="Enter your email"
+                        required
+                        [(ngModel)]="user.email"
+                    />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        class="form-control"
+                        placeholder="Enter your password"
+                        required
+                        [(ngModel)]="user.password"
+                    />
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="remember">
+                            <label class="form-check-label" for="remember">
+                                Remember Me
+                            </label>
+                        </div>
                     </div>
-                    <div class="input">
-                        <label for="lastName">Last name</label>
-                        <input type="text" name="lastName" id="lastName" placeholder="example@example.com" required [(ngModel)]="user.lastName">
+                    <div class="col-6 text-end">
+                        <a role="button" (click)="changePageState(2)" class="forgot-pass">Forgot password?</a>
                     </div>
-                    <div class="input">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="example@example.com" required [(ngModel)]="user.email">
-                    </div>
-                    <div class="input">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
-                    </div>
-                    <input [disabled]="!registerForm.valid" type="submit" id="register">
-                </form>
-            </div>
+                </div>
+                <div class="form-button">
+                    <button [disabled]="!loginForm.valid" type="submit" id="login">login</button>
+                    <p>Don't have an account?<a role="button" (click)="changePageState(1)">register.</a></p>
+                </div>
+            </form>
         </div>
-
+        <div *ngIf="pageState === 1" class="user-form-card">
+            <div class="user-form-title">
+                <h2>create account!</h2>
+                <p>register your account free</p>
+            </div>
+            <form class="user-form" #registerForm="ngForm" (ngSubmit)="register()">
+                <div class="form-group">
+                    <label>First name</label>
+                    <input
+                        type="text"
+                        name="firstName"
+                        id="firstName"
+                        class="form-control"
+                        placeholder="Enter your name"
+                        required
+                        [(ngModel)]="user.firstName"
+                    />
+                </div>
+                <div class="form-group">
+                    <label>Last name</label>
+                    <input
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        class="form-control"
+                        placeholder="Enter your name"
+                        required
+                        [(ngModel)]="user.lastName"
+                    />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="Enter your email"
+                        required
+                        [(ngModel)]="user.email"
+                     />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        class="form-control"
+                        placeholder="Enter your password"
+                        required
+                        [(ngModel)]="user.password"
+                    />
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="agree" [(ngModel)]="isAccepted" required>
+                    <label class="form-check-label" for="agree">
+                        I agree with the <a href="#" class="text-success">Terms & Conditions.</a>
+                    </label>
+                  </div>
+                <div class="form-button">
+                    <button [disabled]="!registerForm.valid" id="register" type="submit">create account</button>
+                    <p>Already have an account?<a role="button" (click)="changePageState(0)">login.</a></p>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="pageState === 2" class="user-form-card">
+            <div class="user-form-title">
+                <h2>forgot password!</h2>
+                <p>enter your valid email</p>
+            </div>
+            <form class="user-form" #resetForm="ngForm" (ngSubmit)="reset()">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        placeholder="Enter your email"
+                        required
+                        [(ngModel)]="user.email"
+                    />
+                </div>
+                <div class="form-button">
+                    <button [disabled]="!resetForm.valid" id="register" type="submit">send reset link</button>
+                    <p>Don't have an account?<a role="button" (click)="changePageState(1)">register.</a></p>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

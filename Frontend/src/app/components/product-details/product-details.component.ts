@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import Splide from '@splidejs/splide';
 import { ProductDTO, ProductLabels } from 'src/app/models/Product';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
     selector: 'app-product-details',
@@ -16,7 +17,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     spliedThumbnail: any = null;
     quantity: number = 1;
 
-    constructor() { }
+    constructor(
+        private cartService: CartService
+    ) { }
 
     ngOnInit(): void {
     }
@@ -44,13 +47,14 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
         this.splied.sync(this.spliedThumbnail).mount();
     }
 
-    decreaseQuantity(): void {
-        if (this.quantity === 1) return;
-
-        this.quantity--;
+    changeQuantityBy(change: number): void {
+        if (this.quantity === 1 && change === -1) return;
+        this.quantity += change;
     }
 
-    increaseQuantity(): void {
-        this.quantity++;
+    onAddToCartClick(): void {
+        this.cartService.addItem(this.product, this.quantity);
     }
+
+    onAddToWishlistClick(): void {}
 }

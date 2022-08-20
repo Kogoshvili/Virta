@@ -3,8 +3,11 @@ import {
     OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { CategoryDTO } from 'src/app/models/Category';
+import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
 // import { Category } from 'src/app/models/filters';
 import { CategoryService } from 'src/app/services/category.service';
 import { toggleIsSideCart, toggleIsSideCategory } from 'src/app/store/general/general.actions';
@@ -18,6 +21,7 @@ import { AppStore } from '../../store/app.store';
 })
 export class HeaderComponent implements OnInit {
     categories: CategoryDTO[] = [];
+    isLoggedIn: boolean = false;
     isLoading = false;
     applyShadows = false;
     searchInput: string = '';
@@ -43,20 +47,31 @@ export class HeaderComponent implements OnInit {
 
     itemsInCompare: number = 2;
     itemsInWishlist: number = 3;
-    itemsInCart: number = 5;
+    itemsInCart: number = 0;
 
     constructor(
         // private autoCompleteService: AutoCompleteService,
         private router: Router,
         private categoryService: CategoryService,
-        private store: Store<AppStore>
+        private store: Store<AppStore>,
+        private modalService: NgbModal,
+        private authService: AuthService,
+        private cartService: CartService
     ) {
 
     }
 
     ngOnInit(): void {
+        this.authService.isLoggedInSub.subscribe(
+            loggedIn => this.isLoggedIn = loggedIn
+        );
+
         this.categoryService.getCategories().subscribe(
             categories => this.categories = categories
+        );
+
+        this.cartService.getCount().subscribe(
+            count => this.itemsInCart = count
         );
     }
 
@@ -81,6 +96,10 @@ export class HeaderComponent implements OnInit {
 
     search(): void {
         this.router.navigate(['/products'], { queryParams: { title: this.searchInput } });
+    }
+
+    openEntry(context: any) {
+        this.modalService.open(context);
     }
 
     goToCategory(category: string = ''): void {

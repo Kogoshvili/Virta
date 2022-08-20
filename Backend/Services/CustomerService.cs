@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
-using Virta.Api.Services.Interfaces;
+using Virta.Services.Interfaces;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 using Virta.Models;
-using Virta.Extensions;
 using System;
 using Microsoft.AspNetCore.SignalR;
 using Virta.Api.SignalR;

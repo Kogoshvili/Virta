@@ -48,7 +48,7 @@ export class ProductPageComponent implements OnInit {
             }
         );
 
-        this.cartService.cartSub.subscribe(
+        this.cartService.cart.subscribe(
             () => this.isInCart = this.cartService.isItemInCart(this.product.id)
         );
 

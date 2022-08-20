@@ -59,9 +59,14 @@
                     <button><i class="far fa-search"></i></button>
                 </form>
                 <div class="header-widget-group right">
-                    <a class="header-widget" href="#" title="My Account"><img src="assets/img/user.jpg" alt="user" /></a>
+                    <a *ngIf="!isLoggedIn" class="header-widget" role="button" (click)="openEntry(login)" title="Login">
+                        <img src="assets/img/user.jpg" alt="guest" />
+                    </a>
+                    <a *ngIf="isLoggedIn" class="header-widget" [routerLink]="'/my-account'" role="button" title="My Account">
+                        <img src="assets/img/user.jpg" alt="user" />
+                    </a>
                     <!-- <a class="header-widget" href="#" title="Compare List"><i class="far fa-exchange"></i><sup>{{ itemsInCompare }}</sup></a> -->
-                    <a class="header-widget" href="#" title="Wishlist"><i class="far fa-heart"></i><sup>{{ itemsInWishlist }}</sup></a>
+                    <a class="header-widget" role="button" title="Wishlist"><i class="far fa-heart"></i><sup>{{ itemsInWishlist }}</sup></a>
                     <button class="header-widget header-cart" title="Cartlist" (click)="toggleSideCart()"><i class="far fa-shopping-cart"></i><sup>{{ itemsInCart }}</sup></button>
                 </div>
             </div>
@@ -115,16 +120,6 @@
                                     <li><a href="invoice.html">order invoice</a></li>
                                 </ul>
                             </li>
-                            <li class="navbar-item dropdown">
-                                <a class="navbar-link dropdown-arrow" href="#">account</a>
-                                <ul class="dropdown-position-list">
-                                    <li><a href="profile.html">my profile</a></li>
-                                    <li><a href="login.html">login</a></li>
-                                    <li><a href="register.html">register</a></li>
-                                    <li><a href="reset.html">reset password</a></li>
-                                    <li><a href="change.html">change password</a></li>
-                                </ul>
-                            </li>
                             <!-- <li class="navbar-item dropdown">
                                 <a class="navbar-link dropdown-arrow" href="#">blogs</a>
                                 <ul class="dropdown-position-list">
@@ -150,3 +145,7 @@
         </div>
     </nav>
 </div>
+<ng-template #login let-modal>
+    <button class="modal-close far fa-times" (click)="modal.dismiss()"></button>
+    <app-entry [modal]="modal"></app-entry>
+</ng-template>

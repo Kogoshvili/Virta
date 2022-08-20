@@ -6,7 +6,6 @@ using Virta.Entities;
 using Virta.Models;
 using Virta.Api.DTO;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Virta.Services
 {

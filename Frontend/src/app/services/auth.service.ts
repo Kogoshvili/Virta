@@ -13,9 +13,9 @@ import {
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import {
-    AuthToken,
+    AuthTokenDTO,
     User
-} from '../models/user';
+} from '../models/User';
 
 @Injectable({
     providedIn: 'root'
@@ -38,7 +38,7 @@ export class AuthService {
     }
 
     login(user: User): Observable<void | null> {
-        return this.http.post<AuthToken>(this.baseUrl + 'login', user)
+        return this.http.post<AuthTokenDTO>(this.baseUrl + 'login', user)
             .pipe(
                 map(
                     response => {
@@ -57,7 +57,7 @@ export class AuthService {
     }
 
     register(user: User): Observable<void | null> {
-        return this.http.post<AuthToken>(this.baseUrl + 'register', user)
+        return this.http.post<AuthTokenDTO>(this.baseUrl + 'register', user)
             .pipe(
                 map(
                     response => {

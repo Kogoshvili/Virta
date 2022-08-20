@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class TrendingSectionComponent implements OnInit {
     products: ProductDTO[] = [];
+    ProductLabels = ProductLabels;
 
     constructor(
         private productService: ProductService

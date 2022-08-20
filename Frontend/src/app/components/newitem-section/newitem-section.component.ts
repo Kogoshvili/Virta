@@ -18,6 +18,7 @@ export class NewitemSectionComponent implements OnInit {
         perMove: 1
     };
     products: ProductDTO[] = [];
+    ProductLabels = ProductLabels;
 
     constructor(
         private productService: ProductService

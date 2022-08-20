@@ -34,11 +34,11 @@ export class CartComponent implements OnInit {
         // this.cartService.cartSub.subscribe(
         //     (cart) => this.cart = cart
         // );
-        this.cart = this.cartService.cartSub.getValue();
+        this.cart = this.cartService.cart.getValue();
 
         this.cartService.watchStorage().subscribe(
             () => {
-                this.cart = this.cartService.cartSub.getValue();
+                this.cart = this.cartService.cart.getValue();
             }
         );
 
@@ -50,10 +50,10 @@ export class CartComponent implements OnInit {
     }
 
     decreaseQuality(item: ProductInCart): void {
-        this.cartService.decreaseQuality(item);
+        // this.cartService.decreaseQuality(item);
     }
 
     increaseQuantity(item: ProductInCart): void {
-        this.cartService.increaseQuantity(item);
+        // this.cartService.increaseQuantity(item);
     }
 }

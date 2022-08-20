@@ -33,6 +33,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { NewitemSectionComponent } from './components/newitem-section/newitem-section.component';
 import { NewsSectionComponent } from './components/news-section/news-section.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { PartnerSectionComponent } from './components/partner-section/partner-section.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -56,8 +57,6 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { Reducers } from './store/app.store';
-import { PaginationComponent } from './components/pagination/pagination.component';
-
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');
 }
@@ -107,7 +106,9 @@ export function tokenGetter(): string | null {
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        ToastrModule.forRoot(),
+        ToastrModule.forRoot({
+            preventDuplicates: true
+        }),
         FormsModule,
         ReactiveFormsModule,
         MatDialogModule,

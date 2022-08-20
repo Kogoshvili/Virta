@@ -73,6 +73,22 @@ export interface PLP {
     totalCount: number;
 }
 
+export interface ProductInCart {
+    id: string;
+    title: string;
+    price: number;
+    image: string;
+    quantity: number;
+}
+
+export interface ProductInWishlist {
+    id: string;
+    title: string;
+    price: number;
+    image: string;
+}
+
+
 // TODO: DELETE THIS
 export interface Product {
     id: string;
@@ -97,19 +113,3 @@ export interface ProductAttribute {
     priority: number;
 }
 
-export interface ProductInCart {
-    id: string;
-    title: string;
-    price: number;
-    images: string[];
-    quantity: number;
-    url: string;
-}
-
-export interface ProductInWishlist {
-    id: string;
-    title: string;
-    price: number;
-    images: string[];
-    url: string;
-}

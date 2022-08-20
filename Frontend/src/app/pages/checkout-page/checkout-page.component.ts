@@ -39,7 +39,7 @@ export class CheckoutPageComponent implements OnInit {
             }
         );
 
-        this.cartService.cartSub.subscribe(
+        this.cartService.cart.subscribe(
             (cart) => {
                 this.cart = cart;
                 this.totalPrice = this.cart.reduce(
@@ -54,11 +54,11 @@ export class CheckoutPageComponent implements OnInit {
     }
 
     decreaseQuality(item: ProductInCart): void {
-        this.cartService.decreaseQuality(item);
+        // this.cartService.decreaseQuality(item);
     }
 
     increaseQuantity(item: ProductInCart): void {
-        this.cartService.increaseQuantity(item);
+        // this.cartService.increaseQuantity(item);
     }
 
     submit() {

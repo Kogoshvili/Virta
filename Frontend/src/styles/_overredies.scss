@@ -65,3 +65,9 @@
 	border-radius: 8px;
 	background: $white;
 }
+
+a[role=button]:not([class]),
+a[role=button]:not([class]):hover {
+    color: $primary;
+    text-decoration: inherit;
+}

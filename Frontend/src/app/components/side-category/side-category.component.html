@@ -5,22 +5,22 @@
             <button class="category-close" (click)="toggleSideCategory()"><i class="far fa-times"></i></button>
         </div>
         <ul class="category-list">
-            <li *ngFor="let c of categories">
+            <li *ngFor="let category of categories">
                 <a
-                    [ngClass]="['cate-link', c.children.length && 'dropdown-link']"
-                    (click)="expandCategory(c.name)"
                     role="button"
+                    [ngClass]="['cate-link', category.children.length && 'dropdown-link']"
+                    (click)="expandCategory(category.name)"
                 >
-                    <i class="{{ c.icon }}"></i>{{ c.name }}
+                    <i class="{{ category.icon }}"></i>{{ category.name }}
                 </a>
-                <ul *ngIf="c.children.length" class="dropdown-list" [class.active]="c.isActive">
-                    <li *ngFor="let s of c.children">
+                <ul *ngIf="category.children.length" class="dropdown-list" [class.active]="category.isActive">
+                    <li *ngFor="let child of category.children">
                         <a
                             role="button"
                             [routerLink]="'/products'"
-                            [queryParams]="{ category: c.name }"
+                            [queryParams]="{ categories: [child.name] }"
                             (click)="toggleSideCategory()"
-                        >{{ s.name }}</a></li>
+                        >{{ child.name }}</a></li>
                 </ul>
             </li>
         </ul>

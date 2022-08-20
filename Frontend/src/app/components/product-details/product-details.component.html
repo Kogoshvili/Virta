@@ -60,19 +60,25 @@
                     <label class="details-list-title">Quantity:</label>
                     <div class="cart-action-group">
                         <div class="product-action">
-                            <button class="action-minus" title="Quantity Minus" (click)="decreaseQuantity()"><i class="far fa-minus"></i></button>
+                            <button class="action-minus" title="Quantity Minus" (click)="changeQuantityBy(-1)"><i class="far fa-minus"></i></button>
                             <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{ quantity }}" />
-                            <button class="action-plus" title="Quantity Plus" (click)="increaseQuantity()"><i class="far fa-plus"></i></button>
+                            <button class="action-plus" title="Quantity Plus" (click)="changeQuantityBy(1)"><i class="far fa-plus"></i></button>
                         </div>
                     </div>
                 </div>
 
                 <div class="details-add-group">
-                    <button class="product-add w-100" title="Add to Cart"><i class="far fa-shopping-cart"></i><span>Add to Cart</span></button>
+                    <button class="product-add w-100" title="Add to Cart" (click)="onAddToCartClick()">
+                        <i class="far fa-shopping-cart"></i><span>Add to Cart</span>
+                    </button>
                 </div>
                 <div class="details-action-group">
-                    <button class="view-wish wish" title="Add Your Wishlist"><i class="far fa-heart"></i><span>Add to Wish</span></button>
-                    <button class="view-compare" title="Compare This Item"><i class="far fa-exchange"></i><span>Add to Compare</span></button>
+                    <button class="view-wish wish" title="Add Your Wishlist">
+                        <i class="far fa-heart"></i><span>Add to Wish</span>
+                    </button>
+                    <button class="view-compare" title="Compare This Item">
+                        <i class="far fa-exchange"></i><span>Add to Compare</span>
+                    </button>
                 </div>
                 <div class="details-list-group mt-4">
                     <label class="details-list-title">Share:</label>

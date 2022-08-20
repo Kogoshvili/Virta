@@ -6,7 +6,7 @@ export interface User {
     token: string;
 }
 
-export interface AuthToken {
+export interface AuthTokenDTO {
     token: string;
 }
 

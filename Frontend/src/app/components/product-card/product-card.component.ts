@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDTO, ProductLabels } from 'src/app/models/Product';
+import { CartService } from 'src/app/services/cart.service';
 import VenoBox from 'venobox';
 
 @Component({
@@ -18,7 +19,8 @@ export class ProductCardComponent implements OnInit {
     closeResult = '';
 
     constructor(
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        private cartService: CartService
     ) { }
 
     ngOnInit(): void {
@@ -35,6 +37,9 @@ export class ProductCardComponent implements OnInit {
     }
 
     onWishlistClick() {}
-    onAddToCartClick() {}
+
+    onAddToCartClick() {
+        this.cartService.addItem(this.product);
+    }
 }
 

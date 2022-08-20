@@ -9,13 +9,14 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class FeatureSectionComponent implements OnInit {
     products: ProductDTO[] = [];
+    ProductLabels = ProductLabels;
 
     constructor(
         private productService: ProductService
     ) { }
 
     ngOnInit(): void {
-        this.productService.getProducts(null, [ProductLabels.Trending], null, 6)
+        this.productService.getProducts(null, [ProductLabels.Featured], null, 6)
             .subscribe(p => this.products = p.products);
     }
 }

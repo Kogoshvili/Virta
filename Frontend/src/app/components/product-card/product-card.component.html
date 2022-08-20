@@ -38,7 +38,7 @@
                 <del *ngIf="product.oldPrice !== null" >${{ product.oldPrice }}</del>
                 <span>${{ product.price }}<small>/{{ product.unit }}</small></span>
             </div>
-            <div class="product-add" title="Add to Cart"><i class="far fa-shopping-cart"></i></div>
+            <div (click)="onAddToCartClick()" class="product-add" title="Add to Cart"><i class="far fa-shopping-cart"></i></div>
         </div>
     </div>
 </div>

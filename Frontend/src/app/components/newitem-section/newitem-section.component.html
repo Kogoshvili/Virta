@@ -15,7 +15,9 @@
         <div class="row">
             <div class="col">
                 <div class="section-btn-25">
-                    <a href="#" class="btn btn-outline"><i class="far fa-long-arrow-right"></i><span>View More</span></a>
+                    <a role="button" class="btn btn-outline" [routerLink]="'/products'" [queryParams]="{ labels: [ProductLabels.New] }">
+                        <i class="far fa-long-arrow-right"></i><span>View More</span>
+                    </a>
                 </div>
             </div>
         </div>
