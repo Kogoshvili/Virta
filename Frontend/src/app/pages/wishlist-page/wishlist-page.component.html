@@ -1,0 +1,43 @@
+<section class="wishlist-part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-scroll">
+                    <table class="table-list">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">status</th>
+                                <th scope="col">action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of wishlist">
+                                <td class="table-image"><img src="{{ product.image || 'assets/img/product/01.png' }}" alt="product" /></td>
+                                <td class="table-name"><h6>{{ product.title }}</h6></td>
+                                <td class="table-price">
+                                    <h6>{{ product.price }}<small>/kg</small></h6>
+                                </td>
+                                <td class="table-status"><h6 class="stock-out">stock out</h6></td>
+                                <td class="table-action">
+                                    <a class="wish" role="button" title="Quick View" (click)="open(preview, product.id)"><i class="far fa-eye"></i></a>
+                                    <a class="wish" role="button" title="Remove From Wishlist" (click)="removeFromWishlist(product.id)"><i class="far fa-heart-broken"></i></a>
+                                    <a class="wish" role="button" title="Add to Cart" (click)="onAddToCart(product)"><i class="far fa-shopping-cart"></i></a>
+                                </td>
+                            </tr>
+                            <tr *ngIf="!wishlist.length">
+                                <td colspan="5">Empty</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<ng-template #preview let-modal>
+    <button class="modal-close far fa-times" (click)="modal.dismiss()"></button>
+    <app-product-details class="preview-modal-content" [product]="productForModal" [modal]="modal"></app-product-details>
+</ng-template>

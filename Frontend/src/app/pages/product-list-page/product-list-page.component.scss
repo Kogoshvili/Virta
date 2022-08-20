@@ -1,5 +1,83 @@
-.product-list-page {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 50px;
+@import 'variables';
+
+.shop-part {
+    margin-top: 50px;
+}
+
+.shop-filter {
+	padding: 20px 30px;
+	border-radius: 8px;
+	margin-bottom: 25px;
+	background: $white;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	.nice-select {
+		border-radius: 6px;
+		background: $chalk;
+		padding: 8px 35px 8px 20px;
+		border: 1px solid $border;
+
+        &::after {
+			right: 20px;
+			width: 8px;
+			height: 8px;
+			margin-top: -6px;
+		}
+
+        .current {
+			font-size: 15px;
+		}
+
+        .list {
+			align-items: flex-start;
+			flex-direction: column;
+			padding: 0px;
+			padding-top: 0.5rem;
+			padding-bottom: 0.5rem;
+			position: absolute;
+			border-radius: 8px;
+			top: calc(100% + 0.4rem);
+			background-color: rgb(255, 255, 255);
+			box-shadow: rgb(0 0 0 / 16%) 0px 6px 12px;
+		}
+
+		.option {
+			&:hover {
+				background-color: #f6f6f6;
+				border-radius: 6px;
+			}
+		}
+	}
+
+	ul {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+        li {
+			margin: 0px 5px;
+
+            a {
+				width: 40px;
+				height: 40px;
+				font-size: 16px;
+				line-height: 40px;
+				border-radius: 50%;
+				text-align: center;
+				color: $text;
+				background: $chalk;
+			}
+
+            .active {
+				color: $white;
+				background: $primary;
+			}
+		}
+	}
+
+    p {
+		font-size: 15px;
+	}
 }

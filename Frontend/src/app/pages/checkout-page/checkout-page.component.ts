@@ -8,11 +8,11 @@ import {
     faPlusCircle
 } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
+import { ProductInCart } from 'src/app/models/Product';
+import { CartService } from 'src/app/services/cart.service';
+import { OrderService } from 'src/app/services/order.service';
 import { AppStore } from 'src/app/store/app.store';
 import { setLoadingScreen } from 'src/app/store/general/general.actions';
-import { ProductInCart } from 'src/app/_models/product';
-import { CartService } from 'src/app/_services/cart.service';
-import { OrderService } from 'src/app/_services/order.service';
 
 @Component({
     selector: 'app-checkout-page',
@@ -39,7 +39,7 @@ export class CheckoutPageComponent implements OnInit {
             }
         );
 
-        this.cartService.cartSub.subscribe(
+        this.cartService.cart.subscribe(
             (cart) => {
                 this.cart = cart;
                 this.totalPrice = this.cart.reduce(
@@ -54,11 +54,11 @@ export class CheckoutPageComponent implements OnInit {
     }
 
     decreaseQuality(item: ProductInCart): void {
-        this.cartService.decreaseQuality(item);
+        // this.cartService.decreaseQuality(item);
     }
 
     increaseQuantity(item: ProductInCart): void {
-        this.cartService.increaseQuantity(item);
+        // this.cartService.increaseQuantity(item);
     }
 
     submit() {

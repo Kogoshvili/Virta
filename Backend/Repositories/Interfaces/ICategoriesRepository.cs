@@ -6,9 +6,11 @@ namespace Virta.Data.Interfaces
 {
     public interface ICategoriesRepository : IBaseRepository<Category>
     {
-        Task<Category> GetCategory(int id);
-        Task<Category> GetCategory(string category);
-        Task<List<Category>> GetCategories(int amount = 10);
-        Task<List<Category>> GetCategoriesByName(string order = "ASC", int amount = 10);
+        Task<Category> GetCategoryAsync(int id);
+        Task<Category> GetCategoryAsync(string category);
+        Task<List<Category>> GetCategoriesAsync();
+        Task<List<Category>> GetParentCategoriesAsync();
+        Task<List<Category>> GetCategoriesByNameAsync(string order = "ASC");
+        Task<int> GetCategoryProductCountAsync(int id);
     }
 }

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Virta.Entities;
 
-namespace Virta.Api.Services.Interfaces
+namespace Virta.Services.Interfaces
 {
     public interface ITokenService
     {

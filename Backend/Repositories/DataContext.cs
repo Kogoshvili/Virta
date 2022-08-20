@@ -16,19 +16,20 @@ namespace Virta.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProduct { get; set; }
         public DbSet<Address> Address { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            // User
+            #region User
             builder.Entity<User>()
                 .HasMany(u => u.Addresses)
                 .WithOne(a => a.User)
                 .OnDelete(DeleteBehavior.SetNull);
+            #endregion
 
-
-            // Category
+            #region Category
             builder.Entity<Category>()
                 .HasIndex(c => c.Name)
                 .IsUnique();
@@ -45,7 +46,16 @@ namespace Virta.Data
                 .Property(c => c.Priority)
                 .HasDefaultValue(0);
 
-            // Product
+            builder.Entity<Category>()
+                .HasMany(c => c.Children)
+                .WithOne(c => c.Parent)
+                .OnDelete(DeleteBehavior.SetNull);
+            builder.Entity<Category>()
+                .Property(c => c.Icon)
+                .HasColumnType("varchar(100)");
+            #endregion
+
+            #region Product
             builder.Entity<Product>()
                 .HasIndex(p => p.Title)
                 .IsUnique();
@@ -59,12 +69,16 @@ namespace Virta.Data
                 .HasDefaultValue(0);
 
             builder.Entity<Product>()
+                .Property(p => p.OldPrice)
+                .HasDefaultValue(null);
+
+            builder.Entity<Product>()
                 .Property(p => p.Type)
                 .HasDefaultValue(Product.ProductTypes.Simple);
 
             builder.Entity<Product>()
-                .Property(p => p.Visible)
-                .HasDefaultValue(Product.ProductVisibility.Invisible);
+                .Property(p => p.Visibility)
+                .HasDefaultValue(Product.ProductVisibilities.Invisible);
 
             builder.Entity<Product>()
                 .Property(p => p.Active)
@@ -96,8 +110,16 @@ namespace Virta.Data
                 .IsRequired()
                 .IsConcurrencyToken();
 
+            builder.Entity<Product>()
+                .Property(p => p.Description)
+                .HasColumnType("text");
 
-            // Product Attributes
+            builder.Entity<Product>()
+                .Property(p => p.Label)
+                .HasDefaultValue(Product.ProductLabels.None);
+            #endregion
+
+            #region Product Attributes
             builder.Entity<ProductAttribute>()
                 .Property(pa => pa.Priority)
                 .HasDefaultValue(0);
@@ -107,10 +129,9 @@ namespace Virta.Data
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired()
                 .IsConcurrencyToken();
+            #endregion
 
-
-
-            // Product Images
+            #region Product Images
             builder.Entity<ProductImage>()
                 .Property(pi => pi.Primary)
                 .HasDefaultValue(false);
@@ -120,8 +141,9 @@ namespace Virta.Data
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired()
                 .IsConcurrencyToken();
+            #endregion
 
-            // Attributes
+            #region Attributes
             builder.Entity<Attribute>()
                 .HasIndex(a => a.Name)
                 .IsUnique();
@@ -145,9 +167,9 @@ namespace Virta.Data
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired()
                 .IsConcurrencyToken();
+            #endregion
 
-
-            // Order
+            #region Order
             builder.Entity<Order>()
                 .Property(o => o.ShippingCost)
                 .HasColumnType("numeric(8,2)")
@@ -167,9 +189,9 @@ namespace Virta.Data
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired()
                 .IsConcurrencyToken();
+            #endregion
 
-
-            // Order Product
+            #region Order Product
             builder.Entity<OrderProduct>()
                 .HasKey(op =>
                     new { op.OrderId, op.ProductId }
@@ -183,9 +205,10 @@ namespace Virta.Data
             builder.Entity<OrderProduct>()
                 .Property(op => op.Quantity)
                 .HasDefaultValue(0);
+            #endregion
 
 
-            // Addresses
+            #region Addresses
             builder.Entity<Address>()
                 .Property(a => a.Country)
                 .HasDefaultValue("Georgia");
@@ -204,6 +227,20 @@ namespace Virta.Data
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired()
                 .IsConcurrencyToken();
+            #endregion
+
+            #region Review
+            builder.Entity<Review>()
+                .Property(r => r.CreatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired();
+
+            builder.Entity<Review>()
+                .Property(r => r.UpdatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired()
+                .IsConcurrencyToken();
+            #endregion
         }
     }
 }

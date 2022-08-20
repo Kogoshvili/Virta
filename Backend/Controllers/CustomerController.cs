@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Virta.Api.DTO;
-using Virta.Api.Services.Interfaces;
+using Virta.Services.Interfaces;
 using Virta.Data.Interfaces;
 using Virta.Extensions;
 using Virta.Models;

@@ -1,0 +1,44 @@
+<aside class="cart-part" [ngClass]="{ 'active': isSideCart$ | async }">
+    <div class="cart-container">
+        <div class="cart-header">
+            <div class="cart-total"><i class="far fa-shopping-cart"></i><span>total item ({{ products.length }})</span></div>
+            <button class="cart-close" (click)="toggleSideCart()"><i class="far fa-times"></i></button>
+        </div>
+        <ul class="cart-list">
+            <li class="cart-item" *ngFor="let product of products">
+                <div class="cart-media">
+                    <a role="button"><img src="{{ product.image || '/assets/img/product/01.png' }}" alt="{{ product.title }}" /></a>
+                    <button class="cart-delete" (click)="removeProduct(product.id)"><i class="far fa-times"></i></button>
+                </div>
+                <div class="cart-info-group">
+                    <div class="cart-info">
+                        <h6><a role="button" [routerLink]="'/product/{{product.id}}'">{{ product.title }}</a></h6>
+                        <p>Price - ${{ product.price }}</p>
+                    </div>
+                    <div class="cart-action-group">
+                        <div class="product-action">
+                            <button class="action-minus" title="Quantity Minus" (click)="changeProductQuantityBy(product.id, -1)">
+                                <i class="far fa-minus"></i>
+                            </button>
+                            <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{ product.quantity }}" />
+                            <button class="action-plus" title="Quantity Plus" (click)="changeProductQuantityBy(product.id, 1)">
+                                <i class="far fa-plus"></i>
+                            </button>
+                        </div>
+                        <h6>${{ totalProductPrice(product.price, product.quantity) }}</h6>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="cart-footer">
+            <form #couponForm="ngForm" (ngSubmit)="onCouponApply()" class="coupon-form">
+                <input type="text" placeholder="Have a coupon code? Enter it!" [(ngModel)]="coupon"/>
+                <button (click)="onCouponApply()" type="submit"><span>apply</span></button>
+            </form>
+            <a class="cart-checkout-btn" role="button" [routerLink]="'/checkout'">
+                <span class="checkout-label">Proceed to Checkout</span>
+                <span class="checkout-price">${{ totalPrice() }}</span>
+            </a>
+        </div>
+    </div>
+</aside>

@@ -6,27 +6,40 @@ using Virta.Models;
 using Virta.Entities;
 using Virta.Services.Interfaces;
 using System;
+using Virta.Api.DTO;
 
 namespace Virta.Services
 {
     public class ProductService : IProductService
     {
         private readonly IMapper _mapper;
-        private readonly IProductsRepository _productsRepository;
+        private readonly IProductRepository _productRepository;
         private readonly ICategoriesRepository _categoriesRepo;
         private readonly IAttributesRepository _attributesRepository;
 
         public ProductService(
             IMapper mapper,
-            IProductsRepository productsRepository,
+            IProductRepository productRepository,
             ICategoriesRepository categoriesRepo,
             IAttributesRepository attributesRepository
         )
         {
             _mapper = mapper;
-            _productsRepository = productsRepository;
+            _productRepository = productRepository;
             _categoriesRepo = categoriesRepo;
             _attributesRepository = attributesRepository;
+        }
+
+        public async Task<ProductDTO> GetProduct(Guid id)
+        {
+            var product = await _productRepository.GetProduct(id);
+            return _mapper.Map<ProductDTO>(product);
+        }
+
+        public async Task<List<ProductDTO>> GetProductsAsync(string[] categories, int[] labels, string title, int? amount, int? page)
+        {
+            var products = await _productRepository.GetProductsAsync(categories, labels, title, amount, page);
+            return _mapper.Map<List<ProductDTO>>(products);
         }
 
         public async Task<bool> Upsert(ProductUpsert product)
@@ -44,16 +57,16 @@ namespace Virta.Services
 
             if (productToSave.Id == Guid.Empty)
             {
-                _productsRepository.Add(productToSave);
+                _productRepository.Add(productToSave);
             }
             else
             {
-                var productFromDb = await _productsRepository.GetProduct(productToSave.Id);
+                var productFromDb = await _productRepository.GetProduct(productToSave.Id);
                 _mapper.Map<Product, Product>(productToSave, productFromDb);
-                _productsRepository.Update(productFromDb);
+                _productRepository.Update(productFromDb);
             }
 
-            if (await _productsRepository.SaveAll())
+            if (await _productRepository.SaveAll())
                 return true;
 
             return false;
@@ -64,7 +77,7 @@ namespace Virta.Services
             var result = new List<Category>();
 
             foreach (var category in categories)
-                result.Add(await _categoriesRepo.GetCategory(category));
+                result.Add(await _categoriesRepo.GetCategoryAsync(category));
 
             return result;
         }
@@ -88,9 +101,14 @@ namespace Virta.Services
             var result = new List<Product>();
 
             foreach (var Id in associatedProducts)
-                result.Add(await _productsRepository.GetProduct(Id));
+                result.Add(await _productRepository.GetProduct(Id));
 
             return result;
+        }
+
+        public async Task<List<LabelDTO>> GetProductsLabels()
+        {
+            return await _productRepository.GetProductsLabels();
         }
     }
 }

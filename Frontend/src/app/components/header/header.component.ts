@@ -1,12 +1,19 @@
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import {
     Component,
-    HostListener,
     OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/_models/filters';
-import { CategoryService } from 'src/app/_services/category.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Store } from '@ngrx/store';
+import { CategoryDTO } from 'src/app/models/Category';
+import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
+// import { Category } from 'src/app/models/filters';
+import { CategoryService } from 'src/app/services/category.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
+import { toggleIsSideCart, toggleIsSideCategory } from 'src/app/store/general/general.actions';
+import { selectIsSideCart, selectIsSideCategory } from 'src/app/store/general/general.selectors';
+import { AppStore } from '../../store/app.store';
 
 @Component({
     selector: 'app-header',
@@ -14,34 +21,61 @@ import { CategoryService } from 'src/app/_services/category.service';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    filteredCategories: Category[] = [];
-    category!: Category;
-    categories: Category[] = [];
+    categories: CategoryDTO[] = [];
+    isLoggedIn: boolean = false;
     isLoading = false;
     applyShadows = false;
     searchInput: string = '';
+    isSideCategory$ = this.store.select(selectIsSideCategory);
+    isSideCart$ = this.store.select(selectIsSideCart);
 
-    @HostListener('window:scroll', ['$event'])
-    onScroll() {
-        const verticalOffset = window.pageYOffset
-            || document.documentElement.scrollTop
-            || document.body.scrollTop
-            || 0;
+    cta: string = 'Get 10% Discount For Your First Shopping!';
+    topPages: { url: string, label: string }[] = [
+        { url: '#', label: 'Contact Us' },
+        { url: '#', label: 'Offers' },
+        { url: '#', label: 'Need Help?' }
+    ];
+    currencies: { value: string, label: string }[] = [
+        { value: 'gel', label: 'GEL ₾' },
+        { value: 'eur', label: 'EUR €' },
+        { value: 'usd', label: 'USD $' }
+    ];
+    locales: { value: string, label: string }[] = [
+        { value: 'en', label: 'English' },
+        { value: 'ge', label: 'Georgian' },
+        { value: 'de', label: 'German' }
+    ];
 
-        this.applyShadows = verticalOffset >= 36;
-    }
+    itemsInCompare: number = 2;
+    itemsInWishlist: number = 0;
+    itemsInCart: number = 0;
 
     constructor(
         // private autoCompleteService: AutoCompleteService,
         private router: Router,
-        private categoryService: CategoryService
-    ) {
-
-    }
+        private categoryService: CategoryService,
+        private store: Store<AppStore>,
+        private modalService: NgbModal,
+        private authService: AuthService,
+        private cartService: CartService,
+        private wishlistService: WishlistService
+    ) { }
 
     ngOnInit(): void {
+        this.authService.isLoggedInSub.subscribe(
+            loggedIn => this.isLoggedIn = loggedIn
+        );
+
         this.categoryService.getCategories().subscribe(
             categories => this.categories = categories
+        );
+
+        this.cartService.getCount().subscribe(
+            count => this.itemsInCart = count
+        );
+
+        this.wishlistService.getCount().subscribe(
+            count => this.itemsInWishlist = count
         );
     }
 
@@ -57,18 +91,30 @@ export class HeaderComponent implements OnInit {
         // this.filteredCategories = [];
     }
 
-    selectOption(category: Category): void {
-        // this.searchInput = category.title;
-        // this.category = category;
-        // this.filteredCategories = [];
-        // this.search();
-    }
+    // selectOption(category: Category): void {
+    //     // this.searchInput = category.title;
+    //     // this.category = category;
+    //     // this.filteredCategories = [];
+    //     // this.search();
+    // }
 
     search(): void {
         this.router.navigate(['/products'], { queryParams: { title: this.searchInput } });
     }
 
+    openEntry(context: any) {
+        this.modalService.open(context);
+    }
+
     goToCategory(category: string = ''): void {
         this.router.navigate(['/products/' + category]);
+    }
+
+    toggleSideCategory(): void {
+        this.store.dispatch(toggleIsSideCategory());
+    }
+
+    toggleSideCart(): void {
+        this.store.dispatch(toggleIsSideCart());
     }
 }

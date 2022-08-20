@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Virta.Models;
 
-namespace Virta.Api.Services.Interfaces
+namespace Virta.Services.Interfaces
 {
     public interface ICustomerService
     {

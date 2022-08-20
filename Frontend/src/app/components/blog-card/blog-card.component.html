@@ -1,0 +1,21 @@
+<div class="blog-card">
+    <div class="blog-media">
+        <a class="blog-img" href="#"><img src="{{ blog.image }}" alt="blog" /></a>
+        <div class="blog-calender">
+            <span class="blog-date">05</span>
+            <span class="blog-month">Jun</span>
+        </div>
+    </div>
+    <div class="blog-content">
+        <ul class="blog-meta">
+            <li><i class="far fa-calendar"></i><span>{{ blog.date }}</span></li>
+            <li><i class="far fa-user"></i><span>By {{ blog.author }}</span></li>
+            <li><i class="far fa-comments"></i><span>{{ blog.comments }} comments</span></li>
+        </ul>
+        <h4 class="blog-title"><a href="#">{{ blog.title }}</a></h4>
+        <p class="blog-desc">{{ blog.description }}</p>
+        <a class="blog-btn" href="#">
+            <span>Read More</span><i class="far fa-long-arrow-right"></i>
+        </a>
+    </div>
+</div>

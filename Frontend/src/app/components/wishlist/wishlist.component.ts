@@ -6,8 +6,8 @@ import {
     faHeart,
     faTimes
 } from '@fortawesome/free-solid-svg-icons';
-import { ProductInWishlist } from 'src/app/_models/product';
-import { WishlistService } from 'src/app/_services/wishlist.service';
+import { ProductInWishlist } from 'src/app/models/Product';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
     selector: 'app-wishlist',
@@ -25,7 +25,7 @@ export class WishlistComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.wishlistService.wishlistSub.subscribe(
+        this.wishlistService.wishlist.subscribe(
             (wishlist) => this.wishlist = wishlist
         );
     }

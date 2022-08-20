@@ -16,4 +16,5 @@
     "less.validate": false,
     "scss.validate": false,
     "stylelint.validate": ["css", "scss"],
+    "eslint.workingDirectories": [ "./" ],
 }

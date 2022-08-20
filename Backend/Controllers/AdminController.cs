@@ -25,7 +25,7 @@ namespace Virta.MVC.Controllers
         private readonly UserManager<Virta.Entities.User> _userManager;
         private readonly SignInManager<Virta.Entities.User> _signInManager;
         private readonly IMapper _mapper;
-        private readonly IProductsRepository _productRepo;
+        private readonly IProductRepository _productRepo;
         private readonly ICategoriesRepository _categoriesRepo;
         private readonly IProductService _productService;
 
@@ -33,7 +33,7 @@ namespace Virta.MVC.Controllers
             UserManager<Virta.Entities.User> userManager,
             SignInManager<Virta.Entities.User> signInManager,
             IMapper mapper,
-            IProductsRepository productRepo,
+            IProductRepository productRepo,
             ICategoriesRepository categoriesRepo,
             IProductService productService
         )
@@ -117,7 +117,7 @@ namespace Virta.MVC.Controllers
         public async Task<IActionResult> GetProduct(Guid Id)
         {
             var product = await _productRepo.GetProduct(Id);
-            var categories = await _categoriesRepo.GetCategories();
+            var categories = await _categoriesRepo.GetCategoriesAsync();
 
             ViewBag.Categories = _mapper.Map<IEnumerable<SelectListItem>>(categories);
 
@@ -143,7 +143,7 @@ namespace Virta.MVC.Controllers
 
         private async Task<IEnumerable<ProductPLPVM>> GetProducts()
         {
-            var products = await _productRepo.GetProducts();
+            var products = await _productRepo.GetProductsAsync();
 
             if (products == null)
                 return null;

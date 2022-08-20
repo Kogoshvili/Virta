@@ -1,65 +1,126 @@
 @import 'variables';
 
-:host-context(.shadow) {
-    .entry {
-        &-button {
-            box-shadow: $main-shadow;
-            right: -140px;
-            top: 140px;
-        }
+// :host-context(.shadow) {
+//     .entry {
+//         &-button {
+//             box-shadow: $main-shadow;
+//             right: -140px;
+//             top: 140px;
+//         }
 
-        &-overlay {
-            top: 0;
-            right: -80px;
-        }
-    }
+//         &-overlay {
+//             top: 0;
+//             right: -80px;
+//         }
+//     }
+// }
+
+// .entry {
+//     &-button {
+//         background-color: $bg-primary;
+//         border-radius: 50%;
+//         height: 40px;
+//         width: 40px;
+//         cursor: pointer;
+//         top: 0;
+//         right: 0;
+//         transition: right 150ms linear, top 150ms linear;
+
+//         .icon {
+//             top: 10px;
+//             right: -10px;
+//         }
+//     }
+
+//     &-overlay {
+//         position: absolute;
+//         right: 0;
+//         background-color: $bg-primary;
+//         color: $black;
+//         width: 300px;
+//         padding: 10px 20px;
+//         border: 1px solid black;
+//         border-radius: 5px;
+//         box-shadow: 5px 5px 35px rgba(0, 0, 0, .5);
+
+//         .toggle {
+//             display: flex;
+//             flex-direction: row-reverse;
+//             margin-bottom: 20px;
+//         }
+
+//         .input:not(:first-child) {
+//             margin: 20px 0;
+//         }
+
+//         label {
+//             margin-bottom: 5px;
+//         }
+
+//         input[type=submit] {
+//             float: right;
+//             z-index: 10;
+//         }
+//     }
+// }
+
+.user-form-part {
+    background-color: $white;
+    padding: 30px;
+    border-radius: 8px;
+
+	.form-check-input {
+		&:checked {
+			background-color: $primary;
+			border-color: $primary;
+		}
+	}
 }
 
-.entry {
-    &-button {
-        background-color: $bg-primary;
-        border-radius: 50%;
-        height: 40px;
-        width: 40px;
-        cursor: pointer;
-        top: 0;
-        right: 0;
-        transition: right 150ms linear, top 150ms linear;
+.user-form-logo {
+	text-align: center;
+	margin-bottom: 25px;
 
-        .icon {
-            top: 10px;
-            right: -10px;
-        }
-    }
+	img {
+		width: 250px;
+	}
+}
 
-    &-overlay {
-        position: absolute;
-        right: 0;
-        background-color: $bg-primary;
-        color: $black;
-        width: 300px;
-        padding: 10px 20px;
-        border: 1px solid black;
-        border-radius: 5px;
-        box-shadow: 5px 5px 35px rgba(0, 0, 0, .5);
+.user-form-card {
+	padding: 30px 40px;
+	border-radius: 8px;
+	background: $white;
+}
 
-        .toggle {
-            display: flex;
-            flex-direction: row-reverse;
-            margin-bottom: 20px;
-        }
+.user-form-title {
+	text-align: center;
+	margin-bottom: 25px;
 
-        .input:not(:first-child) {
-            margin: 20px 0;
-        }
+	h2 {
+		font-size: 28px;
+		line-height: 36px;
+		margin-bottom: 5px;
+		color: $primary;
+	}
 
-        label {
-            margin-bottom: 5px;
-        }
+	p {
+		text-transform: capitalize;
+	}
+}
 
-        input[type=submit] {
-            float: right;
-            z-index: 10;
-        }
-    }
+.user-form {
+	width: 100%;
+
+	.form-group {
+		margin-bottom: 20px;
+	}
+}
+
+.forgot-pass {
+	color: $primary;
+
+	&:hover {
+		color: $primary;
+		text-decoration: underline;
+	}
 }

@@ -1,0 +1,95 @@
+<div class="container product-details">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="details-gallery">
+                <div class="details-label-group"><label [ngClass]="['details-label', ProductLabels[product.label].toLowerCase() ]">{{ ProductLabels[product.label] }}</label></div>
+                <div id="product-page-image" class="splide details-preview">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li *ngFor="let slide of product.images" class="splide__slide">
+                                <img src="{{ slide?.url }}">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="product-page-image-thumbnails" class="splide details-thumb">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li *ngFor="let slide of product.images" class="splide__slide">
+                                <div>
+                                    <img src="{{ slide?.url }}">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="details-content">
+                <h3 class="details-name">{{ product.title }}</h3>
+                <div class="details-meta">
+                    <p>SKU:<span>{{ product.sku }}</span></p>
+                    <!-- <p>BRAND:<a href="#">tesulia</a></p> -->
+                </div>
+                <div class="details-rating">
+                    <app-star-bar [stars]="product.stars"></app-star-bar>
+                    <a href="#">({{ product.reviews }} Reviews)</a>
+                </div>
+                <h3 class="details-price">
+                    <del *ngIf="product.oldPrice !== null">${{ product.oldPrice }}</del><span>${{ product.price }}<small>/{{ product.unit }}</small></span>
+                </h3>
+                <p class="details-desc">{{ product.description }}</p>
+                <div class="details-list-group">
+                    <label class="details-list-title">Categories:</label>
+                    <ul class="details-tag-list">
+                        <li *ngFor="let c of product.categories">
+                            <a
+                                role="button"
+                                [routerLink]="'/products'"
+                                [queryParams]="{ categories: [c.name] }"
+                            >{{ c.title }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="details-list-group">
+                    <label class="details-list-title">In Stock:</label>
+                    <div>Available</div>
+                </div>
+                <div class="details-list-group">
+                    <label class="details-list-title">Quantity:</label>
+                    <div class="cart-action-group">
+                        <div class="product-action">
+                            <button class="action-minus" title="Quantity Minus" (click)="changeQuantityBy(-1)"><i class="far fa-minus"></i></button>
+                            <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{ quantity }}" />
+                            <button class="action-plus" title="Quantity Plus" (click)="changeQuantityBy(1)"><i class="far fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-add-group">
+                    <button class="product-add w-100" title="Add to Cart" (click)="onAddToCartClick()">
+                        <i class="far fa-shopping-cart"></i><span>{{ isInCart ? 'Increase Quantity in Cart' : 'Add to Cart' }}</span>
+                    </button>
+                </div>
+                <div class="details-action-group">
+                    <button class="view-wish wish" title="Add Your Wishlist" (click)="onAddToWishlistClick()">
+                        <i [ngClass]="['far', isInWishlist ? 'fa-heart-broken' : 'fa-heart']"></i><span>{{ isInWishlist ? 'Remove from Wish' : 'Add to Wish' }}</span>
+                    </button>
+                    <button class="view-compare" title="Compare This Item">
+                        <i class="far fa-exchange"></i><span>Add to Compare</span>
+                    </button>
+                </div>
+                <div class="details-list-group mt-4">
+                    <label class="details-list-title">Share:</label>
+                    <ul class="details-share-list">
+                        <li><a href="#" class="fab fa-facebook-f" title="Facebook"></a></li>
+                        <li><a href="#" class="fab fa-twitter" title="Twitter"></a></li>
+                        <li><a href="#" class="fab fa-linkedin-in" title="Linkedin"></a></li>
+                        <li><a href="#" class="fab fa-instagram" title="Instagram"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

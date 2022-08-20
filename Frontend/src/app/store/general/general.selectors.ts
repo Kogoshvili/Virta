@@ -11,3 +11,13 @@ export const selectLocation = createSelector(
     (location: { offsetLeft: number, offsetTop: number}) => location
 );
 
+export const selectIsSideCategory = createSelector(
+    (state: AppStore) => state.general.isSideCategory,
+    (isSideCategory: boolean) => isSideCategory
+);
+
+export const selectIsSideCart = createSelector(
+    (state: AppStore) => state.general.isSideCart,
+    (isSideCart: boolean) => isSideCart
+);
+

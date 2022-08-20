@@ -1,14 +1,10 @@
 import {
-    Component,
-    ElementRef,
-    Input,
-    OnInit
+    Component, Input, OnInit
 } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppStore } from 'src/app/store/app.store';
-import { setProductCardLocation } from 'src/app/store/general/general.actions';
-import { selectLocation } from 'src/app/store/general/general.selectors';
-import { Product } from 'src/app/_models/product';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductDTO, ProductLabels } from 'src/app/models/Product';
+import { CartService } from 'src/app/services/cart.service';
+import VenoBox from 'venobox';
 
 @Component({
     selector: 'app-product-card',
@@ -16,27 +12,34 @@ import { Product } from 'src/app/_models/product';
     styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-    @Input() product!: Product;
-    location$ = this.store.select(selectLocation);
-    text: any = [];
+    @Input() product!: ProductDTO;
+    ProductLabels = ProductLabels;
+    starts = { full: [] as any[], empty: [0, 1, 2, 3, 4] };
+    venobox: typeof VenoBox;
+    closeResult = '';
 
     constructor(
-        private store: Store<AppStore>,
-        private elementRef: ElementRef
+        private modalService: NgbModal,
+        private cartService: CartService
     ) { }
 
     ngOnInit(): void {
+        this.starts = {
+            full: Array(this.product?.stars ?? 0),
+            empty: Array(5 - (this.product?.stars ?? 0))
+        };
+
+        this.venobox = new VenoBox();
     }
 
-    onClick(): void {
-        const rect = this.elementRef.nativeElement.getBoundingClientRect();
-        this.store.dispatch(setProductCardLocation({
-            location:
-                {
-                    offsetLeft: rect.left + window.pageXOffset,
-                    offsetTop: rect.top + window.pageYOffset
-                }
-        }));
+    open(content: any) {
+        this.modalService.open(content);
+    }
+
+    onWishlistClick() {}
+
+    onAddToCartClick() {
+        this.cartService.addToCart(this.product);
     }
 }
 

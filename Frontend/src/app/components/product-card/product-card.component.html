@@ -1,11 +1,48 @@
-<div class="card" (click)="onClick()" [routerLink]="['/product/' + product.id]">
+<!-- <div class="card" >
     <div class="promo">
         <p>{{ product.title }}</p>
     </div>
     <div class="image">
-        <img src="{{ product.images[0]?.url || 'https://picsum.photos/450/600' }}">
+        <img src="{{ product.images[0].url || 'https://picsum.photos/450/600' }}">
     </div>
     <div class="price">
         <p>{{ product.price }}$</p>
     </div>
+</div> -->
+<div class="product-card">
+    <div class="product-media">
+        <div class="product-label"><label [ngClass]="['label-text', ProductLabels[product.label].toLowerCase() ]">{{ ProductLabels[product.label] }}</label></div>
+        <button class="product-wish wish"><i class="far fa-heart"></i></button>
+        <div class="product-image" [routerLink]="['/product/' + product.id]"><img src="{{ product.images[0].url }}" alt="product"/></div>
+        <div class="product-widget">
+            <a
+                *ngIf="product.video"
+                title="Product Video"
+                href="{{ product.video }}"
+                class="venobox far fa-play"
+                data-maxwidth="1000px"
+                data-autoplay="true"
+                data-vbtype="video"
+            ></a>
+            <div title="Product View" class="far fa-eye" (click)="open(details)"></div>
+        </div>
+    </div>
+    <div class="product-content">
+        <h6 class="product-name" [routerLink]="['/product/' + product.id]">{{ product.title }}</h6>
+        <div class="product-rating" [routerLink]="['/product/' + product.id]">
+            <app-star-bar [stars]="product.stars"></app-star-bar>
+            ({{ product.reviews }})
+        </div>
+        <div class="product-price">
+            <div [routerLink]="['/product/' + product.id]">
+                <del *ngIf="product.oldPrice !== null" >${{ product.oldPrice }}</del>
+                <span>${{ product.price }}<small>/{{ product.unit }}</small></span>
+            </div>
+            <div (click)="onAddToCartClick()" class="product-add" title="Add to Cart"><i class="far fa-shopping-cart"></i></div>
+        </div>
+    </div>
 </div>
+<ng-template #details let-modal>
+    <button class="modal-close far fa-times" (click)="modal.dismiss()"></button>
+    <app-product-details class="preview-modal-content" [product]="product" [modal]="modal"></app-product-details>
+</ng-template>

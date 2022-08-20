@@ -15,12 +15,12 @@
                 <fa-icon [icon]="faTimes" (click)="removeFromWishlist(item.id)" ></fa-icon>
             </div>
             <div class="image">
-                <a href="{{ item.url }}">
-                    <img src="{{ item.images[0] }}" alt="product image">
+                <a>
+                    <img src="{{ item.image }}" alt="product image">
                 </a>
             </div>
             <div class="details">
-                <a href="{{ item.url }}">
+                <a>
                     <div class="title">{{ item.title }}</div>
                 </a>
                 <div class="price">{{ item.price }}$</div>

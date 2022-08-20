@@ -1,77 +1,108 @@
-<div class="product">
-    <div class="main">
-        <div class="images">
-            <div id="splide-thumbnail" class="splide">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <li *ngFor="let slide of product.images" class="splide__slide">
-                            <div>
-                                <img src="{{ slide?.url }}">
+<section class="inner-section" style="margin-top: 100px;">
+    <app-product-details [product]="product"></app-product-details>
+</section>
+<section class="inner-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="nav nav-tabs">
+                    <li><div class="tab-link" [class.active]="tabs.description" (click)="toggleTabs('description')">Descriptions</div></li>
+                    <li><div class="tab-link" [class.active]="tabs.specification" (click)="toggleTabs('specification')">Additional Info</div></li>
+                    <li><div class="tab-link" [class.active]="tabs.reviews" (click)="toggleTabs('reviews')">Reviews ({{ product.reviews }})</div></li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-pane" [class.active]="tabs.description">
+            <div class="row">
+                <div class="col">
+                    <div class="product-details-frame product-details">
+                        <div class="tab-descrip">
+                            {{ product.description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col" *ngIf="product.video">
+                    <div class="product-details-frame">
+                        <div class="tab-descrip">
+                            <img src="assets/img/video.jpg" alt="video" />
+                            <a
+                                title="Product Video"
+                                href="{{ product.video }}"
+                                class="venobox far fa-play"
+                                data-maxwidth="1000px"
+                                data-autoplay="true"
+                                data-vbtype="video"
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" [class.active]="tabs.specification">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product-details-frame">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr *ngFor="let s of product.attributes">
+                                    <th scope="row">{{ s.title }}</th>
+                                    <td>{{ s.value }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div *ngIf="!product.attributes.length" class="text-center p-3">No Data</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" [class.active]="tabs.reviews">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product-details-frame">
+                        <ul class="review-list">
+                            <li class="review-item"><app-review-card></app-review-card></li>
+                        </ul>
+                    </div>
+                    <div class="product-details-frame p-5">
+                        <h3 class="frame-title">add your review</h3>
+                        <form class="review-form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="star-rating">
+                                        <input type="radio" name="rating" id="star-1" /><label for="star-1"></label><input type="radio" name="rating" id="star-2" /><label for="star-2"></label>
+                                        <input type="radio" name="rating" id="star-3" /><label for="star-3"></label><input type="radio" name="rating" id="star-4" /><label for="star-4"></label>
+                                        <input type="radio" name="rating" id="star-5" /><label for="star-5"></label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group"><input type="text" class="form-control" placeholder="Name" /></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group"><input type="email" class="form-control" placeholder="Email" /></div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group"><textarea class="form-control" placeholder="Your review"></textarea></div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <button class="btn btn-inline"><i class="far fa-paper-plane"></i><span>leave your review</span></button>
+                                </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div id="splide" class="splide">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <li *ngFor="let slide of product.images" class="splide__slide">
-                            <img src="{{ slide?.url }}">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="details">
-            <div class="title">
-                <h2>{{ product.title }}</h2>
-                <div>
-                    <p class="sku">Sku#: {{ product.sku }}</p>
-                    <p class="stock">In Stock</p>
-                </div>
-                <hr>
-            </div>
-            <div class="points">
-                <h2>Price: {{ product.price }}$</h2>
-            </div>
-            <div class="actions">
-                <input type="number" name="quantity" id="quantity" [(ngModel)]="quantity">
-                <button
-                    class="btn"
-                    [ngClass]="{'secondary': isInCart}"
-                    (click)="CartAction()"
-                >
-                    {{ isInCart ? 'Remove From Cart' : 'Add To Cart' }}
-                </button>
-                <div class="wishlist">
-                    <fa-icon
-                        (click)="WishlistAction()"
-                        [icon]="isInWishlist ? fasHeart : farHeart"
-                        size="lg"
-                    ></fa-icon>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="additional">
-        <div class="description">
-            <h2>Description</h2>
-            <hr>
-            <p>{{ product.description }}</p>
+</section>
+<section class="inner-section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section-heading"><h2>Related Items</h2></div>
+            </div>
         </div>
-        <div *ngIf="product.attributes" class="attributes">
-            <h2>Attributes</h2>
-            <hr>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Value</th>
-                </tr>
-                <tr *ngFor="let attribute of product.attributes">
-                    <td>{{ attribute.title }}</td>
-                    <td>{{ attribute.value }}</td>
-                </tr>
-            </table>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+
         </div>
     </div>
-</div>
+</section>

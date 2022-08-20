@@ -1,0 +1,23 @@
+<section class="recent-part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading"><h2>Trending Items</h2></div>
+            </div>
+        </div>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 products-list">
+            <div class="col" *ngFor="let product of products">
+                <app-product-card [product]="product"></app-product-card>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-btn-25">
+                    <a role="button" class="btn btn-inline" [routerLink]="'/products'" [queryParams]="{ labels: [ProductLabels.Trending] }">
+                        <i class="far fa-long-arrow-right"></i><span>View More</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

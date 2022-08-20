@@ -1,0 +1,31 @@
+<aside class="category-part" [ngClass]="{ 'active': isSideCategory$ | async }">
+    <div class="category-container">
+        <div class="category-header">
+            <a href="#"><img src="assets/img/logo.png" alt="logo" /></a>
+            <button class="category-close" (click)="toggleSideCategory()"><i class="far fa-times"></i></button>
+        </div>
+        <ul class="category-list">
+            <li *ngFor="let category of categories">
+                <a
+                    role="button"
+                    [ngClass]="['cate-link', category.children.length && 'dropdown-link']"
+                    (click)="expandCategory(category.name)"
+                >
+                    <i class="{{ category.icon }}"></i>{{ category.name }}
+                </a>
+                <ul *ngIf="category.children.length" class="dropdown-list" [class.active]="category.isActive">
+                    <li *ngFor="let child of category.children">
+                        <a
+                            role="button"
+                            [routerLink]="'/products'"
+                            [queryParams]="{ categories: [child.name] }"
+                            (click)="toggleSideCategory()"
+                        >{{ child.name }}</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="category-footer">
+            <p>All Rights Reserved by <a href="#">Virta</a></p>
+        </div>
+    </div>
+</aside>

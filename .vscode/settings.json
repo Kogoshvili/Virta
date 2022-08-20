@@ -2,8 +2,11 @@
     "cSpell.words": [
         "Bson",
         "Npgsql",
-        "Virta",
-        "toastr"
+        "Splide",
+        "toastr",
+        "Veno",
+        "venobox",
+        "Virta"
     ],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true,

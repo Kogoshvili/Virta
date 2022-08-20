@@ -8,23 +8,22 @@ import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.compo
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
-import { FiltersResolver } from './_resolvers/filters.resolver';
-import { HomePageResolver } from './_resolvers/home-page.resolver';
-import { ProductListResolver } from './_resolvers/product-list.resolver';
-import { ProductResolver } from './_resolvers/product.resolver';
+import { WishlistPageComponent } from './pages/wishlist-page/wishlist-page.component';
+import { FiltersResolver } from './resolvers/filters.resolver';
+import { HomePageResolver } from './resolvers/home-page.resolver';
+import { ProductListResolver } from './resolvers/product-list.resolver';
+import { ProductResolver } from './resolvers/product.resolver';
 
 const routes: Routes = [
     {
         path: '',
         component: HomePageComponent,
-        resolve: { products: HomePageResolver },
-        data: { animation: 'PLP' }
+        resolve: { products: HomePageResolver }
     },
     {
         path: 'product/:id',
         component: ProductPageComponent,
-        resolve: { product: ProductResolver },
-        data: { animation: 'PDP' }
+        resolve: { product: ProductResolver }
     },
     {
         path: 'products',
@@ -33,12 +32,15 @@ const routes: Routes = [
             products: ProductListResolver,
             filters: FiltersResolver
         },
-        data: { animation: 'PLP' },
         runGuardsAndResolvers: 'paramsOrQueryParamsChange'
     },
     {
         path: 'checkout',
         component: CheckoutPageComponent
+    },
+    {
+        path: 'wishlist',
+        component: WishlistPageComponent
     },
     {
         path: 'my-account',

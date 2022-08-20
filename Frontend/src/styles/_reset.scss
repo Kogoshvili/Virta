@@ -1,5 +1,4 @@
 * {
-    position: relative;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -7,8 +6,7 @@
     vertical-align: baseline;
     font-family: inherit;
     outline: 0;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .004);
-    // backface-visibility: hidden;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / .4%);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -33,26 +31,34 @@ summary {
 
 img {
     width: 100%;
+    vertical-align: middle;
 }
 
 html,
 body {
     height: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
-    color: $black;
     scroll-behavior: smooth;
-    background-color: $bg-primary;
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: $text;
+    background-color: $chalk;
+    font-size: $bodysize;
+    font-family: $pfamily;
+    line-height: $bodyheight;
+    overflow-x: hidden;
 }
 
 a {
     color: $black;
+    text-decoration: none;
+    display: inline-block;
 
     &:hover {
         cursor: pointer;
+        text-decoration: none;
     }
 }
 
@@ -61,9 +67,9 @@ hr {
     background-color: $black;
 }
 
-input[type=text],
-input[type=email],
-input[type=password] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     padding: 12px 20px;
     box-sizing: border-box;
 }
@@ -74,4 +80,86 @@ input[type=password] {
 
 .mat-dialog-container {
     background-color: $bg-primary;
+}
+
+ul,
+ol {
+    padding: 0;
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+span,
+label {
+    margin-bottom: 0;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+    color: $heading;
+}
+
+h1 {
+    font-size: $h1size;
+    line-height: $h1height;
+}
+
+h2 {
+    font-size: $h2size;
+    line-height: $h2height;
+    letter-spacing: -.3px;
+    text-transform: capitalize;
+}
+
+h3 {
+    font-size: $h3size;
+    line-height: $h3height;
+}
+
+h4 {
+    font-size: $h4size;
+    line-height: $h4height;
+}
+
+h5 {
+    font-size: $h5size;
+    line-height: $h5height;
+}
+
+h6 {
+    font-size: $h6size;
+    line-height: $h6height;
+}
+
+input::placeholder,
+textarea::placeholder {
+    font-size: 14px;
+    color: $gray;
+    text-transform: capitalize;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+button:focus {
+    outline: none;
 }

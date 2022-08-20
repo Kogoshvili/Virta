@@ -7,11 +7,11 @@ using Virta.Entities;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
-using Virta.Api.Services.Interfaces;
+using Virta.Services.Interfaces;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace Virta.Api.Services
+namespace Virta.Services
 {
     public class TokenService : ITokenService
     {
