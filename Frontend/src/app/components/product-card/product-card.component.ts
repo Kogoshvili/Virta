@@ -39,7 +39,7 @@ export class ProductCardComponent implements OnInit {
     onWishlistClick() {}
 
     onAddToCartClick() {
-        this.cartService.addItem(this.product);
+        this.cartService.addToCart(this.product);
     }
 }
 

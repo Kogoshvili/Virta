@@ -66,8 +66,12 @@
                         <img src="assets/img/user.jpg" alt="user" />
                     </a>
                     <!-- <a class="header-widget" href="#" title="Compare List"><i class="far fa-exchange"></i><sup>{{ itemsInCompare }}</sup></a> -->
-                    <a class="header-widget" role="button" title="Wishlist"><i class="far fa-heart"></i><sup>{{ itemsInWishlist }}</sup></a>
-                    <button class="header-widget header-cart" title="Cartlist" (click)="toggleSideCart()"><i class="far fa-shopping-cart"></i><sup>{{ itemsInCart }}</sup></button>
+                    <a class="header-widget" role="button" title="Wishlist" [routerLink]="'/wishlist'">
+                        <i class="far fa-heart"></i><sup>{{ itemsInWishlist }}</sup>
+                    </a>
+                    <button class="header-widget header-cart" title="Cartlist" (click)="toggleSideCart()">
+                        <i class="far fa-shopping-cart"></i><sup>{{ itemsInCart }}</sup>
+                    </button>
                 </div>
             </div>
         </div>

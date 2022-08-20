@@ -57,6 +57,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { Reducers } from './store/app.store';
+import { WishlistPageComponent } from './pages/wishlist-page/wishlist-page.component';
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');
 }
@@ -99,7 +100,8 @@ export function tokenGetter(): string | null {
         ReviewCardComponent,
         StarBarComponent,
         ProductDetailsComponent,
-        PaginationComponent
+        PaginationComponent,
+        WishlistPageComponent
     ],
     imports: [
         BrowserModule,

@@ -8,6 +8,7 @@ import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.compo
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { WishlistPageComponent } from './pages/wishlist-page/wishlist-page.component';
 import { FiltersResolver } from './resolvers/filters.resolver';
 import { HomePageResolver } from './resolvers/home-page.resolver';
 import { ProductListResolver } from './resolvers/product-list.resolver';
@@ -36,6 +37,10 @@ const routes: Routes = [
     {
         path: 'checkout',
         component: CheckoutPageComponent
+    },
+    {
+        path: 'wishlist',
+        component: WishlistPageComponent
     },
     {
         path: 'my-account',

@@ -22,8 +22,6 @@ import VenoBox from 'venobox';
 export class ProductPageComponent implements OnInit {
     product!: ProductDTO;
     venobox: typeof VenoBox;
-    isInCart = false;
-    isInWishlist = false;
     tabs: { [key: string]: boolean} = {
         description: true,
         specification: false,
@@ -46,14 +44,6 @@ export class ProductPageComponent implements OnInit {
                 this.product = data.product;
                 this.store.dispatch(setLoadingScreen({ loadingScreen: false }));
             }
-        );
-
-        this.cartService.cart.subscribe(
-            () => this.isInCart = this.cartService.isItemInCart(this.product.id)
-        );
-
-        this.wishlistService.wishlistSub.subscribe(
-            () => this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id)
         );
 
         this.venobox = new VenoBox();

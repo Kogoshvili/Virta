@@ -3,6 +3,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import Splide from '@splidejs/splide';
 import { ProductDTO, ProductLabels } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
     selector: 'app-product-details',
@@ -16,12 +17,22 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     splied: any = null;
     spliedThumbnail: any = null;
     quantity: number = 1;
+    isInCart = false;
+    isInWishlist = false;
 
     constructor(
-        private cartService: CartService
+        private cartService: CartService,
+        private wishlistService: WishlistService
     ) { }
 
     ngOnInit(): void {
+        this.cartService.cart.subscribe(
+            () => this.isInCart = this.cartService.isItemInCart(this.product.id)
+        );
+
+        this.wishlistService.wishlist.subscribe(
+            () => this.isInWishlist = this.wishlistService.isInWishlist(this.product.id)
+        );
     }
 
     ngAfterViewInit(): void {
@@ -53,8 +64,10 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     }
 
     onAddToCartClick(): void {
-        this.cartService.addItem(this.product, this.quantity);
+        this.cartService.addToCart(this.product, this.quantity);
     }
 
-    onAddToWishlistClick(): void {}
+    onAddToWishlistClick(): void {
+        this.wishlistService.addToWishlist(this.product);
+    }
 }

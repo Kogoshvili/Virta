@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 // import { Category } from 'src/app/models/filters';
 import { CategoryService } from 'src/app/services/category.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 import { toggleIsSideCart, toggleIsSideCategory } from 'src/app/store/general/general.actions';
 import { selectIsSideCart, selectIsSideCategory } from 'src/app/store/general/general.selectors';
 import { AppStore } from '../../store/app.store';
@@ -46,7 +47,7 @@ export class HeaderComponent implements OnInit {
     ];
 
     itemsInCompare: number = 2;
-    itemsInWishlist: number = 3;
+    itemsInWishlist: number = 0;
     itemsInCart: number = 0;
 
     constructor(
@@ -56,10 +57,9 @@ export class HeaderComponent implements OnInit {
         private store: Store<AppStore>,
         private modalService: NgbModal,
         private authService: AuthService,
-        private cartService: CartService
-    ) {
-
-    }
+        private cartService: CartService,
+        private wishlistService: WishlistService
+    ) { }
 
     ngOnInit(): void {
         this.authService.isLoggedInSub.subscribe(
@@ -72,6 +72,10 @@ export class HeaderComponent implements OnInit {
 
         this.cartService.getCount().subscribe(
             count => this.itemsInCart = count
+        );
+
+        this.wishlistService.getCount().subscribe(
+            count => this.itemsInWishlist = count
         );
     }
 

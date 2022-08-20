@@ -11,7 +11,7 @@ import {
     map
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ProductInWishlist } from '../models/Product';
+import { ProductDTO, ProductInWishlist } from '../models/Product';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -19,7 +19,7 @@ import { AuthService } from './auth.service';
 })
 export class WishlistService {
     baseUrl = environment.apiUrl + 'customer/wishlist/';
-    wishlistSub = new BehaviorSubject<ProductInWishlist[]>(JSON.parse(this.getLocalWishlist()));
+    wishlist = new BehaviorSubject<ProductInWishlist[]>(JSON.parse(this.getLocalWishlist()));
 
     constructor(
       private toastr: ToastrService,
@@ -34,7 +34,7 @@ export class WishlistService {
                         error => console.error(error)
                     );
 
-                    this.wishlistSub.subscribe(
+                    this.wishlist.subscribe(
                         () => this.SaveWishlistToDb().subscribe()
                     );
                 }
@@ -47,9 +47,18 @@ export class WishlistService {
             .pipe(map(response => response.products));
     }
 
-    addItem(item: ProductInWishlist): void {
-        if (this.isItemInWishlist(item.id)) return;
-        const newWishlist = this.wishlistSub.getValue();
+    addToWishlist(product: ProductDTO) {
+        this.add({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.images[0].url
+        });
+    }
+
+    add(item: ProductInWishlist): void {
+        if (this.isInWishlist(item.id)) return;
+        const newWishlist = this.wishlist.getValue();
         newWishlist.push(item);
         this.updateWishlist(newWishlist);
         this.toastr.success('Successfully added to the wishlist');
@@ -57,16 +66,16 @@ export class WishlistService {
 
     removeItem(id: string): void {
         this.updateWishlist(
-            this.wishlistSub.getValue().filter((i: ProductInWishlist) => i.id !== id)
+            this.wishlist.getValue().filter((i: ProductInWishlist) => i.id !== id)
         );
     }
 
-    isItemInWishlist(id: string): boolean {
-        return !!this.wishlistSub.getValue().find((i) => i.id === id);
+    isInWishlist(id: string): boolean {
+        return !!this.wishlist.getValue().find((i) => i.id === id);
     }
 
     updateWishlist(wishlist: ProductInWishlist[] | []): void {
-        this.wishlistSub.next(wishlist);
+        this.wishlist.next(wishlist);
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
     }
 
@@ -74,8 +83,12 @@ export class WishlistService {
         return localStorage.getItem('wishlist') || '[]';
     }
 
+    getCount(): Observable<number> {
+        return this.wishlist.pipe(map(wishlist => wishlist.length));
+    }
+
     SaveWishlistToDb(): Observable<any> {
-        return this.http.post(this.baseUrl, { products: this.wishlistSub.getValue() })
+        return this.http.post(this.baseUrl, { products: this.wishlist.getValue() })
             .pipe(
                 catchError(
                     (error) => {

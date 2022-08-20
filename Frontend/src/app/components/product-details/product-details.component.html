@@ -69,12 +69,12 @@
 
                 <div class="details-add-group">
                     <button class="product-add w-100" title="Add to Cart" (click)="onAddToCartClick()">
-                        <i class="far fa-shopping-cart"></i><span>Add to Cart</span>
+                        <i class="far fa-shopping-cart"></i><span>{{ isInCart ? 'Increase Quantity in Cart' : 'Add to Cart' }}</span>
                     </button>
                 </div>
                 <div class="details-action-group">
-                    <button class="view-wish wish" title="Add Your Wishlist">
-                        <i class="far fa-heart"></i><span>Add to Wish</span>
+                    <button class="view-wish wish" title="Add Your Wishlist" (click)="onAddToWishlistClick()">
+                        <i [ngClass]="['far', isInWishlist ? 'fa-heart-broken' : 'fa-heart']"></i><span>{{ isInWishlist ? 'Remove from Wish' : 'Add to Wish' }}</span>
                     </button>
                     <button class="view-compare" title="Compare This Item">
                         <i class="far fa-exchange"></i><span>Add to Compare</span>

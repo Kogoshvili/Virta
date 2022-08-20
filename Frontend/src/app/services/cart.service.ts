@@ -11,7 +11,7 @@ import {
     map
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ProductDTO, ProductInCart } from '../models/Product';
+import { ProductDTO, ProductInCart, ProductInWishlist } from '../models/Product';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -77,27 +77,35 @@ export class CartService {
     // }
 
     getCount(): Observable<number> {
-        return this.cart.pipe(map((cart: ProductInCart[]) => cart.length));
+        return this.cart.pipe(map(cart => cart.length));
     }
 
     watchStorage(): Observable<any> {
         return this.cart;
     }
 
-    addItem(item: ProductDTO, quantity: number = 1): void {
+    copyToCart(product: ProductInWishlist): void {
+        this.add({ ...product, quantity: 1 });
+    }
+
+    addToCart(product: ProductDTO, quantity: number = 1): void {
+        this.add({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            quantity: quantity,
+            image: product.images[0].url
+        });
+    }
+
+    add(item: ProductInCart, quantity: number = 1): void {
         if (this.isItemInCart(item.id)) {
             this.changeQuantityBy(item.id, quantity);
             return;
         }
 
         const newCart = this.cart.getValue();
-        newCart.push({
-            id: item.id,
-            title: item.title,
-            price: item.price,
-            quantity: quantity,
-            image: item.images[0].url
-        });
+        newCart.push(item);
         this.updateCart(newCart);
         this.toastr.success('Successfully added');
     }
