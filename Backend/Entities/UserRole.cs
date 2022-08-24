@@ -1,8 +1,9 @@
+using System;
 using Microsoft.AspNetCore.Identity;
 
 namespace Virta.Entities
 {
-    public class UserRole : IdentityUserRole<string>
+    public class UserRole : IdentityUserRole<Guid>
     {
         public virtual User User { get; set; }
         public virtual Role Role { get; set; }

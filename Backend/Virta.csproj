@@ -19,9 +19,6 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.5"/>
         <PackageReference Include="Humanizer.Core" Version="2.11.10"/>
-        <PackageReference Include="NSwag.AspNetCore" Version="13.16.1"/>
-        <PackageReference Include="NSwag.MSBuild" Version="13.16.1"/>
-        <PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="13.16.1"/>
     </ItemGroup>
     <!-- <Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
         <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net50) run nswag.json /variables:Configuration=$(Configuration)" />

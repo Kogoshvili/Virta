@@ -29,6 +29,8 @@ namespace Virta.Extensions
                 {
                     options.UseLazyLoadingProxies();
                     options.UseNpgsql(configuration.GetConnectionString("PostgreSql"));
+                    // TODO: REMOVE THIS WHEN DATABASE IS READY
+                    options.EnableSensitiveDataLogging(true);
                 }
             );
 

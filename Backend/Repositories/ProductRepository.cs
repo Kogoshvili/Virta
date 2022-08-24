@@ -23,6 +23,11 @@ namespace Virta.Data
             return await _context.Products.FindAsync(id);
         }
 
+        public async Task<List<Product>> GetProductsByIds(Guid[] productIds)
+        {
+            return await _context.Products.Where(p => productIds.Contains(p.Id)).ToListAsync();
+        }
+
         public async Task<List<Product>> GetProductsAsync(
             string[] categories = null,
             int[] labels = null,

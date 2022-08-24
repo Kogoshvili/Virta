@@ -1,3 +1,4 @@
+using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Virta.Api.DTO;
@@ -107,25 +108,87 @@ namespace Virta.Helpers
             #endregion
 
             #region Cart
-            CreateMap<CartDTO, CartUpsert>();
-            CreateMap<CartDTO.CartItemDTO, CartUpsert.CartItemUpsert>();
+            CreateMap<CartDTOIn, CartUpsert>();
+            CreateMap<CartDTOIn.CartItemDTOIn, CartUpsert.CartItemUpsert>();
 
-            CreateMap<CartUpsert, Cart>();
+            CreateMap<CartUpsert, Cart>()
+                .ForMember(
+                    dest => dest.Products,
+                    opt => opt.Ignore()
+                );
             CreateMap<CartUpsert.CartItemUpsert, Cart.CartItem>();
 
             CreateMap<Cart, CartDTO>();
-            CreateMap<Cart.CartItem, CartDTO.CartItemDTO>();
+            CreateMap<Cart.CartItem, CartDTO.CartItemDTO>()
+                .ForMember(
+                    dest => dest.ProductId,
+                    opt => opt.MapFrom(src => src.Product.Id)
+                )
+                .ForMember(
+                    dest => dest.Title,
+                    opt => opt.MapFrom(src => src.Product.Title)
+                )
+                .ForMember(
+                    dest => dest.Price,
+                    opt => opt.MapFrom(src => src.Product.Price)
+                )
+                .ForMember(
+                    dest => dest.ImageUrl,
+                    opt => opt.MapFrom(src => src.Product.Images.Where(i => i.Primary).FirstOrDefault().URL)
+                )
+                .ForMember(
+                    dest => dest.Unit,
+                    opt => opt.MapFrom(src => src.Product.Unit)
+                );
             #endregion
 
             #region Wishlist
+            CreateMap<WishlistDTOIn, WishlistUpsert>()
+                .ForMember(
+                    dest => dest.Products,
+                    opt => opt.MapFrom(
+                        src => src.ProductId
+                    )
+                );
+            CreateMap<System.Guid, WishlistUpsert.WishlistItemUpsert>()
+                .ForMember(
+                    dest => dest.ProductId,
+                    opt => opt.MapFrom(src => src)
+                );
+
+
             CreateMap<WishlistDTO, WishlistUpsert>();
             CreateMap<WishlistDTO.WishlistItemDTO, WishlistUpsert.WishlistItemUpsert>();
 
-            CreateMap<WishlistUpsert, Wishlist>();
+            CreateMap<WishlistUpsert, Wishlist>()
+                .ForMember(
+                    dest => dest.Products,
+                    opt => opt.Ignore()
+                );
             CreateMap<WishlistUpsert.WishlistItemUpsert, Wishlist.WishlistItem>();
 
             CreateMap<Wishlist, WishlistDTO>();
-            CreateMap<Wishlist.WishlistItem, WishlistDTO.WishlistItemDTO>();
+            CreateMap<Wishlist.WishlistItem, WishlistDTO.WishlistItemDTO>()
+                .ForMember(
+                    dest => dest.ProductId,
+                    opt => opt.MapFrom(src => src.Product.Id)
+                )
+                .ForMember(
+                    dest => dest.Title,
+                    opt => opt.MapFrom(src => src.Product.Title)
+                )
+                .ForMember(
+                    dest => dest.Price,
+                    opt => opt.MapFrom(src => src.Product.Price)
+                )
+                .ForMember(
+                    dest => dest.ImageUrl,
+                    opt => opt.MapFrom(src => src.Product.Images.Where(i => i.Primary).FirstOrDefault().URL)
+                )
+                .ForMember(
+                    dest => dest.Unit,
+                    opt => opt.MapFrom(src => src.Product.Unit)
+                );
             #endregion
 
             /* From Product Entity */
@@ -212,6 +275,12 @@ namespace Virta.Helpers
                 .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
             CreateMap<Order, Order>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<Cart, Cart>()
+                .ForMember(dest => dest.UserId, opt => opt.Ignore())
+                .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<Wishlist, Wishlist>()
+                .ForMember(dest => dest.UserId, opt => opt.Ignore())
                 .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
             #endregion
         }

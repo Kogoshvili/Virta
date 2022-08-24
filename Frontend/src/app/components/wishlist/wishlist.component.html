@@ -12,11 +12,11 @@
     <div class="wishlist-overlay" *ngIf="isVisible">
         <div class="item" *ngFor="let item of wishlist">
             <div class="remove">
-                <fa-icon [icon]="faTimes" (click)="removeFromWishlist(item.id)" ></fa-icon>
+                <fa-icon [icon]="faTimes" (click)="removeFromWishlist(item.productId)" ></fa-icon>
             </div>
             <div class="image">
                 <a>
-                    <img src="{{ item.image }}" alt="product image">
+                    <img src="{{ item.imageUrl }}" alt="product image">
                 </a>
             </div>
             <div class="details">

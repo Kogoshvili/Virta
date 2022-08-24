@@ -5,16 +5,14 @@ namespace Virta.Models
 {
     public class CartUpsert
     {
+        public Guid UserId { get; set; }
         public IEnumerable<CartItemUpsert> Products { get; set; }
 
         public class CartItemUpsert
         {
-            public Guid Id { get; set; }
+            public int Id { get; set; }
             public int Quantity { get; set; }
-            public string Title { get; set; }
-            public decimal Price { get; set; }
-            public string[] Images { get; set; }
-            public string Url { get; set; }
+            public Guid ProductId { get; set; }
         }
     }
 }

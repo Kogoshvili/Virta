@@ -35,10 +35,6 @@ export class CartService {
                         data => this.updateCart(data),
                         error => console.error(error)
                     );
-
-                    this.cart.subscribe(
-                        () => this.SaveCartToDb().subscribe()
-                    );
                 }
             }
         );
@@ -90,17 +86,18 @@ export class CartService {
 
     addToCart(product: ProductDTO, quantity: number = 1): void {
         this.add({
-            id: product.id,
+            productId: product.id,
             title: product.title,
             price: product.price,
+            unit: product.unit,
             quantity: quantity,
-            image: product.images[0].url
+            imageUrl: product.images[0].url
         });
     }
 
     add(item: ProductInCart, quantity: number = 1): void {
-        if (this.isItemInCart(item.id)) {
-            this.changeQuantityBy(item.id, quantity);
+        if (this.isItemInCart(item.productId)) {
+            this.changeQuantityBy(item.productId, quantity);
             return;
         }
 
@@ -112,13 +109,13 @@ export class CartService {
 
     removeItem(id: string): void {
         this.updateCart(
-            this.cart.getValue().filter((i: ProductInCart) => i.id !== id)
+            this.cart.getValue().filter((i: ProductInCart) => i.productId !== id)
         );
     }
 
     changeQuantityBy(productId: string, quantity: number): void {
         const cart = this.cart.getValue();
-        const index = cart.findIndex((i: ProductInCart) => i.id === productId);
+        const index = cart.findIndex((i: ProductInCart) => i.productId === productId);
         if (index === -1) return;
 
         const item = cart[index];
@@ -143,24 +140,31 @@ export class CartService {
     }
 
     isItemInCart(id: string): boolean {
-        return !!this.cart.getValue().find((i) => i.id === id);
+        return !!this.cart.getValue().find((i) => i.productId === id);
     }
 
     updateCart(newCart: ProductInCart[] | []): void {
         this.cart.next(newCart);
+        this.SaveCartToDb().subscribe();
         localStorage.setItem('cart', JSON.stringify(newCart));
     }
 
     SaveCartToDb(): Observable<any> {
-        return this.http.post(this.baseUrl, { products: this.cart.getValue() })
-            .pipe(
-                catchError(
-                    (error) => {
-                        console.error(error);
-                        return of(null);
-                    }
-                )
-            );
+        const cart = this.cart.getValue();
+        return this.http.post(
+            this.baseUrl, {
+                products: cart.map(i => ({
+                    productId: i.productId,
+                    quantity: i.quantity
+                }))
+            }).pipe(
+            catchError(
+                (error) => {
+                    console.error(error);
+                    return of(null);
+                }
+            )
+        );
     }
 
     getLocalCart(): string {

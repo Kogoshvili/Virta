@@ -1,5 +1,6 @@
-using System;
 using System.Collections.Generic;
+using System;
+using Virta.Entities;
 
 namespace Virta.Api.DTO
 {
@@ -9,12 +10,13 @@ namespace Virta.Api.DTO
 
         public class CartItemDTO
         {
-            public Guid Id { get; set; }
+            public Guid ProductId { get; set; }
             public int Quantity { get; set; }
             public string Title { get; set; }
             public decimal Price { get; set; }
-            public string[] Images { get; set; }
-            public string Url { get; set; }
+            public Product.ProductLabels Unit { get; set; }
+            public string ImageUrl { get; set; }
         }
     }
 }
+

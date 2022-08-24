@@ -36,7 +36,7 @@ namespace Virta.Api.Controllers
         [HttpGet("cart")]
         public async Task<IActionResult> GetCart()
         {
-            var cart = await _cartRepository.GetAsync(User.GetUserId());
+            var cart = await _cartRepository.GetCart(User.GetUserId());
 
             if (cart == null)
                 return BadRequest();
@@ -47,9 +47,9 @@ namespace Virta.Api.Controllers
         }
 
         [HttpPost("cart")]
-        public async Task<IActionResult> UpsertCart(CartDTO cartDTO)
+        public async Task<IActionResult> UpsertCart(CartDTOIn cartDTOIn)
         {
-            var cartUpsert = _mapper.Map<CartUpsert>(cartDTO);
+            var cartUpsert = _mapper.Map<CartUpsert>(cartDTOIn);
 
             if (await _customerService.UpsertCartAsync(cartUpsert, User.GetUserId()))
                 return Ok();
@@ -60,16 +60,18 @@ namespace Virta.Api.Controllers
         [HttpGet("wishlist")]
         public async Task<IActionResult> GetWishlist()
         {
-            var wishlist = await _wishlistRepository.GetAsync(User.GetUserId());
+            var wishlist = await _wishlistRepository.GetWishlistAsync(User.GetUserId());
 
             if (wishlist == null)
                 return BadRequest();
 
-            return Ok(wishlist);
+            var result = _mapper.Map<WishlistDTO>(wishlist);
+
+            return Ok(result);
         }
 
         [HttpPost("wishlist")]
-        public async Task<IActionResult> UpsertWishlist(WishlistDTO wishlistDTO)
+        public async Task<IActionResult> UpsertWishlist(WishlistDTOIn wishlistDTO)
         {
             var wishlistUpsert = _mapper.Map<WishlistUpsert>(wishlistDTO);
 

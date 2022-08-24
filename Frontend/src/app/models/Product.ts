@@ -74,18 +74,20 @@ export interface PLP {
 }
 
 export interface ProductInCart {
-    id: string;
+    productId: string;
     title: string;
     price: number;
-    image: string;
+    unit: ProductUnits;
+    imageUrl: string;
     quantity: number;
 }
 
 export interface ProductInWishlist {
-    id: string;
+    productId: string;
     title: string;
     price: number;
-    image: string;
+    unit: ProductUnits;
+    imageUrl: string;
 }
 
 

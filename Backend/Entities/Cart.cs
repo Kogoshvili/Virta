@@ -1,23 +1,23 @@
 using System;
 using System.Collections.Generic;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Virta.Entities
 {
-    public class Cart : MongoBaseDocument
+    public class Cart
     {
-        public IEnumerable<CartItem> Products { get; set; }
+        [Key]
+        [ForeignKey("User")]
+        public Guid UserId { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<CartItem> Products { get; set; }
 
         public class CartItem
         {
-            [BsonRepresentation(BsonType.String)]
-            public Guid Id { get; set; }
+            public int Id { get; set; }
+            public virtual Product Product { get; set; }
             public int Quantity { get; set; }
-            public string Title { get; set; }
-            public decimal Price { get; set; }
-            public string[] Images { get; set; }
-            public string Url { get; set; }
         }
     }
 }

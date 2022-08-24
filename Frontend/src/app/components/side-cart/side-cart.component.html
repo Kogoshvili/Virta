@@ -7,21 +7,21 @@
         <ul class="cart-list">
             <li class="cart-item" *ngFor="let product of products">
                 <div class="cart-media">
-                    <a role="button"><img src="{{ product.image || '/assets/img/product/01.png' }}" alt="{{ product.title }}" /></a>
-                    <button class="cart-delete" (click)="removeProduct(product.id)"><i class="far fa-times"></i></button>
+                    <a role="button"><img src="{{ product.imageUrl || '/assets/img/product/01.png' }}" alt="{{ product.title }}" /></a>
+                    <button class="cart-delete" (click)="removeProduct(product.productId)"><i class="far fa-times"></i></button>
                 </div>
                 <div class="cart-info-group">
                     <div class="cart-info">
                         <h6><a role="button" [routerLink]="'/product/{{product.id}}'">{{ product.title }}</a></h6>
-                        <p>Price - ${{ product.price }}</p>
+                        <p>${{ product.price }}<small>/{{ product.unit }}</small></p>
                     </div>
                     <div class="cart-action-group">
                         <div class="product-action">
-                            <button class="action-minus" title="Quantity Minus" (click)="changeProductQuantityBy(product.id, -1)">
+                            <button class="action-minus" title="Quantity Minus" (click)="changeProductQuantityBy(product.productId, -1)">
                                 <i class="far fa-minus"></i>
                             </button>
                             <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{ product.quantity }}" />
-                            <button class="action-plus" title="Quantity Plus" (click)="changeProductQuantityBy(product.id, 1)">
+                            <button class="action-plus" title="Quantity Plus" (click)="changeProductQuantityBy(product.productId, 1)">
                                 <i class="far fa-plus"></i>
                             </button>
                         </div>

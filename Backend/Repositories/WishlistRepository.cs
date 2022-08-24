@@ -1,21 +1,32 @@
+using System;
+using System.Threading.Tasks;
 using MongoDB.Driver;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 
 namespace Virta.Data
 {
-    public class WishlistRepository : MongoBaseRepository<Wishlist>, IWishlistRepository
+    public class WishlistRepository : BaseRepository<Wishlist>, IWishlistRepository
     {
-        private readonly IMongoClient _mongoClient;
-        private readonly IClientSessionHandle _clientSessionHandle;
+        private readonly DataContext _context;
 
-        public WishlistRepository(
-            IMongoClient mongoClient,
-            IClientSessionHandle clientSessionHandle
-        ) : base(mongoClient, clientSessionHandle, nameof(Wishlist))
+        public WishlistRepository(DataContext context) : base(context)
         {
-            _mongoClient = mongoClient;
-            _clientSessionHandle = clientSessionHandle;
+            _context = context;
+        }
+
+        public async Task<Wishlist> GetWishlistAsync(Guid id)
+        {
+            var wishlist = await _context.Wishlists.FindAsync(id);
+
+            if (wishlist == null) {
+                Add(new Wishlist { UserId = id });
+
+                if (await SaveAll())
+                    return await _context.Wishlists.FindAsync(id);
+            }
+
+            return wishlist;
         }
     }
 }

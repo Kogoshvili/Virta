@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Virta.Entities;
-#nullable disable
+
 namespace Virta.Data
 {
-    public class DataContext : IdentityDbContext<User, Role, string>
+    public class DataContext : IdentityDbContext<User, Role, System.Guid>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
@@ -17,6 +17,8 @@ namespace Virta.Data
         public DbSet<OrderProduct> OrderProduct { get; set; }
         public DbSet<Address> Address { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -26,6 +28,11 @@ namespace Virta.Data
             builder.Entity<User>()
                 .HasMany(u => u.Addresses)
                 .WithOne(a => a.User)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.Entity<User>()
+                .HasOne(u => u.Cart)
+                .WithOne(c => c.User)
                 .OnDelete(DeleteBehavior.SetNull);
             #endregion
 

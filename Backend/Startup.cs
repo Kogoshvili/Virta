@@ -76,14 +76,14 @@ namespace Virta
                 });
             });
 
-            services.AddSwaggerDocument(settings =>
-            {
-                settings.PostProcess = document =>
-                {
-                    document.Info.Version = "v1";
-                    document.Info.Title = "Virta API";
-                };
-            });
+            // services.AddSwaggerDocument(settings =>
+            // {
+            //     settings.PostProcess = document =>
+            //     {
+            //         document.Info.Version = "v1";
+            //         document.Info.Title = "Virta API";
+            //     };Microsoft.AspNetCore.Builder.NSwagApplicationBuilderExtensions.UseSwagger
+            // });Microsoft.AspNetCore.Builder.SwaggerBuilderExtensions.UseSwagger
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,8 +92,10 @@ namespace Virta
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseOpenApi();
-                app.UseSwaggerUi3();
+                // app.UseOpenApi();
+                // app.UseSwaggerUi3();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VirtaApi v1"));
                 using (var scope = app.ApplicationServices.CreateScope())
                     using (var context = scope.ServiceProvider.GetService<DataContext>())
                         context.Database.Migrate();

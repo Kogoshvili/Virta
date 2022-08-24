@@ -1,9 +1,11 @@
+using System;
+using System.Threading.Tasks;
 using Virta.Entities;
 
 namespace Virta.Data.Interfaces
 {
-    public interface IWishlistRepository : IMongoBaseRepository<Wishlist>
+    public interface IWishlistRepository : IBaseRepository<Wishlist>
     {
-
+       Task<Wishlist> GetWishlistAsync(Guid id);
     }
 }

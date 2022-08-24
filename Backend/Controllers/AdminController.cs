@@ -89,7 +89,7 @@ namespace Virta.MVC.Controllers
                             identity.AddClaim(new Claim(ClaimTypes.Role, r));
                         }
                     }
-                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
+                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
                     identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
                     await HttpContext.SignInAsync(IdentityConstants.ApplicationScheme,
                         new ClaimsPrincipal(identity));

@@ -1,21 +1,34 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 
 namespace Virta.Data
 {
-    public class CartRepository : MongoBaseRepository<Cart>, ICartRepository
+    public class CartRepository : BaseRepository<Cart>, ICartRepository
     {
-        private readonly IMongoClient _mongoClient;
-        private readonly IClientSessionHandle _clientSessionHandle;
+        private readonly DataContext _context;
 
-        public CartRepository(
-            IMongoClient mongoClient,
-            IClientSessionHandle clientSessionHandle
-        ) : base(mongoClient, clientSessionHandle, nameof(Cart))
+        public CartRepository(DataContext context) : base(context)
         {
-            _mongoClient = mongoClient;
-            _clientSessionHandle = clientSessionHandle;
+            _context = context;
+        }
+
+        public async Task<Cart> GetCart(Guid id)
+        {
+            var cart = await _context.Carts.FindAsync(id);
+
+            if (cart == null) {
+                Add(new Cart { UserId = id });
+
+                if (await SaveAll())
+                    return await _context.Carts.FindAsync(id);
+            }
+
+            return cart;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Virta.Api.DTO
 
         public class OrderProduct
         {
-            public ProductPDP Product { get; set; }
+            public ProductDTO Product { get; set; }
             public decimal OrderPrice { get; set; }
             public int Quantity { get; set; }
         }

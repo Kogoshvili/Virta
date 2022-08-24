@@ -49,15 +49,16 @@ export class WishlistService {
 
     addToWishlist(product: ProductDTO) {
         this.add({
-            id: product.id,
+            productId: product.id,
             title: product.title,
             price: product.price,
-            image: product.images[0].url
+            unit: product.unit,
+            imageUrl: product.images[0].url
         });
     }
 
     add(item: ProductInWishlist): void {
-        if (this.isInWishlist(item.id)) return;
+        if (this.isInWishlist(item.productId)) return;
         const newWishlist = this.wishlist.getValue();
         newWishlist.push(item);
         this.updateWishlist(newWishlist);
@@ -66,12 +67,12 @@ export class WishlistService {
 
     removeItem(id: string): void {
         this.updateWishlist(
-            this.wishlist.getValue().filter((i: ProductInWishlist) => i.id !== id)
+            this.wishlist.getValue().filter((i: ProductInWishlist) => i.productId !== id)
         );
     }
 
     isInWishlist(id: string): boolean {
-        return !!this.wishlist.getValue().find((i) => i.id === id);
+        return !!this.wishlist.getValue().find((i) => i.productId === id);
     }
 
     updateWishlist(wishlist: ProductInWishlist[] | []): void {

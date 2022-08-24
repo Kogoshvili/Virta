@@ -72,7 +72,7 @@
         display: inline-block;
         color: $text;
         background: $white;
-        text-shadow: var(--primary-tshadow);
+        text-shadow: $primary-tshadow;
         transition: all linear .3s;
         -webkit-transition: all linear .3s;
         -moz-transition: all linear .3s;

@@ -61,11 +61,11 @@ export class EntryComponent implements OnInit {
     }
 
     register(): void {
-        if (this.isAccepted) {
-            this.authService.register(this.user).subscribe();
-        } else {
-            this.toastr.error('You must accept the terms and conditions');
-        }
+        this.authService.register(this.user).subscribe();
+        // if (this.isAccepted) {
+        // } else {
+        // this.toastr.error('You must accept the terms and conditions');
+        // }
     }
 
     reset() {

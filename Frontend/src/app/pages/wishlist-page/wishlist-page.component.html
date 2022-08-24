@@ -15,15 +15,15 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let product of wishlist">
-                                <td class="table-image"><img src="{{ product.image || 'assets/img/product/01.png' }}" alt="product" /></td>
+                                <td class="table-image"><img src="{{ product.imageUrl || 'assets/img/product/01.png' }}" alt="product" /></td>
                                 <td class="table-name"><h6>{{ product.title }}</h6></td>
                                 <td class="table-price">
-                                    <h6>{{ product.price }}<small>/kg</small></h6>
+                                    <h6>{{ product.price }}<small>/{{ product.unit }}</small></h6>
                                 </td>
                                 <td class="table-status"><h6 class="stock-out">stock out</h6></td>
                                 <td class="table-action">
-                                    <a class="wish" role="button" title="Quick View" (click)="open(preview, product.id)"><i class="far fa-eye"></i></a>
-                                    <a class="wish" role="button" title="Remove From Wishlist" (click)="removeFromWishlist(product.id)"><i class="far fa-heart-broken"></i></a>
+                                    <a class="wish" role="button" title="Quick View" (click)="open(preview, product.productId)"><i class="far fa-eye"></i></a>
+                                    <a class="wish" role="button" title="Remove From Wishlist" (click)="removeFromWishlist(product.productId)"><i class="far fa-heart-broken"></i></a>
                                     <a class="wish" role="button" title="Add to Cart" (click)="onAddToCart(product)"><i class="far fa-shopping-cart"></i></a>
                                 </td>
                             </tr>
