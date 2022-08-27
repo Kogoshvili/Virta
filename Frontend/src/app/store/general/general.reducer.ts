@@ -5,8 +5,10 @@ import {
 } from '@ngrx/store';
 import { GeneralState } from './general';
 import {
+    closeAllSides,
     setLoadingScreen,
     setProductCardLocation,
+    toggleIsMobileMenu,
     toggleIsSideCart,
     toggleIsSideCategory,
     toggleLoadingScreen
@@ -19,7 +21,8 @@ export const initialState: GeneralState = {
         offsetTop: 0
     },
     isSideCategory: false,
-    isSideCart: false
+    isSideCart: false,
+    isMobileMenu: false
 };
 
 export const reducer = createReducer(
@@ -28,7 +31,9 @@ export const reducer = createReducer(
     on(setLoadingScreen, (state, action) => ({ ...state, loadingScreen: action.loadingScreen })),
     on(toggleLoadingScreen, (state) => ({ ...state, loadingScreen: !state.loadingScreen })),
     on(toggleIsSideCategory, (state) => ({ ...state, isSideCategory: !state.isSideCategory })),
-    on(toggleIsSideCart, (state) => ({ ...state, isSideCart: !state.isSideCart }))
+    on(toggleIsSideCart, (state) => ({ ...state, isSideCart: !state.isSideCart })),
+    on(toggleIsMobileMenu, (state) => ({ ...state, isMobileMenu: !state.isMobileMenu })),
+    on(closeAllSides, (state) => ({ ...state, isSideCategory: false, isSideCart: false, isMobileMenu: false }))
 );
 
 export function generalReducer(state: any, action: any) {

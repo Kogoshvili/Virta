@@ -30,15 +30,15 @@
                 data-autoplay="true"
                 data-vbtype="video"
             ></a>
-            <div title="Product View" class="far fa-eye"></div>
+            <a role="button" title="Product View" class="far fa-eye"></a>
             <!-- <a title="Product Compare" href="#" class="far fa-exchange"></a> -->
         </div>
     </div>
     <div class="feature-content">
-        <h6 class="feature-name" [routerLink]="['/product/' + product.id]">{{ product.title }}</h6>
+        <h6 class="feature-name"><a role="button" [routerLink]="['/product/' + product.id]">{{ product.title }}</a></h6>
         <div class="feature-rating" [routerLink]="['/product/' + product.id]">
             <app-star-bar [stars]="product.stars"></app-star-bar>
-            <div>({{ product.reviews }} Reviews)</div>
+            <a role="button" [routerLink]="['/product/' + product.id]">({{ product.reviews }} Reviews)</a>
         </div>
         <h6 class="feature-price" [routerLink]="['/product/' + product.id]">
             <del *ngIf="product.oldPrice">{{ product.oldPrice }}</del>

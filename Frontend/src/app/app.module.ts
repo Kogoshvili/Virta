@@ -58,6 +58,10 @@ import { ProductListPageComponent } from './pages/product-list-page/product-list
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { WishlistPageComponent } from './pages/wishlist-page/wishlist-page.component';
 import { Reducers } from './store/app.store';
+import { MobileMenuComponent } from './components/mobile-menu/mobile-menu.component';
+import { MobileSideComponent } from './components/mobile-side/mobile-side.component';
+import { AccountCardComponent } from './components/account-card/account-card.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');
@@ -102,7 +106,11 @@ export function tokenGetter(): string | null {
         StarBarComponent,
         ProductDetailsComponent,
         PaginationComponent,
-        WishlistPageComponent
+        WishlistPageComponent,
+        MobileMenuComponent,
+        MobileSideComponent,
+        AccountCardComponent,
+        BreadcrumbComponent
     ],
     imports: [
         BrowserModule,

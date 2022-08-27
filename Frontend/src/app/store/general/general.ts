@@ -6,4 +6,5 @@ export interface GeneralState {
     },
     isSideCategory: boolean;
     isSideCart: boolean;
+    isMobileMenu: boolean;
 }

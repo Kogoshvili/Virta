@@ -1,0 +1,12 @@
+@keyframes ghost {
+    from,
+    to {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.7);
+        opacity: .5;
+    }
+}

@@ -1,0 +1,138 @@
+@import 'variables';
+
+.mobile-menu {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 3;
+    background: $white;
+    box-shadow: 0px -5px 15px 0px rgba(0, 0, 0, .1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    border-radius: 20px 20px 0 0;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 80px;
+        padding: 8px 0px;
+        border-radius: 8px;
+        position: relative;
+
+        &:hover {
+            background: $chalk;
+
+            i {
+                color: $primary;
+            }
+
+            span {
+                color: $primary;
+            }
+        }
+
+        i {
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: $text;
+            text-shadow: 2px 3px 8px rgba(0, 0, 0, .1);
+        }
+
+        span {
+            font-size: 10px;
+            line-height: 12px;
+            color: $text;
+            text-transform: uppercase;
+        }
+
+        sup {
+            position: absolute;
+            top: -5px;
+            left: 75%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            line-height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            transform: translateX(-50%);
+            color: $white;
+            background: $primary;
+            border: 2px solid $green-chalk;
+            text-shadow: $primary-tshadow;
+        }
+
+        .icofont-shopping-cart {
+            font-size: 18px;
+        }
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 80px;
+        padding: 8px 0px;
+        border-radius: 8px;
+        position: relative;
+
+        &:hover {
+            background: $chalk;
+
+            i {
+                color: $primary;
+            }
+
+            span {
+                color: $primary;
+            }
+        }
+
+        i {
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: $text;
+            text-shadow: 2px 3px 8px rgba(0, 0, 0, .1);
+        }
+
+        span {
+            font-size: 10px;
+            line-height: 12px;
+            color: $text;
+            text-transform: uppercase;
+        }
+
+        sup {
+            position: absolute;
+            top: -5px;
+            left: 75%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            line-height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            transform: translateX(-50%);
+            color: $white;
+            background: $primary;
+            border: 2px solid $green-chalk;
+            text-shadow: $primary-tshadow;
+        }
+
+        .icofont-shopping-cart {
+            font-size: 18px;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .mobile-menu {
+        display: flex;
+    }
+}

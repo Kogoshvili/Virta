@@ -21,3 +21,8 @@ export const selectIsSideCart = createSelector(
     (isSideCart: boolean) => isSideCart
 );
 
+export const selectIsMobileMenu = createSelector(
+    (state: AppStore) => state.general.isMobileMenu,
+    (isMobileMenu: boolean) => isMobileMenu
+);
+

@@ -1,59 +1,166 @@
 @import 'variables';
+
 .review-item {
-	padding: 30px 45px;
-	border-radius: 8px;
-	background: $white;
-	&:last-child {
-		margin-bottom: 0px;
-	}
+    padding: 30px 45px;
+    border-radius: 8px;
+    background: $white;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
 }
+
 .review-media {
-	margin-bottom: 15px;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
+
 .review-avatar {
-	margin-right: 15px;
-	border-radius: 50%;
-	border: 2px solid $primary;
-	img {
-		width: 65px;
-		border-radius: 50%;
-		border: 2px solid $white;
-	}
+    margin-right: 15px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+
+    img {
+        width: 65px;
+        border-radius: 50%;
+        border: 2px solid $white;
+    }
 }
+
 .review-meta {
-	text-transform: capitalize;
-	div {
-		color: $heading;
-		text-transform: capitalize;
-		transition: all linear .3s;
-		-webkit-transition: all linear .3s;
-		-moz-transition: all linear .3s;
-		-ms-transition: all linear .3s;
-		-o-transition: all linear .3s;
-		&:hover {
-			color: $primary;
-		}
-	}
-	span {
-		display: block;
-		font-size: 15px;
-		font-weight: 400;
-		color: $text;
-		b {
-			font-weight: 500;
-			color: $primary;
-		}
-	}
+    text-transform: capitalize;
+
+    div {
+        color: $heading;
+        text-transform: capitalize;
+        transition: all linear .3s;
+        -webkit-transition: all linear .3s;
+        -moz-transition: all linear .3s;
+        -ms-transition: all linear .3s;
+        -o-transition: all linear .3s;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+
+    span {
+        display: block;
+        font-size: 15px;
+        font-weight: 400;
+        color: $text;
+
+        b {
+            font-weight: 500;
+            color: $primary;
+        }
+    }
 }
+
 .review-rating {
-	margin-bottom: 10px;
-	li {
-		font-size: 16px;
-		margin-right: 5px;
-		color: $primary;
-		display: inline-block;
-	}
+    margin-bottom: 10px;
+
+    li {
+        font-size: 16px;
+        margin-right: 5px;
+        color: $primary;
+        display: inline-block;
+    }
+}
+
+.review-reply {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    input {
+        width: 100%;
+        padding: 7px 18px;
+        border-radius: 6px;
+        margin-right: 20px;
+        background: $whit
+    }
+
+    button {
+        font-size: 15px;
+        padding: 6px 15px;
+        border-radius: 6px;
+        color: $white;
+        background: $primary;
+        text-transform: capitalize;
+        transition: all linear .3s;
+        -webkit-transition: all linear .3s;
+        -moz-transition: all linear .3s;
+        -ms-transition: all linear .3s;
+        -o-transition: all linear .3s;
+
+        &:hover {
+            background: $heading;
+        }
+
+        i {
+            margin-right: 5px;
+        }
+    }
+}
+
+.review-reply-list {
+    margin-left: 80px;
+    margin-top: 35px;
+    border-top: 1px solid $border;
+}
+
+.review-reply-item {
+    padding: 30px 0px;
+    border-bottom: 1px solid $border;
+
+    &:last-child {
+        padding-bottom: 0px;
+        border-bottom: none;
+    }
+}
+
+.review-form {
+    .btn {
+        padding: 12px 30px;
+
+        &:hover {
+            background: #8493ca;
+            color: #fff;
+        }
+    }
+
+    .star-rating {
+        text-align: left;
+    }
+}
+
+@media (max-width: 575px) {
+    .review-item {
+        padding: 20px 15px;
+    }
+
+    .review-reply {
+        flex-direction: column;
+
+        input {
+            margin: 0px 0px 15px;
+        }
+    }
+
+    .review-reply-list {
+        margin-left: 25px;
+    }
+
+    .star-rating label {
+        margin: 0px 6px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .review-reply-list {
+        margin-left: 30px;
+    }
 }

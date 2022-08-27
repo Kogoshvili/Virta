@@ -1,70 +1,100 @@
 @import 'variables';
 
 .news-part {
-	padding: 70px 0px;
-	background: url(../../../assets/img/newsletter.jpg);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	position: relative;
-	z-index: 1;
-	&::before {
-		position: absolute;
-		content: "";
-		top: 0px;
-		left: 0px;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(to right, rgba(6, 23, 56, 0.8), rgba(17, 151, 68, 0.8));
-		z-index: -1;
-	}
+    padding: 70px 0px;
+    background: url(../../../assets/img/newsletter.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        position: absolute;
+        content: "";
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(6, 23, 56, .8), rgba(17, 151, 68, .8));
+        z-index: -1;
+    }
 }
+
 .news-text {
-	h2 {
-		font-size: 35px;
-		color: $white;
-		margin-bottom: 5px;
-	}
-	p {
-		font-size: 18px;
-		font-weight: 300;
-		color: $white;
-	}
+    h2 {
+        font-size: 35px;
+        color: $white;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 18px;
+        font-weight: 300;
+        color: $white;
+    }
 }
+
 .news-form {
-	width: 100%;
-	padding: 6px;
-	border-radius: 8px;
-	background: $white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	input {
-		width: 100%;
-		height: 50px;
-		padding: 0px 20px;
-		line-height: 50px;
-	}
-	button {
-		span {
-			width: 180px;
-			font-size: 14px;
-			font-weight: 500;
-			padding: 12px 0px;
-			border-radius: 8px;
-			text-align: center;
-			display: inline-block;
-			text-transform: uppercase;
-			color: $white;
-			background: $primary;
-			transition: .5s ease-in-out;
-			&:hover {
-				color: $white;
-				background: #32A768;
-			}
-			i {
-				margin-right: 5px;
-			}
-		}
-	}
+    width: 100%;
+    padding: 6px;
+    border-radius: 8px;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+        width: 100%;
+        height: 50px;
+        padding: 0px 20px;
+        line-height: 50px;
+    }
+
+    button {
+        span {
+            width: 180px;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 12px 0px;
+            border-radius: 8px;
+            text-align: center;
+            display: inline-block;
+            text-transform: uppercase;
+            color: $white;
+            background: $primary;
+            transition: .5s ease-in-out;
+
+            &:hover {
+                color: $white;
+                background: #32A768;
+            }
+
+            i {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .news-form {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 767px) {
+    .news-text {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .news-part {
+        padding: 50px 30px 60px;
+
+        .container-fluid {
+            padding: 0px;
+        }
+    }
 }

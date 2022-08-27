@@ -1,0 +1,21 @@
+<div class="mobile-menu">
+    <a href="/" title="Home Page">
+        <i class="far fa-home"></i><span>Home</span>
+    </a>
+    <button class="cate-btn" title="Category List" (click)="toggleSideCategory()">
+        <i class="far fa-th-large"></i>
+        <span>Category</span>
+    </button>
+    <button class="cart-btn" title="Cartlist" (click)="toggleSideCart()">
+        <i class="far fa-shopping-cart"></i>
+        <span>Cart</span><sup>{{ itemsInCart }}</sup>
+    </button>
+    <a role="button" [routerLink]="'/wishlist'" title="Wishlist">
+        <i class="far fa-heart"></i>
+        <span>Wishlist</span><sup>{{ itemsInWishlist }}</sup>
+    </a>
+    <!-- <a href="compare.html" title="Compare List">
+        <i class="far fa-exchange"></i>
+        <span>compare</span><sup>2</sup>
+    </a> -->
+</div>

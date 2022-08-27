@@ -1,217 +1,223 @@
 .table-list {
-	width: 100%;
+    width: 100%;
 }
 
 thead {
-	tr {
-		background: $primary;
+    tr {
+        background: $primary;
 
-		th {
-			font-size: 17px;
-			font-weight: 500;
-			white-space: nowrap;
-			text-align: center;
-			text-transform: capitalize;
-			padding: 12px 20px;
-			color: $white;
-			border-right: 1px solid $border;
+        th {
+            font-size: 17px;
+            font-weight: 500;
+            white-space: nowrap;
+            text-align: center;
+            text-transform: capitalize;
+            padding: 12px 20px;
+            color: $white;
+            border-right: 1px solid $border;
 
-			&:first-child {
-				border-radius: 6px 0px 0px 6px;
-			}
+            &:first-child {
+                border-radius: 6px 0px 0px 6px;
+            }
 
-			&:last-child {
-				border-right: none;
-				border-radius: 0px 6px 6px 0px;
-			}
-		}
-	}
+            &:last-child {
+                border-right: none;
+                border-radius: 0px 6px 6px 0px;
+            }
+        }
+    }
 }
 
 tbody {
-	tr {
-		border-bottom: 1px solid $border;
+    tr {
+        border-bottom: 1px solid $border;
 
-		td {
-			padding: 12px 20px;
-			text-align: center;
-			border-right: 1px solid $border;
+        td {
+            padding: 12px 20px;
+            text-align: center;
+            border-right: 1px solid $border;
 
-			&:last-child {
-				border-right: none;
-			}
-		}
-	}
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
 }
 
 .table-name {
-	white-space: nowrap;
-	text-transform: capitalize;
+    white-space: nowrap;
+    text-transform: capitalize;
 }
 
 .table-image {
-	img {
-		width: auto;
-		height: 100px;
-	}
+    img {
+        width: auto;
+        height: 100px;
+    }
 }
 
 .table-price {
-	h6 {
-		white-space: nowrap;
+    h6 {
+        white-space: nowrap;
 
-		small {
-			font-size: 13px;
-			margin-left: 3px;
-			color: $gray;
-			font-family: sans-serif;
-		}
-	}
+        small {
+            font-size: 13px;
+            margin-left: 3px;
+            color: $gray;
+            font-family: sans-serif;
+        }
+    }
 }
 
 .table-desc {
-	p {
-		width: 150px;
-		font-size: 15px;
-		text-align: left;
+    p {
+        width: 150px;
+        font-size: 15px;
+        text-align: left;
 
-		a {
-			text-transform: capitalize;
+        a {
+            text-transform: capitalize;
 
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
 .table-vendor {
-	a {
-		font-weight: 500;
-		color: $heading;
-		text-transform: capitalize;
-		transition: all linear .3s;
-		-webkit-transition: all linear .3s;
-		-moz-transition: all linear .3s;
-		-ms-transition: all linear .3s;
-		-o-transition: all linear .3s;
+    a {
+        font-weight: 500;
+        color: $heading;
+        text-transform: capitalize;
+        transition: all linear .3s;
+        -webkit-transition: all linear .3s;
+        -moz-transition: all linear .3s;
+        -ms-transition: all linear .3s;
+        -o-transition: all linear .3s;
 
-		&:hover {
-			color: $primary;
-		}
-	}
+        &:hover {
+            color: $primary;
+        }
+    }
 }
 
 .table-status {
-	h6 {
-		text-transform: capitalize;
-	}
+    h6 {
+        text-transform: capitalize;
+    }
 
-	.stock-in {
-		color: $primary;
-	}
+    .stock-in {
+        color: $primary;
+    }
 
-	.stock-out {
-		color: $red;
-	}
+    .stock-out {
+        color: $red;
+    }
 }
 
 .table-shop {
-	width: 180px;
+    width: 180px;
 
-	.product-add {
-		color: $white;
-		background: $primary;
-	}
+    .product-add {
+        color: $white;
+        background: $primary;
+    }
 
-	.action-plus {
-		i {
-			background: $white;
-		}
-	}
+    .action-plus {
+        i {
+            background: $white;
+        }
+    }
 
-	.action-minus {
-		i {
-			background: $white;
-		}
-	}
+    .action-minus {
+        i {
+            background: $white;
+        }
+    }
 }
 
 .table-action {
-	a {
-		i {
-			width: 35px;
-			height: 35px;
-			font-size: 16px;
-			line-height: 35px;
-			text-align: center;
-			display: inline-block;
-			border-radius: 5px;
-			margin: 3px;
-			transition: all linear .3s;
-			-webkit-transition: all linear .3s;
-			-moz-transition: all linear .3s;
-			-ms-transition: all linear .3s;
-			-o-transition: all linear .3s;
-		}
-	}
+    a {
+        i {
+            width: 35px;
+            height: 35px;
+            font-size: 16px;
+            line-height: 35px;
+            text-align: center;
+            display: inline-block;
+            border-radius: 5px;
+            margin: 3px;
+            transition: all linear .3s;
+            -webkit-transition: all linear .3s;
+            -moz-transition: all linear .3s;
+            -ms-transition: all linear .3s;
+            -o-transition: all linear .3s;
+        }
+    }
 
-	.view {
-		i {
-			color: $green;
-			background: $white;
-			background: $chalk;
+    .view {
+        i {
+            color: $green;
+            background: $white;
+            background: $chalk;
 
-			&:hover {
-				color: $white;
-				background: $green;
-			}
-		}
-	}
+            &:hover {
+                color: $white;
+                background: $green;
+            }
+        }
+    }
 
-	.wish {
-		i {
-			color: $green;
-			background: $white;
-		}
-	}
+    .wish {
+        i {
+            color: $green;
+            background: $white;
+        }
+    }
 
-	.wish.active {
-		i {
-			color: $white;
-			background: $green;
-		}
-	}
+    .wish.active {
+        i {
+            color: $white;
+            background: $green;
+        }
+    }
 
-	.trash {
-		i {
-			color: $red;
-			background: $white;
-			background: $chalk;
+    .trash {
+        i {
+            color: $red;
+            background: $white;
+            background: $chalk;
 
-			&:hover {
-				color: $white;
-				background: $red;
-			}
-		}
-	}
+            &:hover {
+                color: $white;
+                background: $red;
+            }
+        }
+    }
 }
 
 .table-bordered {
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 
-	th {
-		padding: 12px 25px;
-		text-align: left;
-		font-weight: 500;
-	}
+    th {
+        padding: 12px 25px;
+        text-align: left;
+        font-weight: 500;
+    }
 
-	td {
-		padding: 12px 25px;
-		text-align: left;
+    td {
+        padding: 12px 25px;
+        text-align: left;
 
-		&:last-child {
-			border-right: 1px solid $border;
-		}
-	}
+        &:last-child {
+            border-right: 1px solid $border;
+        }
+    }
+}
+
+@media (max-width: 1199px) {
+    .table-scroll {
+        overflow-x: scroll;
+    }
 }

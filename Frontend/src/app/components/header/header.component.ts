@@ -11,8 +11,8 @@ import { CartService } from 'src/app/services/cart.service';
 // import { Category } from 'src/app/models/filters';
 import { CategoryService } from 'src/app/services/category.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
-import { toggleIsSideCart, toggleIsSideCategory } from 'src/app/store/general/general.actions';
-import { selectIsSideCart, selectIsSideCategory } from 'src/app/store/general/general.selectors';
+import { toggleIsMobileMenu, toggleIsSideCart, toggleIsSideCategory } from 'src/app/store/general/general.actions';
+import { selectIsMobileMenu, selectIsSideCart, selectIsSideCategory } from 'src/app/store/general/general.selectors';
 import { AppStore } from '../../store/app.store';
 
 @Component({
@@ -28,6 +28,8 @@ export class HeaderComponent implements OnInit {
     searchInput: string = '';
     isSideCategory$ = this.store.select(selectIsSideCategory);
     isSideCart$ = this.store.select(selectIsSideCart);
+    isMobileMenu$ = this.store.select(selectIsMobileMenu);
+    isMobileSearch = false;
 
     cta: string = 'Get 10% Discount For Your First Shopping!';
     topPages: { url: string, label: string }[] = [
@@ -116,5 +118,13 @@ export class HeaderComponent implements OnInit {
 
     toggleSideCart(): void {
         this.store.dispatch(toggleIsSideCart());
+    }
+
+    toggleMobileMenu(): void {
+        this.store.dispatch(toggleIsMobileMenu());
+    }
+
+    toggleMobileSearch(): void {
+        this.isMobileSearch = !this.isMobileSearch;
     }
 }

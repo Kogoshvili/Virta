@@ -12,3 +12,7 @@ export interface CategoryDTO {
     parent: number;
     children: CategoryDTO[];
 }
+
+export interface ExpandableCategory extends CategoryDTO {
+    isActive: boolean;
+}

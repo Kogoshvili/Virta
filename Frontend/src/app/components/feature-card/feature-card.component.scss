@@ -1,115 +1,126 @@
 @import 'variables';
 
 .feature-card {
-	width: 100%;
-	overflow: hidden;
-	position: relative;
-	margin-bottom: 25px;
-	padding: 18px 18px;
-	border-radius: 8px;
-	background: $white;
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	transition: all linear 0.3s;
-	-webkit-transition: all linear 0.3s;
-	-moz-transition: all linear 0.3s;
-	-ms-transition: all linear 0.3s;
-	-o-transition: all linear 0.3s;
-	&:hover {
-		border-color: $primary;
-		box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.1);
-		.feature-widget {
-			opacity: 1;
-			bottom: 15px;
-		}
-		.feature-add {
-			color: $white;
-			background: $primary;
-		}
-	}
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 25px;
+    padding: 18px 18px;
+    border-radius: 8px;
+    background: $white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
+
+    &:hover {
+        border-color: $primary;
+        box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, .1);
+
+        .feature-widget {
+            opacity: 1;
+            bottom: 15px;
+        }
+
+        .feature-add {
+            color: $white;
+            background: $primary;
+        }
+    }
 }
+
 .feature-media {
-	position: relative;
+    position: relative;
 }
+
 .feature-label {
-	display: flex;
-	flex-direction: column;
-	position: absolute;
-	top: 0px;
-	left: 0px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
+
 .feature-wish {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	font-size: 18px;
-	color: $gray-chalk;
-	transition: .5s ease-in-out;
-	&:hover {
-		color: $primary;
-	}
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 18px;
+    color: $gray-chalk;
+    transition: .5s ease-in-out;
+
+    &:hover,
+    &.active {
+        color: $primary;
+    }
 }
-.feature-wish.active {
-	color: $primary;
-}
+
 .feature-image {
     cursor: pointer;
 
-	img {
-		width: 170px;
-	}
+    img {
+        width: 170px;
+    }
 }
+
 .feature-widget {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: absolute;
-	bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-	width: 100%;
-	opacity: 0;
-	transition: all linear 0.3s;
-	-webkit-transition: all linear 0.3s;
-	-moz-transition: all linear 0.3s;
-	-ms-transition: all linear 0.3s;
-	-o-transition: all linear 0.3s;
+    width: 100%;
+    opacity: 0;
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
 
-	a, div {
+    a {
         cursor: pointer;
-		width: 40px;
-		height: 40px;
-		font-size: 15px;
-		margin: 0px 6px;
-		line-height: 40px;
-		text-align: center;
-		border-radius: 8px;
-		color: $white;
-		background: $primary;
-		text-shadow: $primary-tshadow;
-		box-shadow: 0px 7px 12px 0px rgba(0, 0, 0, 0.12);
-	}
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+        margin: 0px 6px;
+        line-height: 40px;
+        text-align: center;
+        border-radius: 8px;
+        color: $white;
+        background: $primary;
+        text-shadow: $primary-tshadow;
+        box-shadow: 0px 7px 12px 0px rgba(0, 0, 0, .12);
+    }
 }
+
 .feature-content {
-	width: 100%;
-	padding-left: 25px;
-	margin-left: 25px;
-	border-left: 1px solid $border;
-	.product-add {
-		width: 60px;
-		height: 34px;
-		&:hover {
-			background: $primary;
-			color: $white;
-		}
-	}
+    width: 100%;
+    padding-left: 25px;
+    margin-left: 25px;
+    border-left: 1px solid $border;
+
+    .product-add {
+        width: 60px;
+        height: 34px;
+
+        &:hover {
+            background: $primary;
+            color: $white;
+        }
+    }
 }
+
 .feature-rating {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 3px;
     cursor: pointer;
 
     ::ng-deep {
@@ -120,68 +131,120 @@
         }
     }
 
-	div {
-		font-size: 14px;
-		margin: 0px 2px;
-		color: $gray;
-		white-space: nowrap;
-		transition: all linear 0.3s;
-		-webkit-transition: all linear 0.3s;
-		-moz-transition: all linear 0.3s;
-		-ms-transition: all linear 0.3s;
-		-o-transition: all linear 0.3s;
+    a {
+        font-size: 14px;
+        margin: 0px 2px;
+        color: $gray;
+        white-space: nowrap;
+        transition: all linear .3s;
+        -webkit-transition: all linear .3s;
+        -moz-transition: all linear .3s;
+        -ms-transition: all linear .3s;
+        -o-transition: all linear .3s;
 
-		&:hover {
-			color: $primary;
-			text-decoration: underline;
-		}
-	}
-	.active {
-		color: $primary;
-	}
+        &:hover {
+            color: $primary;
+            text-decoration: underline;
+        }
+    }
+
+    .active {
+        color: $primary;
+    }
 }
+
 .feature-name {
-	margin-bottom: 3px;
-	text-transform: capitalize;
+    margin-bottom: 3px;
+    text-transform: capitalize;
     cursor: pointer;
 
-	div {
-		color: $sub-heading;
-		transition: all linear 0.3s;
-		-webkit-transition: all linear 0.3s;
-		-moz-transition: all linear 0.3s;
-		-ms-transition: all linear 0.3s;
-		-o-transition: all linear 0.3s;
+    a {
+        color: $sub-heading;
+        transition: all linear .3s;
+        -webkit-transition: all linear .3s;
+        -moz-transition: all linear .3s;
+        -ms-transition: all linear .3s;
+        -o-transition: all linear .3s;
 
-		&:hover {
-			color: $primary;
-		}
-	}
+        &:hover {
+            color: $primary;
+        }
+    }
 }
+
+
 .feature-price {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	align-items: baseline;
-	margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    margin-bottom: 10px;
     cursor: pointer;
 
-	del {
-		color: $red;
-		margin-right: 8px;
-	}
+    del {
+        color: $red;
+        margin-right: 8px;
+    }
 
     span {
-		color: $primary;
-		white-space: nowrap;
+        color: $primary;
+        white-space: nowrap;
 
         small {
-			font-weight: 400;
-		}
-	}
+            font-weight: 400;
+        }
+    }
 }
+
 .feature-desc {
-	font-size: 15px;
-	line-height: 25px;
-	margin-bottom: 15px;
+    font-size: 15px;
+    line-height: 25px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 575px) {
+    .feature-card {
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+
+    .feature-image img {
+        width: 100%;
+    }
+
+    .feature-name {
+        font-size: 15px;
+        line-height: 22px;
+    }
+}
+
+@media (max-width: 450px) {
+    .feature-card {
+        align-items: center;
+    }
+
+    .feature-content {
+        padding-left: 12px;
+        margin-left: 12px;
+    }
+
+    .feature-desc {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .feature-image img {
+        width: 190px;
+    }
+
+    .top-part {
+        .feature-image img {
+            width: 72px !important;
+        }
+
+        .feature-content {
+            padding-left: 8px;
+            margin-left: 8px;
+        }
+    }
 }

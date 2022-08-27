@@ -1,126 +1,253 @@
 @import 'variables';
 
-// :host-context(.shadow) {
-//     .entry {
-//         &-button {
-//             box-shadow: $main-shadow;
-//             right: -140px;
-//             top: 140px;
-//         }
-
-//         &-overlay {
-//             top: 0;
-//             right: -80px;
-//         }
-//     }
-// }
-
-// .entry {
-//     &-button {
-//         background-color: $bg-primary;
-//         border-radius: 50%;
-//         height: 40px;
-//         width: 40px;
-//         cursor: pointer;
-//         top: 0;
-//         right: 0;
-//         transition: right 150ms linear, top 150ms linear;
-
-//         .icon {
-//             top: 10px;
-//             right: -10px;
-//         }
-//     }
-
-//     &-overlay {
-//         position: absolute;
-//         right: 0;
-//         background-color: $bg-primary;
-//         color: $black;
-//         width: 300px;
-//         padding: 10px 20px;
-//         border: 1px solid black;
-//         border-radius: 5px;
-//         box-shadow: 5px 5px 35px rgba(0, 0, 0, .5);
-
-//         .toggle {
-//             display: flex;
-//             flex-direction: row-reverse;
-//             margin-bottom: 20px;
-//         }
-
-//         .input:not(:first-child) {
-//             margin: 20px 0;
-//         }
-
-//         label {
-//             margin-bottom: 5px;
-//         }
-
-//         input[type=submit] {
-//             float: right;
-//             z-index: 10;
-//         }
-//     }
-// }
-
 .user-form-part {
+    padding-top: 30px;
     background-color: $white;
     padding: 30px;
     border-radius: 8px;
-
-	.form-check-input {
-		&:checked {
-			background-color: $primary;
-			border-color: $primary;
-		}
-	}
 }
 
 .user-form-logo {
-	text-align: center;
-	margin-bottom: 25px;
+    text-align: center;
+    margin-bottom: 25px;
 
-	img {
-		width: 250px;
-	}
+    img {
+        width: 250px;
+    }
 }
 
 .user-form-card {
-	padding: 30px 40px;
-	border-radius: 8px;
-	background: $white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: $white;
 }
 
 .user-form-title {
-	text-align: center;
-	margin-bottom: 25px;
+    text-align: center;
+    margin-bottom: 25px;
 
-	h2 {
-		font-size: 28px;
-		line-height: 36px;
-		margin-bottom: 5px;
-		color: $primary;
-	}
+    h2 {
+        font-size: 28px;
+        line-height: 36px;
+        margin-bottom: 5px;
+        color: $primary;
+    }
 
-	p {
-		text-transform: capitalize;
-	}
+    p {
+        text-transform: capitalize;
+    }
+}
+
+.user-form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-form-social {
+    width: 100%;
+
+    li {
+        margin-bottom: 20px;
+
+        a {
+            width: 100%;
+            font-size: 15px;
+            padding: 10px 0px;
+            border-radius: 8px;
+            letter-spacing: 0.3px;
+            text-align: center;
+            text-transform: capitalize;
+            color: $white;
+            background: $primary;
+
+            i {
+                font-size: 16px;
+                margin-right: 10px;
+            }
+        }
+
+        &:nth-child(1) a {
+            background: #385998;
+        }
+
+        &:nth-child(2) a {
+            background: #00acee;
+        }
+
+        &:nth-child(3) a {
+            background: #e60023;
+        }
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.user-form-divider {
+    margin: 0px 50px;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 250px;
+        z-index: -1;
+        background: $border;
+        transform: translate(-50%, -50%);
+    }
+
+    p {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0 auto;
+        font-style: italic;
+        line-height: 38px;
+        border-radius: 50%;
+        text-align: center;
+        color: $gray;
+        background: $white;
+        border: 1px solid $border;
+    }
 }
 
 .user-form {
-	width: 100%;
+    width: 100%;
 
-	.form-group {
-		margin-bottom: 20px;
-	}
+    .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+.form-button {
+    text-align: center;
+
+    button {
+        width: 100%;
+        height: 45px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 45px;
+        border-radius: 8px;
+        letter-spacing: 0.3px;
+        text-align: center;
+        text-transform: uppercase;
+        color: $white;
+        background: $primary;
+    }
+
+    p {
+        font-size: 15px;
+        margin-top: 12px;
+        text-transform: capitalize;
+
+        a {
+            font-weight: 500;
+            margin-left: 5px;
+            color: $primary;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.user-form-remind {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    background: $white;
+    border: 1px solid $border;
+
+    p {
+        font-size: 15px;
+        text-transform: capitalize;
+
+        a {
+            font-weight: 500;
+            margin-left: 5px;
+            color: $primary;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
 .forgot-pass {
-	color: $primary;
+    color: $primary;
 
-	&:hover {
-		color: $primary;
-		text-decoration: underline;
-	}
+    &:hover {
+        color: $primary;
+        text-decoration: underline;
+    }
+}
+
+.user-form-part .form-check-input:checked {
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.user-form-footer {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 40px;
+
+    p {
+        font-size: 14px;
+        color: $gray;
+
+        a {
+            color: $primary;
+            transition: all linear 0.3s;
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .user-form-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .user-form-group {
+        display: inherit;
+    }
+
+    .user-form-divider {
+        margin: 25px 0px;
+        position: relative;
+        z-index: 1;
+
+        &::before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            z-index: -1;
+            background: $border;
+            transform: translate(-50%, -50%);
+        }
+    }
 }
