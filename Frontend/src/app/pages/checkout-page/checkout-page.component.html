@@ -1,4 +1,4 @@
-<div class="item" *ngFor="let item of cart">
+<!-- <div class="item" *ngFor="let item of cart">
     <div class="image">
         <img src="{{ item.imageUrl }}" alt="product image">
     </div>
@@ -14,4 +14,121 @@
 </div>
 <hr>
 <p>{{ totalPrice }}$</p>
-<button (click)="submit()" disabled="{{ cart.length > 0 }}">Place Order</button>
+<button (click)="submit()" disabled="{{ cart.length > 0 }}">Place Order</button> -->
+<section class="inner-section checkout-part section-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <app-account-card>
+                    <div Title>
+                        <h4>delivery address</h4>
+                        <button data-bs-toggle="modal" data-bs-target="#address-add"> <i
+                                class="fal fa-map-marker-alt"></i> add address</button>
+                    </div>
+                    <div class="row" Content>
+                        <div class="col-md-6 col-lg-4" *ngFor="let card of [1, 2, 3]">
+                            <app-profile-card
+                                classes="address active"
+                                title="Address One"
+                                subtitle="4754  Java Lane,Aiken, Carolina,USA"
+                            ></app-profile-card>
+                        </div>
+                    </div>
+                </app-account-card>
+
+                <app-account-card>
+                    <h4 Title>Delivery Partner</h4>
+                    <div class="row" Content>
+                        <div class="col-md-6 col-lg-4" *ngFor="let card of [1, 2, 3]">
+                            <app-profile-card
+                                classes="contact active"
+                                title="Parner One"
+                                subtitle="one day delivery"
+                            ></app-profile-card>
+                        </div>
+                    </div>
+                </app-account-card>
+                <app-account-card>
+                    <div Title>
+                        <h4>contact number</h4>
+                        <button>
+                            <i class="fal fa-phone"></i>
+                            add contact
+                        </button>
+                    </div>
+                    <div class="row" Content>
+                        <div class="col-md-6 col-lg-4" *ngFor="let card of [1, 2, 3]">
+                            <app-profile-card
+                                classes="contact active"
+                                title="contact one"
+                                subtitle="+1 123 456 7894"
+                            ></app-profile-card>
+                        </div>
+                    </div>
+                </app-account-card>
+                <app-account-card class="mb-0">
+                    <div Title>
+                        <h4>payment option</h4>
+                        <button>
+                            <i class="fal fa-credit-card"></i>
+                            add card
+                        </button>
+                    </div>
+                    <div class="row" Content>
+                        <div class="col-md-6 col-lg-4" *ngFor="let card of [1, 2, 3]">
+                            <app-payment-card
+                                cardLogo="assets/img/visa.png"
+                                last4="1234"
+                                owner="Franc Smith"
+                            ></app-payment-card>
+                          </div>
+                    </div>
+                </app-account-card>
+            </div>
+
+            <div class="col-lg-4">
+                <app-account-card>
+                    <div class="checkout-charge">
+                        <div class="account-title">
+                            <h4>order summary</h4>
+                        </div>
+                        <ul>
+                            <li><span>Sub total</span><span>$250.00</span></li>
+                            <li><span>delivery fee</span><span>$20.00</span></li>
+                            <li><span>discount</span><span>$10.00</span></li>
+                            <li><span>Tax</span><span>$15.00</span></li>
+                            <li>
+                                <span>Total</span><span>$295.00</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="checkout-proced"><a href="invoice.html" class="btn btn-inline">procced to checkout</a>
+                    </div>
+                    <div class="chekout-coupon">
+                        <form class="coupon-form">
+                            <input type="text" placeholder="Enter your coupon code" /><button
+                                type="submit"><span>apply</span></button>
+                        </form>
+                    </div>
+                </app-account-card>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal" id="contact-add">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button class="modal-close" data-bs-dismiss="modal"><i class="far fa-times"></i></button>
+            <form class="modal-form">
+                <div class="form-title">
+                    <h3>add new contact</h3>
+                </div>
+                <div class="form-group"><label class="form-label">title</label><input class="form-control" type="text"
+                        placeholder="Enter title" /></div>
+                <div class="form-group"><label class="form-label">number</label><input class="form-control" type="text"
+                        placeholder="Enter your number" /></div>
+                <button class="form-btn" type="submit">save contact info</button>
+            </form>
+        </div>
+    </div>
+</div>

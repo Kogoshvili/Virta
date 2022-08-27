@@ -1,3 +1,103 @@
-img {
-    width: 100px;
+@import 'variables';
+
+.chekout-coupon {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.chekout-coupon .coupon-form {
+    margin: 0px;
+    display: flex;
+    box-shadow: none;
+    border-color: #019345;
+}
+
+.checkout-part tbody tr td,
+.checkout-part thead tr th {
+    border: none;
+}
+
+.checkout-charge ul li {
+    padding: 15px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $border;
+}
+
+.checkout-charge ul li:last-child {
+    border-bottom: none;
+}
+
+.checkout-charge ul li:last-child span {
+    font-size: 18px;
+    font-weight: 500;
+    color: $primary;
+}
+
+.checkout-charge ul li span {
+    font-weight: 500;
+    color: $heading;
+    text-transform: capitalize;
+}
+
+.checkout-charge ul li span small {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 3px;
+}
+
+.checkout-check {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+    margin-top: 50px;
+}
+
+.checkout-check input {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.checkout-check label {
+    line-height: 22px;
+}
+
+.checkout-check label a {
+    color: $primary;
+}
+
+.checkout-check label a:hover {
+    text-decoration: underline;
+}
+
+.checkout-proced .btn {
+    width: 100%;
+}
+
+.checkout-proced .btn:hover {
+    background: #8493ca;
+    color: #fff;
+}
+
+.table-action .view i,
+.table-action .trash i {
+    background: $chalk;
+}
+
+@media (max-width: 767px) {
+
+    .chekout-coupon,
+    .checkout-charge {
+        width: 100%;
+    }
+
+    .checkout-check {
+        margin-top: 15px;
+    }
 }
