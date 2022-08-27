@@ -3,7 +3,6 @@ import {
     OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { CategoryDTO } from 'src/app/models/Category';
 import { AuthService } from 'src/app/services/auth.service';
@@ -30,6 +29,7 @@ export class HeaderComponent implements OnInit {
     isSideCart$ = this.store.select(selectIsSideCart);
     isMobileMenu$ = this.store.select(selectIsMobileMenu);
     isMobileSearch = false;
+    isOpen: boolean = false;
 
     cta: string = 'Get 10% Discount For Your First Shopping!';
     topPages: { url: string, label: string }[] = [
@@ -57,14 +57,13 @@ export class HeaderComponent implements OnInit {
         private router: Router,
         private categoryService: CategoryService,
         private store: Store<AppStore>,
-        private modalService: NgbModal,
         private authService: AuthService,
         private cartService: CartService,
         private wishlistService: WishlistService
     ) { }
 
     ngOnInit(): void {
-        this.authService.isLoggedInSub.subscribe(
+        this.authService.isLoggedIn.subscribe(
             loggedIn => this.isLoggedIn = loggedIn
         );
 
@@ -104,8 +103,8 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/products'], { queryParams: { title: this.searchInput } });
     }
 
-    openEntry(context: any) {
-        this.modalService.open(context);
+    openEntry() {
+        this.isOpen = !this.isOpen;
     }
 
     goToCategory(category: string = ''): void {

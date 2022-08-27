@@ -28,7 +28,7 @@ export class CartService {
         private http: HttpClient,
         private auth: AuthService
     ) {
-        this.auth.isLoggedInSub.subscribe(
+        this.auth.isLoggedIn.subscribe(
             isLoggedIn => {
                 if (isLoggedIn) {
                     this.getRemoteCart().subscribe(

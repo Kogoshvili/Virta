@@ -14,7 +14,7 @@
           "tsconfig.json"
         ],
         "createDefaultProgram": true,
-        "tsconfigRootDir": "./Frontend"
+        "tsconfigRootDir": "./"
       },
       "extends": [
         "plugin:@angular-eslint/recommended",

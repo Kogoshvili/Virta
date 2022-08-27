@@ -1,9 +1,9 @@
 import {
     Component, Input, OnInit
 } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDTO, ProductLabels } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 import VenoBox from 'venobox';
 
 @Component({
@@ -17,10 +17,12 @@ export class ProductCardComponent implements OnInit {
     starts = { full: [] as any[], empty: [0, 1, 2, 3, 4] };
     venobox: typeof VenoBox;
     closeResult = '';
+    isOpen: boolean = false;
+    isInWishlist = false;
 
     constructor(
-        private modalService: NgbModal,
-        private cartService: CartService
+        private cartService: CartService,
+        private wishlistService: WishlistService
     ) { }
 
     ngOnInit(): void {
@@ -30,14 +32,23 @@ export class ProductCardComponent implements OnInit {
         };
 
         this.venobox = new VenoBox();
+
+        this.wishlistService.wishlist.subscribe(
+            () => this.isInWishlist = this.wishlistService.isInWishlist(this.product.id)
+        );
     }
 
-    open(content: any) {
-        this.modalService.open(content);
+    open() {
+        this.isOpen = !this.isOpen;
     }
 
-    onWishlistClick() {}
-
+    onWishlistClick(): void {
+        if (this.isInWishlist) {
+            this.wishlistService.removeItem(this.product.id);
+        } else {
+            this.wishlistService.addToWishlist(this.product);
+        }
+    }
     onAddToCartClick() {
         this.cartService.addToCart(this.product);
     }

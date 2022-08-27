@@ -18,6 +18,7 @@ export class MobileSideComponent implements OnInit {
     isLoggedIn: boolean = false;
     categories: ExpandableCategory[] = [];
     areCategoriesExpanded: boolean = false;
+    isOpen: boolean = false;
 
     constructor(
         private store: Store<AppStore>,
@@ -27,7 +28,7 @@ export class MobileSideComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.authService.isLoggedInSub.subscribe(
+        this.authService.isLoggedIn.subscribe(
             loggedIn => this.isLoggedIn = loggedIn
         );
 
@@ -37,8 +38,8 @@ export class MobileSideComponent implements OnInit {
         );
     }
 
-    openEntry(context: any) {
-        this.modalService.open(context);
+    openEntry() {
+        this.isOpen = !this.isOpen;
     }
 
     toggleSideCart(): void {

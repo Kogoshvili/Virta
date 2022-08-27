@@ -18,7 +18,7 @@ import { AuthService } from './auth.service';
     providedIn: 'root'
 })
 export class WishlistService {
-    baseUrl = environment.apiUrl + 'customer/wishlist/';
+    baseUrl = environment.apiUrl + 'customer/wishlist';
     wishlist = new BehaviorSubject<ProductInWishlist[]>(JSON.parse(this.getLocalWishlist()));
 
     constructor(
@@ -26,7 +26,7 @@ export class WishlistService {
       private http: HttpClient,
       private auth: AuthService
     ) {
-        this.auth.isLoggedInSub.subscribe(
+        this.auth.isLoggedIn.subscribe(
             isLoggedIn => {
                 if (isLoggedIn) {
                     this.getRemoteWishlist().subscribe(
@@ -43,7 +43,7 @@ export class WishlistService {
     }
 
     getRemoteWishlist(): Observable<ProductInWishlist[]> {
-        return this.http.get<{products: ProductInWishlist[]}>(this.baseUrl)
+        return this.http.get<{ products: ProductInWishlist[] }>(this.baseUrl)
             .pipe(map(response => response.products));
     }
 
@@ -89,7 +89,7 @@ export class WishlistService {
     }
 
     SaveWishlistToDb(): Observable<any> {
-        return this.http.post(this.baseUrl, { products: this.wishlist.getValue() })
+        return this.http.post(this.baseUrl, { productIds: this.wishlist.getValue().map(i => i.productId) })
             .pipe(
                 catchError(
                     (error) => {

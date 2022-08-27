@@ -7,7 +7,7 @@
         <div class="nav-content">
             <div class="nav-profile">
                 <ng-template *ngIf="!isLoggedIn; else Else">
-                    <a *ngIf="!isLoggedIn" class="header-widget" role="button" (click)="openEntry(login)" title="Login">
+                    <a *ngIf="!isLoggedIn" class="header-widget" role="button" (click)="openEntry()" title="Login">
                         <img src="assets/img/user.jpg" alt="guest" />
                     </a>
                 </ng-template>
@@ -102,7 +102,6 @@
         </div>
     </div>
 </aside>
-<ng-template #login let-modal>
-    <button class="modal-close far fa-times" (click)="modal.dismiss()"></button>
-    <app-entry [modal]="modal"></app-entry>
-</ng-template>
+<app-modal [isOpen]="isOpen" id="entry">
+    <app-entry></app-entry>
+</app-modal>

@@ -1,13 +1,11 @@
 import {
-    Component,
-    Input,
-    OnInit
+    Component, OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 enum PageState {
     login,
@@ -22,20 +20,22 @@ enum PageState {
 })
 export class EntryComponent implements OnInit {
     user: User = {} as User;
-    @Input() modal!: NgbModalRef;
     pageState: PageState = 0;
     isAccepted: boolean = false;
 
     constructor(
         private authService: AuthService,
         private toastr: ToastrService,
-        private router: Router
+        private router: Router,
+        private modalService: ModalService
     ) { }
 
     ngOnInit(): void {
-        this.authService.isLoggedInSub.subscribe(
+        this.authService.isLoggedIn.subscribe(
             loggedIn => {
-                if (loggedIn) this.modal.dismiss('success');
+                if (loggedIn) {
+                    this.modalService.dismiss('entry', 'success');
+                }
             }
         );
     }

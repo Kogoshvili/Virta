@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDTO, ProductLabels } from 'src/app/models/Product';
+import { CartService } from 'src/app/services/cart.service';
 import VenoBox from 'venobox';
 
 @Component({
@@ -12,9 +14,16 @@ export class FeatureCardComponent implements OnInit {
     @Input() product!: ProductDTO;
     venobox: typeof VenoBox;
 
-    constructor() { }
+    constructor(
+        private modalService: NgbModal,
+        private cartService: CartService
+    ) { }
 
     ngOnInit(): void {
         this.venobox = new VenoBox();
+    }
+
+    onAddToCartClick() {
+        this.cartService.addToCart(this.product);
     }
 }

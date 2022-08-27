@@ -62,6 +62,7 @@ import { MobileMenuComponent } from './components/mobile-menu/mobile-menu.compon
 import { MobileSideComponent } from './components/mobile-side/mobile-side.component';
 import { AccountCardComponent } from './components/account-card/account-card.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');
@@ -110,7 +111,8 @@ export function tokenGetter(): string | null {
         MobileMenuComponent,
         MobileSideComponent,
         AccountCardComponent,
-        BreadcrumbComponent
+        BreadcrumbComponent,
+        ModalComponent
     ],
     imports: [
         BrowserModule,

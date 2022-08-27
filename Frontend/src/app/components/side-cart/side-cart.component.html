@@ -32,7 +32,7 @@
         </ul>
         <div class="cart-footer">
             <form #couponForm="ngForm" (ngSubmit)="onCouponApply()" class="coupon-form">
-                <input type="text" placeholder="Have a coupon code? Enter it!" [(ngModel)]="coupon"/>
+                <input type="text" placeholder="Have a coupon code? Enter it!" name="coupon" [(ngModel)]="coupon"/>
                 <button (click)="onCouponApply()" type="submit"><span>apply</span></button>
             </form>
             <a class="cart-checkout-btn" role="button" [routerLink]="'/checkout'">

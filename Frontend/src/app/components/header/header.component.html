@@ -59,7 +59,7 @@
                     <button><i class="far fa-search"></i></button>
                 </form>
                 <div class="header-widget-group right">
-                    <a *ngIf="!isLoggedIn" class="header-widget" role="button" (click)="openEntry(login)" title="Login">
+                    <a *ngIf="!isLoggedIn" class="header-widget" role="button" (click)="openEntry()" title="Login">
                         <img src="assets/img/user.jpg" alt="guest" />
                     </a>
                     <a *ngIf="isLoggedIn" class="header-widget" [routerLink]="'/my-account'" role="button" title="My Account">
@@ -149,7 +149,6 @@
         </div>
     </nav>
 </div>
-<ng-template #login let-modal>
-    <button class="modal-close far fa-times" (click)="modal.dismiss()"></button>
-    <app-entry [modal]="modal"></app-entry>
-</ng-template>
+<app-modal [isOpen]="isOpen" id="entry">
+    <app-entry></app-entry>
+</app-modal>

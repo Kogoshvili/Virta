@@ -22,7 +22,7 @@ import {
 })
 export class AuthService {
     baseUrl = environment.apiUrl + 'auth/';
-    isLoggedInSub = new BehaviorSubject<boolean>(false);
+    isLoggedIn = new BehaviorSubject<boolean>(false);
     jwtHelper = new JwtHelperService();
     decodedToken: any;
 
@@ -33,7 +33,7 @@ export class AuthService {
         const localToken = this.getLocalTokenString();
         if (localToken) {
             this.decodedToken = this.jwtHelper.decodeToken(localToken);
-            this.isLoggedInSub.next(true);
+            this.isLoggedIn.next(true);
         }
     }
 
@@ -45,7 +45,7 @@ export class AuthService {
                         this.toastr.success('Successful Authentication');
                         localStorage.setItem('token', response.token);
                         this.decodedToken = this.jwtHelper.decodeToken(response.token);
-                        this.isLoggedInSub.next(true);
+                        this.isLoggedIn.next(true);
                     }
                 ),
                 catchError(error => {
@@ -64,7 +64,7 @@ export class AuthService {
                         this.toastr.success('Successful Registration');
                         localStorage.setItem('token', response.token);
                         this.decodedToken = this.jwtHelper.decodeToken(response.token);
-                        this.isLoggedInSub.next(true);
+                        this.isLoggedIn.next(true);
                     }
                 ),
                 catchError(error => {
@@ -76,7 +76,7 @@ export class AuthService {
     }
 
     logOut(): void {
-        this.isLoggedInSub.next(false);
+        this.isLoggedIn.next(false);
         localStorage.removeItem('token');
     }
 

@@ -49,6 +49,9 @@ namespace Virta.Api.Controllers
         [HttpPost("cart")]
         public async Task<IActionResult> UpsertCart(CartDTOIn cartDTOIn)
         {
+            if (cartDTOIn.Products == null)
+                return Ok();
+
             var cartUpsert = _mapper.Map<CartUpsert>(cartDTOIn);
 
             if (await _customerService.UpsertCartAsync(cartUpsert, User.GetUserId()))
@@ -73,6 +76,9 @@ namespace Virta.Api.Controllers
         [HttpPost("wishlist")]
         public async Task<IActionResult> UpsertWishlist(WishlistDTOIn wishlistDTO)
         {
+            if (wishlistDTO.ProductIds == null)
+                return Ok();
+
             var wishlistUpsert = _mapper.Map<WishlistUpsert>(wishlistDTO);
 
             if (await _customerService.UpsertWishlistAsync(wishlistUpsert, User.GetUserId()))

@@ -147,7 +147,7 @@ namespace Virta.Helpers
                 .ForMember(
                     dest => dest.Products,
                     opt => opt.MapFrom(
-                        src => src.ProductId
+                        src => src.ProductIds
                     )
                 );
             CreateMap<System.Guid, WishlistUpsert.WishlistItemUpsert>()

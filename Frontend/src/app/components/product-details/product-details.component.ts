@@ -68,6 +68,10 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     }
 
     onAddToWishlistClick(): void {
-        this.wishlistService.addToWishlist(this.product);
+        if (this.isInWishlist) {
+            this.wishlistService.removeItem(this.product.id);
+        } else {
+            this.wishlistService.addToWishlist(this.product);
+        }
     }
 }

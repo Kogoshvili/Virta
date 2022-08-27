@@ -12,7 +12,11 @@
 <div class="product-card">
     <div class="product-media">
         <div class="product-label"><label [ngClass]="['label-text', ProductLabels[product.label].toLowerCase() ]">{{ ProductLabels[product.label] }}</label></div>
-        <button class="product-wish wish"><i class="far fa-heart"></i></button>
+        <button
+            class="product-wish wish"
+            [class.active]="isInWishlist"
+            (click)="onWishlistClick()"
+            ><i [ngClass]="[isInWishlist ? 'fas' : 'far', 'fa-heart']"></i></button>
         <div class="product-image" [routerLink]="['/product/' + product.id]"><img src="{{ product.images[0].url }}" alt="product"/></div>
         <div class="product-widget">
             <a
@@ -24,7 +28,7 @@
                 data-autoplay="true"
                 data-vbtype="video"
             ></a>
-            <div title="Product View" class="far fa-eye" (click)="open(details)"></div>
+            <div title="Product View" class="far fa-eye" (click)="open()"></div>
         </div>
     </div>
     <div class="product-content">
@@ -42,7 +46,6 @@
         </div>
     </div>
 </div>
-<ng-template #details let-modal>
-    <button class="modal-close far fa-times" (click)="modal.dismiss()"></button>
-    <app-product-details class="preview-modal-content" [product]="product" [modal]="modal"></app-product-details>
-</ng-template>
+<app-modal [isOpen]="isOpen" id="product-preview">
+    <app-product-details class="preview-modal-content" [product]="product"></app-product-details>
+</app-modal>

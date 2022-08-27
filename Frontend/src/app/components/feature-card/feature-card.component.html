@@ -45,7 +45,7 @@
             <span>{{ product.price }}<small>/{{ product.unit }}</small></span>
         </h6>
         <p class="feature-desc"></p>
-        <a class="product-add" href="#" title="Add to Cart">
+        <a class="product-add" role="button" (click)="onAddToCartClick()" title="Add to Cart">
             <i class="far fa-shopping-cart"></i>
         </a>
     </div>
