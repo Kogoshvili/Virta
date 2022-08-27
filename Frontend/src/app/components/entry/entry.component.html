@@ -141,5 +141,28 @@
                 </div>
             </form>
         </div>
+        <div *ngIf="pageState === 3" class="user-form-card">
+            <div class="user-form-title">
+                <h2>change password!</h2>
+                <p>enter your valid old password</p>
+            </div>
+            <form class="user-form" #changeForm="ngForm" (ngSubmit)="change()">
+                <div class="form-group">
+                    <label>Old Password</label>
+                    <input type="password" class="form-control" name="oldPassword" placeholder="Enter old password" />
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" class="form-control" name="newPassword" placeholder="Enter new password" />
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" class="form-control" name="repeatPassword" placeholder="Confirm password" />
+                </div>
+                <div class="form-button">
+                    <button [disabled]="!changeForm.valid" type="submit">change password</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

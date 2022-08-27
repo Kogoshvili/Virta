@@ -7,13 +7,18 @@
     background: $white;
 }
 
+@media (max-width: 575px) {
+    .account-card {
+        padding: 0px 15px 15px;
+    }
+}
+
 .account-title {
     padding: 18px 0px;
     margin-bottom: 25px;
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
     justify-content: space-between;
     border-bottom: 1px solid $border;
 
@@ -27,43 +32,47 @@
         background: $primary;
     }
 
-    h4 {
-        text-transform: capitalize;
+    ::ng-deep {
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        h4 {
+            text-transform: capitalize;
+        }
+
+        button,
+        a {
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 6px;
+            letter-spacing: .3px;
+            padding: 5px 15px;
+            white-space: nowrap;
+            text-transform: capitalize;
+            color: $white;
+            background: $primary;
+            text-shadow: $primary-tshadow;
+            transition: all linear .3s;
+            -webkit-transition: all linear .3s;
+            -moz-transition: all linear .3s;
+            -ms-transition: all linear .3s;
+            -o-transition: all linear .3s;
+
+            i {
+                margin-right: 5px;
+            }
+        }
+
+        button:hover,
+        a:hover {
+            color: $white;
+            background: #8493ca;
+        }
+
     }
-
-    button,
-    a {
-        border: none;
-        font-size: 15px;
-        font-weight: 500;
-        border-radius: 6px;
-        letter-spacing: 0.3px;
-        padding: 5px 15px;
-        white-space: nowrap;
-        text-transform: capitalize;
-        color: $white;
-        background: $primary;
-        text-shadow: $primary-tshadow;
-        transition: all linear 0.3s;
-        -webkit-transition: all linear 0.3s;
-        -moz-transition: all linear 0.3s;
-        -ms-transition: all linear 0.3s;
-        -o-transition: all linear 0.3s;
-    }
-
-    button:hover,
-    a:hover {
-        color: $white;
-        background: #8493ca;
-    }
-}
-
-@media (max-width: 575px) {
-    .account-card {
-        padding: 0px 15px 15px;
-    }
-}
-
-.account-content {
-
 }

@@ -1,5 +1,5 @@
 import {
-    Component, OnInit
+    Component, Input, OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -7,10 +7,11 @@ import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { ModalService } from 'src/app/services/modal.service';
 
-enum PageState {
+export enum PageState {
     login,
     register,
-    reset
+    reset,
+    change
 }
 
 @Component({
@@ -20,7 +21,7 @@ enum PageState {
 })
 export class EntryComponent implements OnInit {
     user: User = {} as User;
-    pageState: PageState = 0;
+    @Input() pageState: PageState = 0;
     isAccepted: boolean = false;
 
     constructor(
@@ -69,6 +70,10 @@ export class EntryComponent implements OnInit {
     }
 
     reset() {
+
+    }
+
+    change() {
 
     }
 

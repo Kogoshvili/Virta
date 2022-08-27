@@ -63,6 +63,8 @@ import { MobileSideComponent } from './components/mobile-side/mobile-side.compon
 import { AccountCardComponent } from './components/account-card/account-card.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { ProfileCardComponent } from './components/profile-card/profile-card.component';
+import { PaymentCardComponent } from './components/payment-card/payment-card.component';
 
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');
@@ -112,7 +114,9 @@ export function tokenGetter(): string | null {
         MobileSideComponent,
         AccountCardComponent,
         BreadcrumbComponent,
-        ModalComponent
+        ModalComponent,
+        ProfileCardComponent,
+        PaymentCardComponent
     ],
     imports: [
         BrowserModule,

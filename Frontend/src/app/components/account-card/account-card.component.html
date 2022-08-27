@@ -1,6 +1,8 @@
 <div class="account-card">
-    <div class="account-title"><h4>{{ title }}</h4></div>
+    <div class="account-title">
+        <ng-content select="[Title]"></ng-content>
+    </div>
     <div class="account-content">
-        <ng-content></ng-content>
+        <ng-content select="[Content]"></ng-content>
     </div>
 </div>
