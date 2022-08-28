@@ -26,7 +26,7 @@ export class SuggestSectionComponent implements OnInit {
     ngOnInit(): void {
         this.categoryService.getCategories().subscribe(
             categories => this.suggestions = categories.map(category => ({
-                url: category.name,
+                url: `/products?categories=${category.name}`,
                 image: category.bannerSmall,
                 label: category.title,
                 count: category.productCount

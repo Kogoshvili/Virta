@@ -33,7 +33,9 @@ export class CartService {
                                 (acc, cur) => {
                                     const existing = acc.find(i => i.productId === cur.productId);
                                     if (existing) {
-                                        existing.quantity += cur.quantity;
+                                        existing.quantity = existing.quantity > cur.quantity
+                                            ? existing.quantity
+                                            : cur.quantity;
                                         return acc;
                                     }
                                     return [...acc, cur];

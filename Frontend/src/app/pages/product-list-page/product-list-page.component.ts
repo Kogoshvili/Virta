@@ -16,7 +16,6 @@ import { setLoadingScreen } from 'src/app/store/general/general.actions';
 })
 export class ProductListPageComponent implements OnInit {
     products: ProductDTO[] = [];
-    // filters: Filters = { categories: [], attributes: [] };
     totalCount: number = 0;
     perPage: number = 16;
     currentPage: number = 1;
