@@ -8,6 +8,9 @@
         "venobox",
         "Virta"
     ],
+    "eslint.options": {
+        "overrideConfigFile": "./.eslintrc.json",
+    },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true,
         "source.organizeImports": true
@@ -16,5 +19,4 @@
     "less.validate": false,
     "scss.validate": false,
     "stylelint.validate": ["css", "scss"],
-    "eslint.workingDirectories": [ "./" ],
 }

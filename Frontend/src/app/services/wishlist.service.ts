@@ -36,7 +36,7 @@ export class WishlistService {
                                     return [...acc, cur];
                                 }, [] as ProductInWishlist[]
                             );
-                            this.updateWishlist(mergedWishlist)
+                            this.updateWishlist(mergedWishlist);
                         },
                         error => console.error(error)
                     );
@@ -110,6 +110,6 @@ export class WishlistService {
         this.http.post(
             this.baseUrl,
             { productIds: wishlist.map(i => i.productId) }
-        ).toPromise()
+        ).toPromise();
     }
 }

@@ -58,7 +58,7 @@ export class CartService {
                     this.SaveCartToDb(cart);
                 }
             }
-        )
+        );
     }
 
     getCount(): Observable<number> {

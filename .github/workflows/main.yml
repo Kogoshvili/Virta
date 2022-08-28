@@ -22,7 +22,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore Virta.csproj
     - name: Build
-      run: dotnet build --no-restore Backend.sln
+      run: dotnet build --no-restore Virta.csproj
 
   angular:
     name: Frontend

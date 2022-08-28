@@ -8,10 +8,9 @@
         "venobox",
         "Virta"
     ],
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
-        "source.organizeImports": true
-    },
+    "eslint.workingDirectories": [
+        {"directory": "./Frontent", "changeProcessCWD": true}
+    ],
     "editor.detectIndentation": false,
     "editor.tabSize": 4
 }

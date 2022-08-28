@@ -13,7 +13,7 @@ export class CountdownSectionComponent implements OnInit, OnDestroy {
         hours: 0,
         minutes: 0,
         seconds: 0
-    }
+    };
 
     promotion = {
         title: '40% discount offer over all our items',
@@ -27,7 +27,7 @@ export class CountdownSectionComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         const deadline = new Date(this.promotion.deadline);
-        this.setTimeLeft(deadline.getTime() - Date.now())
+        this.setTimeLeft(deadline.getTime() - Date.now());
         this.countDown();
     }
 
