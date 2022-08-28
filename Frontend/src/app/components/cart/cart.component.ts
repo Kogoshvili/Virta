@@ -31,18 +31,13 @@ export class CartComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.cartService.cartSub.subscribe(
-        //     (cart) => this.cart = cart
-        // );
         this.cart = this.cartService.cart.getValue();
 
-        this.cartService.watchStorage().subscribe(
+        this.cartService.cart.subscribe(
             () => {
                 this.cart = this.cartService.cart.getValue();
             }
         );
-
-        // this.cartService.createHubConnection();
     }
 
     cartToggle(): void {

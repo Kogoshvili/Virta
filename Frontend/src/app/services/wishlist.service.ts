@@ -3,11 +3,9 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import {
     BehaviorSubject,
-    Observable,
-    of
+    Observable
 } from 'rxjs';
 import {
-    catchError,
     map
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -30,21 +28,31 @@ export class WishlistService {
             isLoggedIn => {
                 if (isLoggedIn) {
                     this.getRemoteWishlist().subscribe(
-                        data => this.updateWishlist(data),
+                        data => {
+                            const mergedWishlist = [...this.wishlist.value, ...data].reduce(
+                                (acc, cur) => {
+                                    const exists = acc.find(i => i.productId === cur.productId);
+                                    if (exists) return acc;
+                                    return [...acc, cur];
+                                }, [] as ProductInWishlist[]
+                            );
+                            this.updateWishlist(mergedWishlist)
+                        },
                         error => console.error(error)
                     );
-
-                    this.wishlist.subscribe(
-                        () => this.SaveWishlistToDb().subscribe()
-                    );
+                } else {
+                    this.clearWishlist();
                 }
             }
         );
-    }
 
-    getRemoteWishlist(): Observable<ProductInWishlist[]> {
-        return this.http.get<{ products: ProductInWishlist[] }>(this.baseUrl)
-            .pipe(map(response => response.products));
+        this.wishlist.subscribe(
+            (wishlist) => {
+                if (this.auth.isLoggedIn.value) {
+                    this.SaveWishlistToDb(wishlist);
+                }
+            }
+        );
     }
 
     addToWishlist(product: ProductDTO) {
@@ -75,28 +83,33 @@ export class WishlistService {
         return !!this.wishlist.getValue().find((i) => i.productId === id);
     }
 
-    updateWishlist(wishlist: ProductInWishlist[] | []): void {
+    updateWishlist(wishlist: ProductInWishlist[]): void {
         this.wishlist.next(wishlist);
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
     }
 
-    getLocalWishlist(): string {
-        return localStorage.getItem('wishlist') || '[]';
+    clearWishlist(): void {
+        this.wishlist.next([]);
+        localStorage.removeItem('wishlist');
     }
 
     getCount(): Observable<number> {
         return this.wishlist.pipe(map(wishlist => wishlist.length));
     }
 
-    SaveWishlistToDb(): Observable<any> {
-        return this.http.post(this.baseUrl, { productIds: this.wishlist.getValue().map(i => i.productId) })
-            .pipe(
-                catchError(
-                    (error) => {
-                        console.error(error);
-                        return of(null);
-                    }
-                )
-            );
+    getLocalWishlist(): string {
+        return localStorage.getItem('wishlist') || '[]';
+    }
+
+    getRemoteWishlist(): Observable<ProductInWishlist[]> {
+        return this.http.get<{ products: ProductInWishlist[] }>(this.baseUrl)
+            .pipe(map(response => response.products));
+    }
+
+    SaveWishlistToDb(wishlist: ProductInWishlist[]): void {
+        this.http.post(
+            this.baseUrl,
+            { productIds: wishlist.map(i => i.productId) }
+        ).toPromise()
     }
 }

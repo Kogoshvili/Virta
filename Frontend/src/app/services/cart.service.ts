@@ -3,11 +3,9 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import {
     BehaviorSubject,
-    Observable,
-    of
+    Observable
 } from 'rxjs';
 import {
-    catchError,
     map
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -18,8 +16,6 @@ import { AuthService } from './auth.service';
     providedIn: 'root'
 })
 export class CartService {
-    // private hubConnection: HubConnection | undefined;
-    // hubUrl = environment.hubUrl + 'customer';
     baseUrl = environment.apiUrl + 'customer/cart/';
     cart = new BehaviorSubject<ProductInCart[]>(JSON.parse(this.getLocalCart()));
 
@@ -32,52 +28,39 @@ export class CartService {
             isLoggedIn => {
                 if (isLoggedIn) {
                     this.getRemoteCart().subscribe(
-                        data => this.updateCart(data),
+                        data => {
+                            const mergedCart = [...this.cart.value, ...data].reduce(
+                                (acc, cur) => {
+                                    const existing = acc.find(i => i.productId === cur.productId);
+                                    if (existing) {
+                                        existing.quantity += cur.quantity;
+                                        return acc;
+                                    }
+                                    return [...acc, cur];
+                                }, [] as ProductInCart[]
+                            );
+
+                            this.updateCart(mergedCart);
+                        },
                         error => console.error(error)
                     );
+                } else {
+                    this.clearCart();
                 }
             }
         );
+
+        this.cart.subscribe(
+            cart => {
+                if (this.auth.isLoggedIn.value) {
+                    this.SaveCartToDb(cart);
+                }
+            }
+        )
     }
-
-    // createHubConnection() {
-    //     this.hubConnection = new HubConnectionBuilder()
-    //         .withUrl(this.hubUrl, {
-    //             accessTokenFactory: () => this.auth.getLocalTokenString()
-    //         })
-    //         .withAutomaticReconnect()
-    //         .build();
-
-    //     this.hubConnection.start()
-    //         .catch((error: any)  => console.error(error));
-
-    //     this.hubConnection.on('OnCartUpdate',
-    //         (data: any) => {
-    //             console.log('Triggered');
-    //             this.getRemoteCart().subscribe(
-    //                 data => {
-    //                     this.updateCart(data as ProductInCart[]);
-    //                 },
-    //                 error => {
-    //                     console.error(error);
-    //                 }
-    //             );
-    //         }
-    //     );
-    // }
-
-    // stopHubConnection() {
-    //     if (this.hubConnection) {
-    //         this.hubConnection.stop();
-    //     }
-    // }
 
     getCount(): Observable<number> {
         return this.cart.pipe(map(cart => cart.length));
-    }
-
-    watchStorage(): Observable<any> {
-        return this.cart;
     }
 
     copyToCart(product: ProductInWishlist): void {
@@ -134,37 +117,34 @@ export class CartService {
         this.toastr.success('Quantity Successfully Changed');
     }
 
-    getRemoteCart(): Observable<ProductInCart[]> {
-        return this.http.get<{products: ProductInCart[]}>(this.baseUrl)
-            .pipe(map(response => response.products));
-    }
-
     isItemInCart(id: string): boolean {
         return !!this.cart.getValue().find((i) => i.productId === id);
     }
 
     updateCart(newCart: ProductInCart[] | []): void {
         this.cart.next(newCart);
-        this.SaveCartToDb().subscribe();
         localStorage.setItem('cart', JSON.stringify(newCart));
     }
 
-    SaveCartToDb(): Observable<any> {
-        const cart = this.cart.getValue();
-        return this.http.post(
+    clearCart(): void {
+        this.cart.next([]);
+        localStorage.removeItem('cart');
+    }
+
+    SaveCartToDb(cart: ProductInCart[]): void {
+        this.http.post(
             this.baseUrl, {
                 products: cart.map(i => ({
                     productId: i.productId,
                     quantity: i.quantity
                 }))
-            }).pipe(
-            catchError(
-                (error) => {
-                    console.error(error);
-                    return of(null);
-                }
-            )
-        );
+            }
+        ).toPromise();
+    }
+
+    getRemoteCart(): Observable<ProductInCart[]> {
+        return this.http.get<{products: ProductInCart[]}>(this.baseUrl)
+            .pipe(map(response => response.products));
     }
 
     getLocalCart(): string {
