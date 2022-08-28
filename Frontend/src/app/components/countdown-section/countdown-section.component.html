@@ -6,10 +6,10 @@
                     <h3>{{ promotion.title }}</h3>
                     <p [innerHTML]="promotion.description"></p>
                     <div class="countdown-time">
-                        <span class="days">867<small>days</small></span>
-                        <span class="hour">18<small>hours</small></span>
-                        <span class="minutes">03<small>minutes</small></span>
-                        <span class="second">12<small>seconds</small></span>
+                        <span class="days">{{ timeLeft.days }}<small>days</small></span>
+                        <span class="hour">{{ timeLeft.hours }}<small>hours</small></span>
+                        <span class="minutes">{{ timeLeft.minutes }}<small>minutes</small></span>
+                        <span class="second">{{ timeLeft.seconds }}<small>seconds</small></span>
                     </div>
                     <a href="#" class="btn btn-inline"><i class="far fa-shopping-cart"></i><span>Shop Now</span></a>
                 </div>
