@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Driver;
 using Virta.Services;
 using Virta.Services.Interfaces;
 using Virta.Data;
@@ -17,19 +16,12 @@ namespace Virta.Extensions
             IConfiguration configuration
         )
         {
-            services.AddSingleton<IMongoClient, MongoClient>(
-                sp => new MongoClient(configuration.GetConnectionString("MongoDb"))
-            );
-
-            services.AddScoped(c =>
-                c.GetService<IMongoClient>().StartSession());
-
             services.AddDbContext<DataContext>(
                 options =>
                 {
                     options.UseLazyLoadingProxies();
                     options.UseNpgsql(configuration.GetConnectionString("PostgreSql"));
-                    // TODO: REMOVE THIS WHEN DATABASE IS READY
+                    // !TODO: REMOVE THIS WHEN DATABASE IS READY
                     options.EnableSensitiveDataLogging(true);
                 }
             );

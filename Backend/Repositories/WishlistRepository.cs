@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using MongoDB.Driver;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 

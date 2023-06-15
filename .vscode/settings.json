@@ -8,9 +8,24 @@
         "venobox",
         "Virta"
     ],
+    "eslint.options": {
+        "overrides": [
+            {
+                "parserOptions": {
+                    "project": [
+                        "./Frontend/tsconfig.json"
+                    ],
+                }
+            }
+        ],
+        "overrideConfigFile": "./.eslintrc.json",
+    },
     "eslint.workingDirectories": [
-        {"directory": "./Frontent", "changeProcessCWD": true}
+        {
+            "directory": "./Frontent", "changeProcessCWD": true
+        }
     ],
+    "eslint.nodePath": "Frontend/node_modules",
     "editor.detectIndentation": false,
     "editor.tabSize": 4
 }

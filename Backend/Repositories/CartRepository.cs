@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 

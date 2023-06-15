@@ -1,7 +1,11 @@
 version: '3.1'
 services:
   postgres:
-    image: postgres:alpine
+    build:
+      context: ./
+      dockerfile: ./build/postgres/Dockerfile
+      args:
+        POSTGRES_VERSION: ${POSTGRES_VERSION}
     restart: on-failure:5
     env_file: ./.env
     volumes:
@@ -27,7 +31,7 @@ services:
       dockerfile: ./build/asp/Dockerfile
     restart: on-failure:5
     volumes:
-      - ./Backend/bin/Debug/net5.0:/app
+      - ./Backend/bin/Debug/net6.0:/app
     env_file: ./.env
     ports:
       - ${ASPNETCORE_PORT}:${ASPNETCORE_PORT_HOST}

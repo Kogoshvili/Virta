@@ -5,8 +5,6 @@ using Virta.Data.Interfaces;
 using Virta.Entities;
 using Virta.Models;
 using System;
-using Microsoft.AspNetCore.SignalR;
-using Virta.Api.SignalR;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 
@@ -19,15 +17,13 @@ namespace Virta.Services
         private readonly IWishlistRepository _wishlistRepository;
         private readonly IProductRepository _productRepository;
         private readonly IHttpContextAccessor _contextAccessor;
-        private readonly IHubContext<CustomerHub, ICustomerClient> _hubContext;
 
         public CustomerService(
             IMapper mapper,
             ICartRepository cartRepository,
             IWishlistRepository wishlistRepository,
             IProductRepository productRepository,
-            IHttpContextAccessor contextAccessor,
-            IHubContext<CustomerHub, ICustomerClient> hubContext
+            IHttpContextAccessor contextAccessor
         )
         {
             _mapper = mapper;
@@ -35,7 +31,6 @@ namespace Virta.Services
             _wishlistRepository = wishlistRepository;
             _productRepository = productRepository;
             _contextAccessor = contextAccessor;
-            _hubContext = hubContext;
         }
 
         protected HttpContext Context =>
@@ -70,7 +65,6 @@ namespace Virta.Services
             if (!await _cartRepository.SaveAll())
                 return false;
 
-            BroadcastUpdate(userId);
             return true;
         }
 
@@ -100,15 +94,7 @@ namespace Virta.Services
             if (!await _wishlistRepository.SaveAll())
                 return false;
 
-            BroadcastUpdate(userId);
             return true;
-        }
-
-        protected void BroadcastUpdate(Guid userId)
-        {
-            if (CustomerHub.ConnectedCustomers.ContainsKey(userId)) {
-                _hubContext.Clients.Clients(CustomerHub.ConnectedCustomers[userId]).OnCartUpdate();
-            }
         }
     }
 }

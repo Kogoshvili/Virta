@@ -8,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Virta.Api.SignalR;
 using Virta.Data;
 using Virta.Extensions;
 
@@ -136,7 +135,6 @@ namespace Virta
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<CustomerHub>("hubs/customer");
             });
         }
     }
