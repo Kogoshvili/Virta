@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Virta.Api.DTO;
-using Virta.Data.Interfaces;
+using Virta.Repositories.Interfaces;
 using Virta.Entities;
 using Virta.Services.Interfaces;
 

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
-using Virta.Data.Interfaces;
+using Virta.Repositories.Interfaces;
 using Virta.Entities;
 using Virta.Models;
 using Virta.Services.Interfaces;
