@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Virta.Data.Interfaces
+namespace Virta.Repositories.Interfaces
 {
     public interface IBaseRepository<T> where T : class
     {

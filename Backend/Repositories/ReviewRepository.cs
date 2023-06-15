@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Virta.Api.DTO;
-using Virta.Data.Interfaces;
+using Virta.Repositories.Interfaces;
 using Virta.Entities;
+using Virta.Database;
 
-namespace Virta.Data
+namespace Virta.Repositories
 {
     public class ReviewRepository : BaseRepository<Review>, IReviewRepository
     {

@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using Virta.Data;
+using Virta.Database;
 using Virta.Entities;
 
 namespace Virta.Extensions

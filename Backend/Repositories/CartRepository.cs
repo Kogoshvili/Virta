@@ -1,9 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using Virta.Data.Interfaces;
+using Virta.Repositories.Interfaces;
 using Virta.Entities;
+using Virta.Database;
 
-namespace Virta.Data
+namespace Virta.Repositories
 {
     public class CartRepository : BaseRepository<Cart>, ICartRepository
     {

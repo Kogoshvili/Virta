@@ -3,8 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Virta.Services;
 using Virta.Services.Interfaces;
-using Virta.Data;
-using Virta.Data.Interfaces;
+using Virta.Database;
+using Virta.Repositories;
+using Virta.Repositories.Interfaces;
 using Virta.Helpers;
 
 namespace Virta.Extensions

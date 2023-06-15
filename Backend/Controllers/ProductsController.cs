@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Virta.Api.DTO;
-using Virta.Data.Interfaces;
+using Virta.Repositories.Interfaces;
 using Virta.Models;
 using Virta.Services.Interfaces;
 

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Virta.Api.DTO;
 using Virta.Entities;
 
-namespace Virta.Data.Interfaces
+namespace Virta.Repositories.Interfaces
 {
     public interface IReviewRepository: IBaseRepository<Review>
     {
