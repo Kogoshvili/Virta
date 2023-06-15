@@ -7,14 +7,8 @@
 			"path": "Backend"
 		},
 		{
-			"path": "BackendTests"
-		},
-		{
 			"path": "Frontend"
-		},
-        {
-			"path": "Node"
-		},
+		}
 	],
 	"settings": {
 		"cSpell.words": [
