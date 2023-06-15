@@ -80,37 +80,5 @@ namespace Virta.Api.Controllers
 
             return Ok(new { Token = token });
         }
-
-        [HttpGet("createAdmin")]
-        public async Task<IActionResult> CreateRolesandUsers()
-        {
-            if (!await _roleManager.RoleExistsAsync("Admin"))
-            {
-                await _roleManager.CreateAsync(
-                        new Role
-                        {
-                            Name = "Admin"
-                        }
-                    );
-            }
-
-            var admin = new User
-            {
-                UserName = "admin@admin.com",
-                Firstname = "admin",
-                Lastname = "admin",
-                Email = "admin@admin.com"
-            };
-
-            IdentityResult User = await _userManager.CreateAsync(admin, "password");
-
-            if (User.Succeeded)
-            {
-                var result = await _userManager.AddToRoleAsync(admin, "Admin");
-                return Ok();
-            }
-
-            return BadRequest();
-        }
     }
 }
