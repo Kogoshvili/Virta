@@ -229,6 +229,3 @@ namespace Virta.Database
         }
     }
 }
-
-// The seed entity for entity type 'Product' with the key value 'Id:d5bd33d1-5a7c-45e1-a14e-89892d9c0839' cannot be added because it has the navigation 'Categories' set.
-// To seed relationships, add the entity seed to 'CategoryProduct (Dictionary<string, object>)' and specify the foreign key values {'ProductsId'}.

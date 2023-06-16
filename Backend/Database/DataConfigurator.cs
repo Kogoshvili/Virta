@@ -269,6 +269,3 @@ namespace Virta.Database
         }
     }
 }
-// Cannot use table 'CategoryProduct' for entity type 'CategoryProduct' since it is being used for entity type 'CategoryProduct (Dictionary<string, object>)'
-//  and potentially other entity types, but there is no linking relationship. Add a foreign key to 'CategoryProduct'
-//  on the primary key properties and pointing to the primary key on another entity type mapped to 'CategoryProduct'.
