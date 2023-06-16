@@ -107,29 +107,5 @@ namespace Virta.Api.Controllers
 
             return Ok(reviews);
         }
-
-        [HttpGet("categories/seed")]
-        public async Task<IActionResult> SeedCategories()
-        {
-            var rawData = await System.IO.File.ReadAllTextAsync("bsData/categories.json");
-            var categories = JsonSerializer.Deserialize<IEnumerable<CategoryDTO>>(rawData);
-
-            foreach (var category in categories)
-                await UpsertCategories(category);
-
-            return Ok();
-        }
-
-        [HttpGet("attributes/seed")]
-        public async Task<IActionResult> SeedAttributes()
-        {
-            var rawData = await System.IO.File.ReadAllTextAsync("bsData/attributes.json");
-            var attributes = JsonSerializer.Deserialize<IEnumerable<AttributeDTO>>(rawData);
-
-            foreach (var attribute in attributes)
-                await UpsertAttributes(attribute);
-
-            return Ok();
-        }
     }
 }

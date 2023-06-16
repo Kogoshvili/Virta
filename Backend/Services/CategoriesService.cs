@@ -30,7 +30,7 @@ namespace Virta.Services
 
             foreach (var category in categories)
             {
-                int totalCount = 0;
+                int totalCount = await _categoriesRepository.GetCategoryProductCountAsync(category.Id);
 
                 foreach (var child in category.Children)
                 {
