@@ -58,7 +58,7 @@ namespace Virta.Repositories
             var query = _context.Products.AsQueryable();
 
             if (categories != null && categories.Length > 0) {
-                query = query.Where(p => p.Categories.Where(c => categories.Contains(c.Name)).Any());
+                query = query.Where(p => p.CategoryProducts.Where(cp => categories.Contains(cp.Category.Name)).Any());
             }
 
             if(labels != null && labels.Length > 0) {

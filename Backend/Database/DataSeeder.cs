@@ -12,6 +12,7 @@ namespace Virta.Database
         {
             AdminSeeder(builder);
             CategoriesSeeder(builder);
+            ProductsSeeder(builder);
         }
 
         private static void AdminSeeder(ModelBuilder builder)
@@ -153,5 +154,81 @@ namespace Virta.Database
 
             builder.Entity<Category>().HasData(categories);
         }
+
+        private static void ProductsSeeder(ModelBuilder builder)
+        {
+            var products = new List<Product> {
+                new Product {
+                    Id = Guid.NewGuid(),
+                    Title = "exercitation ipsum exercitation in deserunt",
+                    Price = 54.63M,
+                    Description = "Velit exercitation aliquip irure labore reprehenderit aute elit cillum ad consectetur dolor in excepteur. Magna consectetur qui aliquip est adipisicing laboris ex deserunt sunt duis minim do. Cupidatat aliqua enim eiusmod voluptate Lorem nulla Lorem laborum minim proident nostrud.",
+                    SKU = "60ddf30e02d3a810c7f04761",
+                    Type = Product.ProductTypes.Simple,
+                    Visibility = Product.ProductVisibilities.PLP,
+                    Active = true
+                },
+                new Product {
+                    Id = Guid.NewGuid(),
+                    Title = "dolor laborum laborum laborum laborum",
+                    Price = 51.63M,
+                    Description = "Velit exercitation aliquip irure labore reprehenderit aute elit cillum ad consectetur dolor in excepteur. Magna consectetur qui aliquip est adipisicing laboris ex deserunt sunt duis minim do. Cupidatat aliqua enim eiusmod voluptate Lorem nulla Lorem laborum minim proident nostrud.",
+                    SKU = "60ddf30e02d3a810c7f04762",
+                    Type = Product.ProductTypes.Simple,
+                    Visibility = Product.ProductVisibilities.PLP,
+                    Active = true
+                },
+                new Product {
+                    Id = Guid.NewGuid(),
+                    Title = "Excepteur laborum laborum laborum laborum",
+                    Price = 1.6M,
+                    Description = "Velit exercitation aliquip irure labore reprehenderit aute elit cillum ad consectetur dolor in excepteur. Magna consectetur qui aliquip est adipisicing laboris ex deserunt sunt duis minim do. Cupidatat aliqua enim eiusmod voluptate Lorem nulla Lorem laborum minim proident nostrud.",
+                    SKU = "60ddf30e02d3a810c7f04763",
+                    Type = Product.ProductTypes.Simple,
+                    Visibility = Product.ProductVisibilities.PLP,
+                    Active = true
+                },
+                new Product {
+                    Id = Guid.NewGuid(),
+                    Title = "Excepteur laborum laborum laborum laborum",
+                    Price = 45.6M,
+                    Description = "Velit exercitation aliquip irure labore reprehenderit aute elit cillum ad consectetur dolor in excepteur. Magna consectetur qui aliquip est adipisicing laboris ex deserunt sunt duis minim do. Cupidatat aliqua enim eiusmod voluptate Lorem nulla Lorem laborum minim proident nostrud.",
+                    SKU = "60ddf30e02d3a810c7f04764",
+                    Type = Product.ProductTypes.Simple,
+                    Visibility = Product.ProductVisibilities.PLP,
+                    Active = true
+                },
+            };
+
+            builder.Entity<Product>().HasData(products);
+
+            var categories = new List<CategoryProduct> {
+                new CategoryProduct {
+                    CategoryId = 1,
+                    ProductId = products[0].Id
+                },
+                new CategoryProduct {
+                    CategoryId = 2,
+                    ProductId = products[2].Id
+                },
+                new CategoryProduct {
+                    CategoryId = 3,
+                    ProductId = products[2].Id
+                },
+                new CategoryProduct {
+                    CategoryId = 4,
+                    ProductId = products[3].Id
+                },
+                new CategoryProduct {
+                    CategoryId = 5,
+                    ProductId = products[1].Id
+                },
+            };
+
+            builder.Entity<CategoryProduct>().HasData(categories);
+        }
     }
 }
+
+// The seed entity for entity type 'Product' with the key value 'Id:d5bd33d1-5a7c-45e1-a14e-89892d9c0839' cannot be added because it has the navigation 'Categories' set.
+// To seed relationships, add the entity seed to 'CategoryProduct (Dictionary<string, object>)' and specify the foreign key values {'ProductsId'}.

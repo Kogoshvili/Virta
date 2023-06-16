@@ -22,7 +22,7 @@ namespace Virta.Entities
         public bool Active { get; set; }
         public virtual ICollection<Product> AssociatedProducts { get; set; }
         public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<CategoryProduct> CategoryProducts { get; set; }
         public virtual ICollection<ProductImage> Images { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public ProductUnits Unit { get; set; }

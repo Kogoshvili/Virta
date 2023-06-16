@@ -19,6 +19,7 @@ namespace Virta.Database
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<CategoryProduct> CategoryProduct { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

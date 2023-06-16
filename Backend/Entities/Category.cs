@@ -22,7 +22,6 @@ namespace Virta.Entities
         public virtual Category Parent { get; set; }
         [JsonIgnore]
         public virtual ICollection<Category> Children { get; set; }
-        [JsonIgnore]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<CategoryProduct> CategoryProducts { get; set; }
     }
 }

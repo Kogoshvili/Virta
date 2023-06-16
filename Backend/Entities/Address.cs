@@ -18,9 +18,7 @@ namespace Virta.Entities
         [MaxLength(200)]
         public string AddressLine1 { get; set; }
         [MaxLength(200)]
-#nullable enable
-        public string? AddressLine2 { get; set; }
-#nullable disable
+        public string AddressLine2 { get; set; }
         [Required]
         [MaxLength(50)]
         public string PostCode { get; set; }

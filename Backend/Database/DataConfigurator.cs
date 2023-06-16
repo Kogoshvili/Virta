@@ -78,15 +78,26 @@ namespace Virta.Database
                 .Property(c => c.Icon)
                 .HasColumnType("varchar(100)");
             #endregion
+
+            #region CategoryProduct
+            builder.Entity<CategoryProduct>()
+                .HasKey(cp => new { cp.CategoryId, cp.ProductId });
+
+            builder.Entity<CategoryProduct>()
+                .HasOne(cp => cp.Category)
+                .WithMany(p => p.CategoryProducts)
+                .HasForeignKey(cp => cp.CategoryId);
+
+            builder.Entity<CategoryProduct>()
+                .HasOne(cp => cp.Product)
+                .WithMany(p => p.CategoryProducts)
+                .HasForeignKey(cp => cp.ProductId);
+            #endregion
         }
 
         private static void ProductConfigurator(ModelBuilder builder)
         {
             #region Product
-            builder.Entity<Product>()
-                .HasIndex(p => p.Title)
-                .IsUnique();
-
             builder.Entity<Product>()
                 .HasIndex(p => p.SKU)
                 .IsUnique();
@@ -258,3 +269,6 @@ namespace Virta.Database
         }
     }
 }
+// Cannot use table 'CategoryProduct' for entity type 'CategoryProduct' since it is being used for entity type 'CategoryProduct (Dictionary<string, object>)'
+//  and potentially other entity types, but there is no linking relationship. Add a foreign key to 'CategoryProduct'
+//  on the primary key properties and pointing to the primary key on another entity type mapped to 'CategoryProduct'.

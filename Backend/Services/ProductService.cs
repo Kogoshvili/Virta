@@ -7,6 +7,7 @@ using Virta.Entities;
 using Virta.Services.Interfaces;
 using System;
 using Virta.Api.DTO;
+using System.Linq;
 
 namespace Virta.Services
 {
@@ -46,8 +47,10 @@ namespace Virta.Services
         {
             var productToSave = _mapper.Map<Product>(product);
 
-            if (product.Categories.Length > 0)
-                productToSave.Categories = await SetCategories(product.Categories);
+            if (product.Categories.Length > 0) {
+                var categories = await SetCategories(product.Categories);
+                productToSave.CategoryProducts = categories.Select(c => new CategoryProduct { CategoryId = c.Id }).ToList();
+            }
 
             if (product.ProductAttributes?.Count > 0)
                 productToSave.ProductAttributes = await SetProductAttributes(product.ProductAttributes);

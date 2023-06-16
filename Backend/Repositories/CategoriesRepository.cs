@@ -47,7 +47,7 @@ namespace Virta.Repositories
 
         public async Task<int> GetCategoryProductCountAsync(int id)
         {
-            return await _context.Categories.Where(c => c.Id == id).Select(c => c.Products.Count).FirstAsync();
+            return await _context.Categories.Where(c => c.Id == id).Select(c => c.CategoryProducts.Count).FirstAsync();
         }
     }
 }
