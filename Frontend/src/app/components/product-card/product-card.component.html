@@ -3,7 +3,7 @@
         <p>{{ product.title }}</p>
     </div>
     <div class="image">
-        <img src="{{ product.images[0].url || 'https://picsum.photos/450/600' }}">
+        <img src="{{ product.images[0]?.url || 'https://picsum.photos/450/600' }}">
     </div>
     <div class="price">
         <p>{{ product.price }}$</p>
@@ -17,7 +17,7 @@
             [class.active]="isInWishlist"
             (click)="onWishlistClick()"
             ><i [ngClass]="[isInWishlist ? 'fas' : 'far', 'fa-heart']"></i></button>
-        <div class="product-image" [routerLink]="['/product/' + product.id]"><img src="{{ product.images[0].url }}" alt="product"/></div>
+        <div class="product-image" [routerLink]="['/product/' + product.id]"><img src="{{ product.images[0]?.url }}" alt="product"/></div>
         <div class="product-widget">
             <a
                 *ngIf="product.video"

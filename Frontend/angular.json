@@ -44,7 +44,11 @@
               "includePaths": [
                 "src/styles"
               ]
-            }
+            },
+            "allowedCommonJsDependencies": [
+                "venobox",
+                "@splidejs/splide"
+            ]
           },
           "configurations": {
             "production": {

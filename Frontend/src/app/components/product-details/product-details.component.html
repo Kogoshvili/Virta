@@ -2,7 +2,9 @@
     <div class="row">
         <div class="col-lg-5">
             <div class="details-gallery">
-                <div class="details-label-group"><label [ngClass]="['details-label', ProductLabels[product.label].toLowerCase() ]">{{ ProductLabels[product.label] }}</label></div>
+                <div class="details-label-group">
+                    <label [ngClass]="['details-label', ProductLabels[product.label].toLowerCase() ]">{{ ProductLabels[product.label] }}</label>
+                </div>
                 <div id="product-page-image" class="splide details-preview">
                     <div class="splide__track">
                         <ul class="splide__list">

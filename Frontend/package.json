@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host=0.0.0.0 --port 4200",
+    "start": "ng serve --watch --configuration development --host=0.0.0.0 --port 4200",
     "start-prod": "ng serve --host 0.0.0.0 --port 4200 --open --disable-host-check --configuration production",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
@@ -36,6 +36,7 @@
     "@popperjs/core": "^2.10.2",
     "@splidejs/splide": "^2.4.21",
     "bootstrap": "^5.2.0",
+    "lodash-es": "^4.17.21",
     "ngx-toastr": "^14.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

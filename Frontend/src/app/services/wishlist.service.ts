@@ -61,7 +61,7 @@ export class WishlistService {
             title: product.title,
             price: product.price,
             unit: product.unit,
-            imageUrl: product.images[0].url
+            imageUrl: product.images[0]?.url
         });
     }
 

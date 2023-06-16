@@ -76,7 +76,7 @@ export class CartService {
             price: product.price,
             unit: product.unit,
             quantity: quantity,
-            imageUrl: product.images[0].url
+            imageUrl: product.images[0]?.url
         });
     }
 

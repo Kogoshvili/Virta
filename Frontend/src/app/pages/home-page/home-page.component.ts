@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Product } from 'src/app/models/Product';
+import { ProductDTO } from 'src/app/models/Product';
 import { AppStore } from 'src/app/store/app.store';
 import { setLoadingScreen } from 'src/app/store/general/general.actions';
 
@@ -15,7 +15,7 @@ import { setLoadingScreen } from 'src/app/store/general/general.actions';
     styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-    products: Product[] = [];
+    products: ProductDTO[] = [];
 
     constructor(
         private route: ActivatedRoute,

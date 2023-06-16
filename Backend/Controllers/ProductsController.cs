@@ -81,17 +81,5 @@ namespace Virta.Api.Controllers
 
             return BadRequest();
         }
-
-        [HttpGet("seed")]
-        public async Task<IActionResult> Seed()
-        {
-            var rawData = await System.IO.File.ReadAllTextAsync("bsData/products.json");
-            var products = JsonSerializer.Deserialize<IEnumerable<ProductDTO>>(rawData);
-
-            foreach (var product in products)
-                await Upsert(product);
-
-            return Ok();
-        }
     }
 }

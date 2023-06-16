@@ -78,7 +78,7 @@ export interface ProductInCart {
     title: string;
     price: number;
     unit: ProductUnits;
-    imageUrl: string;
+    imageUrl?: string;
     quantity: number;
 }
 
@@ -87,19 +87,7 @@ export interface ProductInWishlist {
     title: string;
     price: number;
     unit: ProductUnits;
-    imageUrl: string;
-}
-
-
-// TODO: DELETE THIS
-export interface Product {
-    id: string;
-    sku: string;
-    title: string;
-    price: number;
-    images: ProductImage[];
-    description?: string;
-    attributes?: ProductAttribute[];
+    imageUrl?: string;
 }
 
 export interface ProductImage {

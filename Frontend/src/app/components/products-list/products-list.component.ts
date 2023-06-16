@@ -4,7 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/models/Product';
+import { ProductDTO } from 'src/app/models/Product';
 
 @Component({
     selector: 'app-products-list',
@@ -12,7 +12,7 @@ import { Product } from 'src/app/models/Product';
     styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
-    @Input() products: Product[] = [];
+    @Input() products: ProductDTO[] = [];
     @Input() productsPerLine: number = 5;
 
     constructor(
