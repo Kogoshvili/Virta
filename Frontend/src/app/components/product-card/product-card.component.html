@@ -11,7 +11,7 @@
 </div> -->
 <div class="product-card">
     <div class="product-media">
-        <div class="product-label"><label [ngClass]="['label-text', ProductLabels[product.label].toLowerCase() ]">{{ ProductLabels[product.label] }}</label></div>
+        <div *ngIf="hasLabel" class="product-label"><label [ngClass]="['label-text', ProductLabels[product.label].toLowerCase() ]">{{ ProductLabels[product.label] }}</label></div>
         <button
             class="product-wish wish"
             [class.active]="isInWishlist"
@@ -46,6 +46,6 @@
         </div>
     </div>
 </div>
-<app-modal [isOpen]="isOpen" id="product-preview">
+<app-modal [isOpen]="isOpen" id="product-preview" *ngIf="isOpen">
     <app-product-details class="preview-modal-content" [product]="product"></app-product-details>
 </app-modal>

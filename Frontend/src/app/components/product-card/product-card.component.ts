@@ -19,6 +19,7 @@ export class ProductCardComponent implements OnInit {
     closeResult = '';
     isOpen: boolean = false;
     isInWishlist = false;
+    hasLabel = false;
 
     constructor(
         private cartService: CartService,
@@ -26,6 +27,8 @@ export class ProductCardComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.hasLabel = this.product.label !== ProductLabels.None;
+
         this.starts = {
             full: Array(this.product?.stars ?? 0),
             empty: Array(5 - (this.product?.stars ?? 0))

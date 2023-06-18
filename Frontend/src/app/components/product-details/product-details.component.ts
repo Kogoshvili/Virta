@@ -14,6 +14,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     @Input() modal!: NgbModalRef;
     @Input() product!: ProductDTO;
     ProductLabels = ProductLabels;
+    hasLabel = false;
     splied: any = null;
     spliedThumbnail: any = null;
     quantity: number = 1;
@@ -26,6 +27,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     ) { }
 
     ngOnInit(): void {
+        this.hasLabel = this.product.label !== ProductLabels.None;
+
         this.cartService.cart.subscribe(
             () => this.isInCart = this.cartService.isItemInCart(this.product.id)
         );
@@ -36,26 +39,26 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        // this.splied = new Splide(
-        //     '#product-page-image',
-        //     {
-        //         pagination: false,
-        //         type: 'loop',
-        //         arrows: false,
-        //         gap: '10px'
-        //     }
-        // );
+        this.splied = new Splide(
+            '#product-page-image',
+            {
+                pagination: false,
+                type: 'loop',
+                arrows: false,
+                gap: '10px'
+            }
+        );
 
-        // this.spliedThumbnail = new Splide(
-        //     '#product-page-image-thumbnails',
-        //     {
-        //         arrows: false,
-        //         pagination : false,
-        //         perPage: 5
-        //     }
-        // ).mount();
+        this.spliedThumbnail = new Splide(
+            '#product-page-image-thumbnails',
+            {
+                arrows: false,
+                pagination : false,
+                perPage: 5
+            }
+        ).mount();
 
-        // this.splied.sync(this.spliedThumbnail).mount();
+        this.splied.sync(this.spliedThumbnail).mount();
     }
 
     changeQuantityBy(change: number): void {

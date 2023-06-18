@@ -4,7 +4,7 @@ import { CategoryDTO } from 'src/app/models/Category';
 import { LabelDTO } from 'src/app/models/Filters';
 import { CategoryService } from 'src/app/services/category.service';
 import { FiltersService } from 'src/app/services/filters.service';
-import { isEmpty as _isEmpty } from 'lodash-es';
+import { isEmpty } from 'lodash-es';
 
 interface Category extends CategoryDTO {
     isActive: boolean;
@@ -20,7 +20,7 @@ export class ProductFilterComponent implements OnInit {
     selectedLabels: string[] = [];
     categories: Category[] = [];
     labels: LabelDTO[] = [];
-    isEmpty = _isEmpty;
+    isEmpty = isEmpty;
 
     constructor(
         private categoryService: CategoryService,
