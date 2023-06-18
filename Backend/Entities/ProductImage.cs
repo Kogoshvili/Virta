@@ -10,6 +10,7 @@ namespace Virta.Entities
         [Required]
         public string URL { get; set; }
         public bool Primary { get; set; }
+        public Guid ProductId { get; set; }
         [JsonIgnore]
         public virtual Product Product { get; set; }
         public DateTime? UpdatedAt { get; set; }

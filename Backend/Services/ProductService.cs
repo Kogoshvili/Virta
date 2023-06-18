@@ -55,9 +55,6 @@ namespace Virta.Services
             if (product.ProductAttributes?.Count > 0)
                 productToSave.ProductAttributes = await SetProductAttributes(product.ProductAttributes);
 
-            if (product.AssociatedProducts?.Count > 0)
-                productToSave.AssociatedProducts = await SetAssociatedProducts(product.AssociatedProducts);
-
             if (productToSave.Id == Guid.Empty)
             {
                 _productRepository.Add(productToSave);

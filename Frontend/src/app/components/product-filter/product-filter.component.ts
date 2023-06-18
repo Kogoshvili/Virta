@@ -1,11 +1,10 @@
-import {
-    Component, OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryDTO } from 'src/app/models/Category';
 import { LabelDTO } from 'src/app/models/Filters';
 import { CategoryService } from 'src/app/services/category.service';
 import { FiltersService } from 'src/app/services/filters.service';
+import { isEmpty as _isEmpty } from 'lodash-es';
 
 interface Category extends CategoryDTO {
     isActive: boolean;
@@ -21,6 +20,7 @@ export class ProductFilterComponent implements OnInit {
     selectedLabels: string[] = [];
     categories: Category[] = [];
     labels: LabelDTO[] = [];
+    isEmpty = _isEmpty;
 
     constructor(
         private categoryService: CategoryService,
@@ -69,6 +69,16 @@ export class ProductFilterComponent implements OnInit {
         });
     }
 
+    onCategoryClick(name: string) {
+        const category = this.categories.find(c => c.name === name);
+
+        if (!this.isEmpty(category?.children)) {
+            this.expandCategory(name);
+        } else {
+            this.redirectToCategory(name);
+        }
+    }
+
     expandCategory(name: string): void {
         this.categories.forEach(category => {
             if (category.name === name) {
@@ -77,14 +87,14 @@ export class ProductFilterComponent implements OnInit {
         });
     }
 
-    onCategoryClick(category: string) {
+    redirectToCategory(name: string) {
         this.router.navigate(
             ['/products'],
             {
                 queryParams: {
-                    categories: this.selectedCategories.includes(category)
-                        ? this.selectedCategories.filter(c => c !== category)
-                        : [ ...this.selectedCategories, category],
+                    categories: this.selectedCategories.includes(name)
+                        ? this.selectedCategories.filter(c => c !== name)
+                        : [ ...this.selectedCategories, name],
                     page: 1
                 },
                 queryParamsHandling: 'merge'

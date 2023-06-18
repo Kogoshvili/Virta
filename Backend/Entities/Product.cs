@@ -20,7 +20,6 @@ namespace Virta.Entities
         public ProductVisibilities Visibility { get; set; }
         [Required]
         public bool Active { get; set; }
-        public virtual ICollection<Product> AssociatedProducts { get; set; }
         public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
         public virtual ICollection<CategoryProduct> CategoryProducts { get; set; }
         public virtual ICollection<ProductImage> Images { get; set; }

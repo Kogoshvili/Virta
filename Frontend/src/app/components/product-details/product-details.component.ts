@@ -36,26 +36,26 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.splied = new Splide(
-            '#product-page-image',
-            {
-                pagination: false,
-                type: 'loop',
-                arrows: false,
-                gap: '10px'
-            }
-        );
+        // this.splied = new Splide(
+        //     '#product-page-image',
+        //     {
+        //         pagination: false,
+        //         type: 'loop',
+        //         arrows: false,
+        //         gap: '10px'
+        //     }
+        // );
 
-        this.spliedThumbnail = new Splide(
-            '#product-page-image-thumbnails',
-            {
-                arrows: false,
-                pagination : false,
-                perPage: 5
-            }
-        ).mount();
+        // this.spliedThumbnail = new Splide(
+        //     '#product-page-image-thumbnails',
+        //     {
+        //         arrows: false,
+        //         pagination : false,
+        //         perPage: 5
+        //     }
+        // ).mount();
 
-        this.splied.sync(this.spliedThumbnail).mount();
+        // this.splied.sync(this.spliedThumbnail).mount();
     }
 
     changeQuantityBy(change: number): void {

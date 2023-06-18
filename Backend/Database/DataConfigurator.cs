@@ -123,11 +123,6 @@ namespace Virta.Database
                 .HasDefaultValue(false);
 
             builder.Entity<Product>()
-                .HasMany(p => p.AssociatedProducts)
-                .WithOne()
-                .OnDelete(DeleteBehavior.SetNull);
-
-            builder.Entity<Product>()
                 .HasMany(p => p.ProductAttributes)
                 .WithOne(p => p.Product)
                 .OnDelete(DeleteBehavior.Cascade);
@@ -179,6 +174,11 @@ namespace Virta.Database
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired()
                 .IsConcurrencyToken();
+
+            builder.Entity<ProductImage>()
+                .HasOne(pi => pi.Product)
+                .WithMany(p => p.Images)
+                .HasForeignKey(pi => pi.ProductId);
             #endregion
         }
 
