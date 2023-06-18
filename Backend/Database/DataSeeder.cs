@@ -37,13 +37,13 @@ namespace Virta.Database
                 LastName = "Admin",
                 Email = "admin@admin.com",
                 EmailConfirmed = true,
-                UserName = "Admin",
-                NormalizedUserName = "ADMIN"
+                UserName = "admin@admin.com",
+                NormalizedUserName = "ADMIN@ADMIN.COM"
             };
 
             // set user password
             PasswordHasher<User> ph = new PasswordHasher<User>();
-            adminUser.PasswordHash = ph.HashPassword(adminUser, "admin");
+            adminUser.PasswordHash = ph.HashPassword(adminUser, "admin123!");
 
             // seed user
             builder.Entity<User>().HasData(adminUser);
