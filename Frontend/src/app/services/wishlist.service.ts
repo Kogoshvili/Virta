@@ -1,13 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import {
-    BehaviorSubject,
-    Observable
-} from 'rxjs';
-import {
-    map
-} from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProductDTO, ProductInWishlist } from '../models/Product';
 import { AuthService } from './auth.service';

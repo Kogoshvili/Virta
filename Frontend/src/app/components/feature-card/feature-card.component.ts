@@ -13,6 +13,7 @@ export class FeatureCardComponent implements OnInit {
     ProductLabels = ProductLabels;
     @Input() product!: ProductDTO;
     venobox: typeof VenoBox;
+    hasLabel = false;
 
     constructor(
         private modalService: NgbModal,
@@ -20,6 +21,7 @@ export class FeatureCardComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.hasLabel = this.product.label !== ProductLabels.None;
         this.venobox = new VenoBox();
     }
 

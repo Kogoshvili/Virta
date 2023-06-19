@@ -5,6 +5,6 @@ namespace Virta.Api.DTO
 {
     public class WishlistDTOIn
     {
-        public IEnumerable<Guid> ProductIds { get; set; }
+        public ICollection<Guid> ProductIds { get; set; }
     }
 }

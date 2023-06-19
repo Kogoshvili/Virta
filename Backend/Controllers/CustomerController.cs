@@ -76,7 +76,7 @@ namespace Virta.Api.Controllers
         [HttpPost("wishlist")]
         public async Task<IActionResult> UpsertWishlist(WishlistDTOIn wishlistDTO)
         {
-            if (wishlistDTO.ProductIds == null)
+            if (wishlistDTO.ProductIds.Count == 0)
                 return Ok();
 
             var wishlistUpsert = _mapper.Map<WishlistUpsert>(wishlistDTO);
