@@ -27,6 +27,11 @@ namespace Virta.Database
                 .HasOne(u => u.Cart)
                 .WithOne(c => c.User)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            builder.Entity<User>()
+                .HasOne(u => u.Wishlist)
+                .WithOne(c => c.User)
+                .OnDelete(DeleteBehavior.SetNull);
             #endregion
 
             #region Addresses
@@ -48,6 +53,50 @@ namespace Virta.Database
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired()
                 .IsConcurrencyToken();
+            #endregion
+
+            #region Cart
+            builder.Entity<Cart>()
+                .HasMany(c => c.CartItems)
+                .WithOne(ci => ci.Cart)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Cart>()
+                .HasOne(w => w.User)
+                .WithOne(u => u.Cart)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<CartItem>()
+                .HasOne(c => c.Cart)
+                .WithMany(c => c.CartItems)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<CartItem>()
+                .HasOne(c => c.Product)
+                .WithMany(p => p.CartItems)
+                .OnDelete(DeleteBehavior.Cascade);
+            #endregion
+
+            #region Wishlist
+            builder.Entity<Wishlist>()
+                .HasMany(c => c.WishlistItems)
+                .WithOne(ci => ci.Wishlist)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Wishlist>()
+                .HasOne(w => w.User)
+                .WithOne(u => u.Wishlist)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<WishlistItem>()
+                .HasOne(c => c.Product)
+                .WithMany(p => p.WishlistItems)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<WishlistItem>()
+                .HasOne(w => w.Wishlist)
+                .WithMany(wi => wi.WishlistItems)
+                .OnDelete(DeleteBehavior.Cascade);
             #endregion
         }
 

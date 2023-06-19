@@ -113,13 +113,13 @@ namespace Virta.Helpers
 
             CreateMap<CartUpsert, Cart>()
                 .ForMember(
-                    dest => dest.Products,
+                    dest => dest.CartItems,
                     opt => opt.Ignore()
                 );
-            CreateMap<CartUpsert.CartItemUpsert, Cart.CartItem>();
+            CreateMap<CartUpsert.CartItemUpsert, CartItem>();
 
             CreateMap<Cart, CartDTO>();
-            CreateMap<Cart.CartItem, CartDTO.CartItemDTO>()
+            CreateMap<CartItem, CartDTO.CartItemDTO>()
                 .ForMember(
                     dest => dest.ProductId,
                     opt => opt.MapFrom(src => src.Product.Id)
@@ -162,13 +162,13 @@ namespace Virta.Helpers
 
             CreateMap<WishlistUpsert, Wishlist>()
                 .ForMember(
-                    dest => dest.Products,
+                    dest => dest.WishlistItems,
                     opt => opt.Ignore()
                 );
-            CreateMap<WishlistUpsert.WishlistItemUpsert, Wishlist.WishlistItem>();
+            CreateMap<WishlistUpsert.WishlistItemUpsert, WishlistItem>();
 
             CreateMap<Wishlist, WishlistDTO>();
-            CreateMap<Wishlist.WishlistItem, WishlistDTO.WishlistItemDTO>()
+            CreateMap<WishlistItem, WishlistDTO.WishlistItemDTO>()
                 .ForMember(
                     dest => dest.ProductId,
                     opt => opt.MapFrom(src => src.Product.Id)

@@ -39,13 +39,18 @@ namespace Virta.Services
         public async Task<bool> UpsertCartAsync(CartUpsert cart, Guid userId)
         {
             var cartToSave = _mapper.Map<Cart>(cart);
-            cartToSave.Products = new List<Cart.CartItem>();
+
+            cartToSave.CartItems = new List<CartItem>();
+
             foreach(var item in cart.Products)
             {
                 var product = await _productRepository.GetProduct(item.ProductId);
 
-                cartToSave.Products.Add(
-                    new Cart.CartItem
+                if (product == null)
+                    continue;
+
+                cartToSave.CartItems.Add(
+                    new CartItem
                     {
                         Product = product,
                         Quantity = item.Quantity
@@ -71,14 +76,14 @@ namespace Virta.Services
         public async Task<bool> UpsertWishlistAsync(WishlistUpsert wishlist, Guid userId)
         {
             var wishlistToSave = _mapper.Map<Wishlist>(wishlist);
-            wishlistToSave.Products = new List<Wishlist.WishlistItem>();
+            wishlistToSave.WishlistItems = new List<WishlistItem>();
 
             foreach(var item in wishlist.Products)
             {
                 var product = await _productRepository.GetProduct(item.ProductId);
 
-                wishlistToSave.Products.Add(
-                    new Wishlist.WishlistItem { Product = product }
+                wishlistToSave.WishlistItems.Add(
+                    new WishlistItem { Product = product }
                 );
             }
 

@@ -168,6 +168,7 @@ namespace Virta.Database
                     SKU = "60ddf30e02d3a810c7f04762",
                     Type = Product.ProductTypes.Simple,
                     Visibility = Product.ProductVisibilities.PLP,
+                    Label = Product.ProductLabels.Featured,
                     Active = true
                 },
                 new Product {
@@ -178,6 +179,7 @@ namespace Virta.Database
                     SKU = "60ddf30e02d3a810c7f04763",
                     Type = Product.ProductTypes.Simple,
                     Visibility = Product.ProductVisibilities.PLP,
+                    Label = Product.ProductLabels.Featured,
                     Active = true
                 },
                 new Product {
@@ -188,6 +190,7 @@ namespace Virta.Database
                     SKU = "60ddf30e02d3a810c7f04764",
                     Type = Product.ProductTypes.Simple,
                     Visibility = Product.ProductVisibilities.PLP,
+                    Label = Product.ProductLabels.Featured,
                     Active = true
                 },
                 new Product {
@@ -198,6 +201,7 @@ namespace Virta.Database
                     SKU = "60ddf30e02d3a810c7f04765",
                     Type = Product.ProductTypes.Simple,
                     Visibility = Product.ProductVisibilities.PLP,
+                    Label = Product.ProductLabels.Featured,
                     Active = true
                 },
                 new Product {
@@ -208,6 +212,7 @@ namespace Virta.Database
                     SKU = "60ddf30e02d3a810c7f04766",
                     Type = Product.ProductTypes.Simple,
                     Visibility = Product.ProductVisibilities.PLP,
+                    Label = Product.ProductLabels.Featured,
                     Active = true
                 },
                 new Product {

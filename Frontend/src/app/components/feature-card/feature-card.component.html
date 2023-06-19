@@ -30,7 +30,7 @@
                 data-autoplay="true"
                 data-vbtype="video"
             ></a>
-            <a role="button" title="Product View" class="far fa-eye"></a>
+            <a role="button" title="Product View" class="far fa-eye" (click)="open()"></a>
             <!-- <a title="Product Compare" href="#" class="far fa-exchange"></a> -->
         </div>
     </div>
@@ -50,3 +50,6 @@
         </a>
     </div>
 </div>
+<app-modal [isOpen]="isOpen" id="product-preview" *ngIf="isOpen">
+    <app-product-details class="preview-modal-content" [product]="product"></app-product-details>
+</app-modal>

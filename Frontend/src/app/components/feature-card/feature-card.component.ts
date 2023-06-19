@@ -14,6 +14,7 @@ export class FeatureCardComponent implements OnInit {
     @Input() product!: ProductDTO;
     venobox: typeof VenoBox;
     hasLabel = false;
+    isOpen = false;
 
     constructor(
         private modalService: NgbModal,
@@ -27,5 +28,9 @@ export class FeatureCardComponent implements OnInit {
 
     onAddToCartClick() {
         this.cartService.addToCart(this.product);
+    }
+
+    open() {
+        this.isOpen = !this.isOpen;
     }
 }

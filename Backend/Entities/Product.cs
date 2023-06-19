@@ -32,6 +32,9 @@ namespace Virta.Entities
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
+        public virtual ICollection<WishlistItem> WishlistItems { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
+
         public enum ProductTypes
         {
             Simple, // AssociatedProducts => NULL
