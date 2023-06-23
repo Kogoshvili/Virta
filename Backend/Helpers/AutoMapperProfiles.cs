@@ -38,9 +38,7 @@ namespace Virta.Helpers
                 )
                 .ForMember(
                     dest => dest.Parent,
-                    opt => opt.MapFrom(
-                        src => src.Parent.Id
-                    )
+                    opt => opt.Ignore() // TODO: not ignore in the future
                 );
             CreateMap<CategoryDTO, CategoryUpsert>();
             CreateMap<CategoryUpsert, Category>()
@@ -156,7 +154,6 @@ namespace Virta.Helpers
                     opt => opt.MapFrom(src => src)
                 );
 
-
             CreateMap<WishlistDTO, WishlistUpsert>();
             CreateMap<WishlistDTO.WishlistItemDTO, WishlistUpsert.WishlistItemUpsert>();
 
@@ -189,6 +186,13 @@ namespace Virta.Helpers
                     dest => dest.Unit,
                     opt => opt.MapFrom(src => src.Product.Unit)
                 );
+
+            CreateMap<Wishlist, Wishlist>()
+                .ForMember(
+                    dest => dest.WishlistItems,
+                    opt => opt.Ignore()
+                );
+            CreateMap<WishlistItem, WishlistItem>();
             #endregion
 
             /* From Product Entity */
